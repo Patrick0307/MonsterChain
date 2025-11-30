@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap');
 
 .tutorial-overlay {
   position: fixed;
@@ -9,99 +9,118 @@
   background: 
     repeating-linear-gradient(
       0deg,
-      rgba(212, 175, 55, 0.02) 0px,
+      rgba(139, 0, 0, 0.03) 0px,
       transparent 2px,
       transparent 4px,
-      rgba(212, 175, 55, 0.02) 6px
+      rgba(139, 0, 0, 0.03) 6px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(212, 175, 55, 0.02) 0px,
+      rgba(139, 0, 0, 0.03) 0px,
       transparent 2px,
       transparent 4px,
-      rgba(212, 175, 55, 0.02) 6px
+      rgba(139, 0, 0, 0.03) 6px
     ),
-    rgba(10, 10, 8, 0.95);
+    rgba(5, 0, 0, 0.97);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   animation: fadeIn 0.3s ease;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
 }
 
 .tutorial-modal {
   background: 
     repeating-conic-gradient(
       from 0deg at 2px 2px,
-      #1a1a18 0deg 90deg,
-      #0a0a08 90deg 180deg,
-      #1a1a18 180deg 270deg,
-      #0a0a08 270deg 360deg
+      #1a0000 0deg 90deg,
+      #000000 90deg 180deg,
+      #1a0000 180deg 270deg,
+      #000000 270deg 360deg
     ),
-    linear-gradient(135deg, #1a1a18 0%, #0a0a08 100%);
+    linear-gradient(135deg, #1a0000 0%, #000000 100%);
   background-size: 4px 4px, 100% 100%;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 40px;
   max-width: 700px;
   width: 90%;
   max-height: 85vh;
   overflow: hidden;
   box-shadow: 
-    inset 0 0 0 2px #d4af37,
-    inset 0 0 0 5px #1a1a18,
-    0 0 35px rgba(212, 175, 55, 0.5),
-    0 0 70px rgba(212, 175, 55, 0.3),
-    0 15px 50px rgba(0, 0, 0, 0.9);
-  border: 3px solid #d4af37;
+    inset 0 0 0 3px #8b0000,
+    inset 0 0 30px rgba(139, 0, 0, 0.6),
+    0 0 50px rgba(255, 0, 0, 0.7),
+    0 0 100px rgba(139, 0, 0, 0.5),
+    0 20px 60px rgba(0, 0, 0, 0.95);
+  border: 4px solid #8b0000;
   position: relative;
-  animation: slideUp 0.4s ease;
-  font-family: 'Orbitron', sans-serif;
+  animation: slideUp 0.4s ease, bloodPulseModal 3s ease-in-out infinite;
+  font-family: 'Creepster', cursive;
   display: flex;
   flex-direction: column;
+}
+
+@keyframes bloodPulseModal {
+  0%, 100% {
+    box-shadow: 
+      inset 0 0 0 3px #8b0000,
+      inset 0 0 30px rgba(139, 0, 0, 0.6),
+      0 0 40px rgba(255, 0, 0, 0.6),
+      0 0 80px rgba(139, 0, 0, 0.4),
+      0 20px 60px rgba(0, 0, 0, 0.95);
+  }
+  50% {
+    box-shadow: 
+      inset 0 0 0 3px #ff0000,
+      inset 0 0 40px rgba(255, 0, 0, 0.7),
+      0 0 60px rgba(255, 0, 0, 0.9),
+      0 0 120px rgba(139, 0, 0, 0.6),
+      0 20px 60px rgba(0, 0, 0, 0.95);
+  }
 }
 
 .tutorial-language-toggle {
   position: absolute;
   top: 15px;
   left: 15px;
-  background: linear-gradient(135deg, #2a2a28 0%, #1a1a18 100%);
-  border: 2px solid #b8860b;
-  color: #d4af37;
+  background: linear-gradient(135deg, #1a0000 0%, #2a0000 100%);
+  border: 3px solid #8b0000;
+  color: #ff6666;
   font-size: 13px;
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Creepster', cursive;
   text-transform: uppercase;
   letter-spacing: 1px;
   box-shadow: 
-    inset 0 0 0 1px #1a1a18,
-    0 0 10px rgba(184, 134, 11, 0.3),
-    0 4px 8px rgba(0, 0, 0, 0.5);
-  text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+    inset 0 0 0 1px #000000,
+    0 0 15px rgba(255, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
 .tutorial-language-toggle:hover {
-  background: linear-gradient(135deg, #3a3a35 0%, #2a2a28 100%);
-  border-color: #d4af37;
-  color: #f0e68c;
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #2a0000 0%, #3a0000 100%);
+  border-color: #ff0000;
+  color: #ff0000;
+  transform: translateY(-2px) scale(1.05);
   box-shadow: 
-    inset 0 0 0 1px #1a1a18,
-    0 0 12px rgba(212, 175, 55, 0.5),
-    0 5px 0 #0a0a08;
+    inset 0 0 0 1px #000000,
+    0 0 25px rgba(255, 0, 0, 0.6),
+    0 5px 0 #000000;
 }
 
 .tutorial-close {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: linear-gradient(135deg, #2a2a28 0%, #1a1a18 100%);
-  border: 2px solid #d4af37;
-  color: #d4af37;
+  background: linear-gradient(135deg, #1a0000 0%, #2a0000 100%);
+  border: 3px solid #8b0000;
+  color: #ff6666;
   font-size: 28px;
   width: 40px;
   height: 40px;
@@ -113,53 +132,71 @@
   justify-content: center;
   line-height: 1;
   box-shadow: 
-    inset 0 0 0 1px #1a1a18,
-    0 0 12px rgba(212, 175, 55, 0.4),
-    0 4px 8px rgba(0, 0, 0, 0.6);
-  text-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+    inset 0 0 0 1px #000000,
+    0 0 20px rgba(255, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
 }
 
 .tutorial-close:hover {
-  background: linear-gradient(135deg, #3a3a35 0%, #2a2a28 100%);
-  border-color: #f0e68c;
-  color: #f0e68c;
-  transform: rotate(90deg);
+  background: linear-gradient(135deg, #2a0000 0%, #3a0000 100%);
+  border-color: #ff0000;
+  color: #ff0000;
+  transform: rotate(90deg) scale(1.1);
   box-shadow: 
-    inset 0 0 0 1px #1a1a18,
-    0 0 15px rgba(240, 230, 140, 0.5),
-    0 5px 0 #0a0a08;
+    inset 0 0 0 1px #000000,
+    0 0 30px rgba(255, 0, 0, 0.8),
+    0 5px 0 #000000;
 }
 
 .tutorial-header {
   text-align: center;
   margin-bottom: 30px;
-  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 3px solid rgba(139, 0, 0, 0.5);
   padding-bottom: 20px;
+  padding-top: 10px;
   width: 100%;
   flex-shrink: 0;
+  box-shadow: 0 3px 15px rgba(255, 0, 0, 0.3);
 }
 
 .tutorial-header h2 {
-  color: #ffed4e;
-  font-size: 2rem;
-  margin: 0 0 10px 0;
+  color: #ff0000;
+  font-size: 1.8rem;
+  margin: 0 0 15px 0;
+  padding: 0 10px;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 6px;
+  letter-spacing: 4px;
+  font-family: 'Creepster', cursive;
   text-shadow: 
-    0 0 15px rgba(255, 237, 78, 0.8),
-    0 0 25px rgba(255, 215, 0, 0.6),
-    0 0 35px rgba(212, 175, 55, 0.4),
-    2px 2px 0 #000;
-  filter: brightness(1.2);
+    0 0 20px rgba(255, 0, 0, 1),
+    0 0 40px rgba(139, 0, 0, 0.8),
+    0 0 60px rgba(255, 0, 0, 0.6),
+    3px 3px 0 #000,
+    6px 6px 0 rgba(0, 0, 0, 0.8);
+  filter: brightness(1.3);
+  animation: horrorTitleGlow 2s ease-in-out infinite alternate;
+  line-height: 1.4;
+}
+
+@keyframes horrorTitleGlow {
+  0% {
+    filter: brightness(1.2);
+  }
+  100% {
+    filter: brightness(1.5);
+  }
 }
 
 .tutorial-progress {
-  color: #d4af37;
-  font-size: 16px;
+  color: #ff6666;
+  font-size: 15px;
   font-weight: 600;
-  text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
   letter-spacing: 2px;
+  font-family: 'Creepster', cursive;
+  margin-top: 5px;
 }
 
 .tutorial-content {
@@ -175,37 +212,38 @@
 }
 
 .tutorial-content h3 {
-  color: #f0e68c;
+  color: #ff6666;
   font-size: 1.3rem;
   margin-bottom: 15px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
+  font-family: 'Creepster', cursive;
   text-shadow: 
-    0 0 10px rgba(240, 230, 140, 0.5),
-    1px 1px 2px #000;
+    0 0 15px rgba(255, 0, 0, 0.7),
+    2px 2px 4px #000;
 }
 
 .tutorial-content p {
-  color: #aaa;
+  color: #ccc;
   font-size: 0.95rem;
   line-height: 1.7;
   margin-bottom: 20px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
   letter-spacing: 1px;
 }
 
 .tutorial-image-container {
   width: 100%;
   margin: 20px 0;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
-  border: 3px solid rgba(212, 175, 55, 0.5);
+  border: 3px solid rgba(139, 0, 0, 0.7);
   box-shadow: 
-    inset 0 0 0 1px rgba(10, 10, 8, 0.8),
-    0 0 20px rgba(212, 175, 55, 0.3),
-    0 8px 25px rgba(0, 0, 0, 0.6);
-  background: rgba(10, 10, 8, 0.5);
+    inset 0 0 0 1px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(255, 0, 0, 0.5),
+    0 8px 30px rgba(0, 0, 0, 0.8);
+  background: rgba(10, 0, 0, 0.6);
 }
 
 .tutorial-image {
@@ -222,33 +260,35 @@
 
 .tutorial-link {
   display: inline-block;
-  background: linear-gradient(135deg, #d4af37 0%, #f0e68c 50%, #d4af37 100%);
-  color: #1a1a1a;
+  background: linear-gradient(135deg, #8b0000 0%, #ff0000 50%, #8b0000 100%);
+  color: #ffffff;
   padding: 12px 24px;
-  border-radius: 10px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 700;
   transition: all 0.3s ease;
   margin-top: 10px;
-  border: 2px solid #1a1a1a;
+  border: 3px solid #000000;
   box-shadow: 
-    inset 0 0 0 1px #1a1a1a,
-    0 0 15px rgba(212, 175, 55, 0.4),
-    0 5px 12px rgba(0, 0, 0, 0.6);
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
-  font-family: 'Orbitron', sans-serif;
+    inset 0 0 0 2px #ff0000,
+    inset 0 0 15px rgba(139, 0, 0, 0.6),
+    0 0 25px rgba(255, 0, 0, 0.5),
+    0 5px 12px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 2px 2px 4px #000;
+  font-family: 'Creepster', cursive;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 13px;
 }
 
 .tutorial-link:hover {
-  background: linear-gradient(135deg, #f0e68c 0%, #fff8dc 50%, #f0e68c 100%);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #ff0000 0%, #ff4444 50%, #ff0000 100%);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 
-    inset 0 0 0 1px #1a1a1a,
-    0 0 20px rgba(212, 175, 55, 0.5),
-    0 6px 0 #0a0a08;
+    inset 0 0 0 2px #ff0000,
+    inset 0 0 20px rgba(255, 0, 0, 0.7),
+    0 0 35px rgba(255, 0, 0, 0.7),
+    0 6px 0 #000000;
 }
 
 .tutorial-navigation {
@@ -274,28 +314,31 @@
 }
 
 .tutorial-btn-prev {
-  background: linear-gradient(135deg, #2a2a28 0%, #1a1a18 100%);
-  color: #b8860b;
-  border: 2px solid #b8860b;
+  background: linear-gradient(135deg, #1a0000 0%, #2a0000 100%);
+  color: #ff6666;
+  border: 3px solid #8b0000;
+  border-radius: 8px;
   box-shadow: 
-    inset 0 0 0 1px #1a1a18,
-    0 0 10px rgba(184, 134, 11, 0.2),
-    0 4px 0 #0a0a08;
-  text-shadow: 0 0 4px rgba(184, 134, 11, 0.3);
-  font-family: 'Orbitron', sans-serif;
+    inset 0 0 0 1px #000000,
+    inset 0 0 10px rgba(139, 0, 0, 0.5),
+    0 0 20px rgba(139, 0, 0, 0.4),
+    0 4px 0 #000000;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.6), 1px 1px 2px #000;
+  font-family: 'Creepster', cursive;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .tutorial-btn-prev:hover:not(:disabled) {
-  background: linear-gradient(135deg, #3a3a35 0%, #2a2a28 100%);
-  border-color: #d4af37;
-  color: #d4af37;
-  transform: translateX(-3px);
+  background: linear-gradient(135deg, #2a0000 0%, #3a0000 100%);
+  border-color: #ff0000;
+  color: #ff0000;
+  transform: translateX(-3px) scale(1.02);
   box-shadow: 
-    inset 0 0 0 1px #1a1a18,
-    0 0 15px rgba(212, 175, 55, 0.4),
-    0 6px 0 #0a0a08;
+    inset 0 0 0 1px #000000,
+    inset 0 0 15px rgba(255, 0, 0, 0.6),
+    0 0 30px rgba(255, 0, 0, 0.5),
+    0 6px 0 #000000;
 }
 
 .tutorial-btn-prev:disabled {
@@ -305,29 +348,30 @@
 }
 
 .tutorial-btn-next {
-  background: linear-gradient(135deg, #d4af37 0%, #f0e68c 50%, #d4af37 100%);
-  color: #1a1a1a;
-  border: 2px solid #1a1a1a;
+  background: linear-gradient(135deg, #8b0000 0%, #ff0000 50%, #8b0000 100%);
+  color: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 8px;
   box-shadow: 
-    inset 0 0 0 1px #1a1a1a,
-    inset 0 0 0 3px rgba(212, 175, 55, 0.5),
-    0 0 15px rgba(212, 175, 55, 0.3),
-    0 4px 0 #0a0a08;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
-  font-family: 'Orbitron', sans-serif;
+    inset 0 0 0 2px #ff0000,
+    inset 0 0 15px rgba(139, 0, 0, 0.7),
+    0 0 30px rgba(255, 0, 0, 0.6),
+    0 5px 0 #000000;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 2px 2px 4px #000;
+  font-family: 'Creepster', cursive;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
 }
 
 .tutorial-btn-next:hover {
-  background: linear-gradient(135deg, #f0e68c 0%, #fff8dc 50%, #f0e68c 100%);
-  transform: translateX(3px);
+  background: linear-gradient(135deg, #ff0000 0%, #ff4444 50%, #ff0000 100%);
+  transform: translateX(3px) scale(1.02);
   box-shadow: 
-    inset 0 0 0 1px #1a1a1a,
-    inset 0 0 0 3px rgba(240, 230, 140, 0.6),
-    0 0 25px rgba(212, 175, 55, 0.5),
-    0 6px 0 #0a0a08;
+    inset 0 0 0 2px #ff0000,
+    inset 0 0 25px rgba(255, 0, 0, 0.8),
+    0 0 40px rgba(255, 0, 0, 0.8),
+    0 7px 0 #000000;
 }
 
 .tutorial-dots {
@@ -340,22 +384,22 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(184, 134, 11, 0.4);
+  background: rgba(139, 0, 0, 0.5);
   cursor: default;
   transition: all 0.3s ease;
-  border: 2px solid rgba(184, 134, 11, 0.6);
-  box-shadow: 0 0 5px rgba(184, 134, 11, 0.2);
+  border: 2px solid rgba(139, 0, 0, 0.7);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
   pointer-events: none;
 }
 
 .tutorial-dot.active {
-  background: #d4af37;
+  background: #ff0000;
   width: 14px;
   height: 14px;
   box-shadow: 
-    0 0 12px rgba(212, 175, 55, 0.7),
-    inset 0 0 6px rgba(255, 237, 78, 0.5);
-  border-color: #f0e68c;
+    0 0 15px rgba(255, 0, 0, 0.9),
+    inset 0 0 8px rgba(255, 0, 0, 0.6);
+  border-color: #ff6666;
   border-width: 3px;
 }
 
@@ -431,46 +475,39 @@
   background: 
     repeating-conic-gradient(
       from 0deg at 2px 2px,
-      #1a1a18 0deg 90deg,
-      #0a0a08 90deg 180deg,
-      #1a1a18 180deg 270deg,
-      #0a0a08 270deg 360deg
+      #1a0000 0deg 90deg,
+      #000000 90deg 180deg,
+      #1a0000 180deg 270deg,
+      #000000 270deg 360deg
     ),
-    linear-gradient(135deg, #1a1a18 0%, #0a0a08 100%);
+    linear-gradient(135deg, #1a0000 0%, #000000 100%);
   background-size: 4px 4px, 100% 100%;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 35px;
   max-width: 450px;
   width: 85%;
   box-shadow: 
-    inset 0 0 0 2px #d4af37,
-    inset 0 0 0 5px #1a1a18,
-    0 0 30px rgba(212, 175, 55, 0.5),
-    0 15px 50px rgba(0, 0, 0, 0.9);
-  border: 3px solid #d4af37;
+    inset 0 0 0 3px #8b0000,
+    inset 0 0 20px rgba(139, 0, 0, 0.6),
+    0 0 40px rgba(255, 0, 0, 0.7),
+    0 15px 50px rgba(0, 0, 0, 0.95);
+  border: 4px solid #8b0000;
   animation: slideUp 0.3s ease;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Creepster', cursive;
 }
 
 .tutorial-confirm-box h3 {
-  color: #f0e68c;
+  color: #ff6666;
   font-size: 1.1rem;
   margin: 0 0 25px 0;
   text-align: center;
   line-height: 1.6;
   text-transform: uppercase;
   letter-spacing: 2px;
+  font-family: 'Creepster', cursive;
   text-shadow: 
-    0 0 10px rgba(240, 230, 140, 0.5),
-    1px 1px 2px #000;
-}
-
-.tutorial-confirm-box h3 {
-  color: #fff;
-  font-size: 18px;
-  margin: 0 0 25px 0;
-  text-align: center;
-  line-height: 1.5;
+    0 0 15px rgba(255, 0, 0, 0.7),
+    2px 2px 4px #000;
 }
 
 .tutorial-confirm-buttons {
@@ -491,52 +528,56 @@
 }
 
 .tutorial-confirm-yes {
-  background: linear-gradient(135deg, #3a1010 0%, #2a0808 100%);
+  background: linear-gradient(135deg, #1a0000 0%, #2a0000 100%);
   color: #ff6666;
-  border: 2px solid #8b0000;
+  border: 3px solid #8b0000;
   box-shadow: 
-    inset 0 0 0 1px #1a0000,
-    0 0 12px rgba(139, 0, 0, 0.3),
-    0 4px 0 #0a0000;
-  text-shadow: 0 0 5px rgba(255, 102, 102, 0.5);
-  font-family: 'Orbitron', sans-serif;
+    inset 0 0 0 1px #000000,
+    inset 0 0 10px rgba(139, 0, 0, 0.5),
+    0 0 20px rgba(139, 0, 0, 0.4),
+    0 4px 0 #000000;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.6), 1px 1px 2px #000;
+  font-family: 'Creepster', cursive;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .tutorial-confirm-yes:hover {
-  background: linear-gradient(135deg, #4a1818 0%, #3a1010 100%);
-  border-color: #a00000;
-  color: #ff8888;
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #2a0000 0%, #3a0000 100%);
+  border-color: #ff0000;
+  color: #ff0000;
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 
-    inset 0 0 0 1px #1a0000,
-    0 0 18px rgba(160, 0, 0, 0.5),
-    0 6px 0 #0a0000;
+    inset 0 0 0 1px #000000,
+    inset 0 0 15px rgba(255, 0, 0, 0.6),
+    0 0 30px rgba(255, 0, 0, 0.5),
+    0 6px 0 #000000;
 }
 
 .tutorial-confirm-no {
-  background: linear-gradient(135deg, #d4af37 0%, #f0e68c 50%, #d4af37 100%);
-  color: #1a1a1a;
-  border: 2px solid #1a1a1a;
+  background: linear-gradient(135deg, #8b0000 0%, #ff0000 50%, #8b0000 100%);
+  color: #ffffff;
+  border: 3px solid #000000;
   box-shadow: 
-    inset 0 0 0 1px #1a1a1a,
-    0 0 12px rgba(212, 175, 55, 0.3),
-    0 4px 0 #0a0a08;
-  text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
-  font-family: 'Orbitron', sans-serif;
+    inset 0 0 0 2px #ff0000,
+    inset 0 0 15px rgba(139, 0, 0, 0.6),
+    0 0 20px rgba(255, 0, 0, 0.5),
+    0 4px 0 #000000;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 2px 2px 4px #000;
+  font-family: 'Creepster', cursive;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
 }
 
 .tutorial-confirm-no:hover {
-  background: linear-gradient(135deg, #f0e68c 0%, #fff8dc 50%, #f0e68c 100%);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #ff0000 0%, #ff4444 50%, #ff0000 100%);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 
-    inset 0 0 0 1px #1a1a1a,
-    0 0 20px rgba(212, 175, 55, 0.5),
-    0 6px 0 #0a0a08;
+    inset 0 0 0 2px #ff0000,
+    inset 0 0 20px rgba(255, 0, 0, 0.7),
+    0 0 30px rgba(255, 0, 0, 0.7),
+    0 6px 0 #000000;
 }
 
 /* Responsive design */

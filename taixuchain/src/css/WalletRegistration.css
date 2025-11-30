@@ -1,5 +1,5 @@
-/* 80s Black & Gold Style - Cyberpunk Mosaic */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+/* Halloween Horror Theme - Blood & Skulls */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap');
 
 .wallet-registration-overlay {
   position: fixed;
@@ -8,33 +8,33 @@
   width: 100%;
   height: 100%;
   background: 
-    /* Mosaic grid */
+    /* Blood drips pattern */
     repeating-linear-gradient(
       0deg,
-      rgba(212, 175, 55, 0.04) 0px,
+      rgba(139, 0, 0, 0.05) 0px,
       transparent 2px,
       transparent 4px,
-      rgba(212, 175, 55, 0.04) 6px
+      rgba(139, 0, 0, 0.05) 6px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(212, 175, 55, 0.04) 0px,
+      rgba(139, 0, 0, 0.05) 0px,
       transparent 2px,
       transparent 4px,
-      rgba(212, 175, 55, 0.04) 6px
+      rgba(139, 0, 0, 0.05) 6px
     ),
-    /* Gradient background */
-    radial-gradient(ellipse at top, #1a1410 0%, #0a0a08 50%),
-    linear-gradient(180deg, #151510 0%, #0a0a08 100%);
+    /* Dark horror gradient */
+    radial-gradient(ellipse at top, #0d0000 0%, #000000 50%),
+    linear-gradient(180deg, #050000 0%, #000000 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   overflow: hidden;
-  animation: scanlines 8s linear infinite;
+  animation: bloodPulse 3s ease-in-out infinite;
 }
 
-/* Scanline effect + 80s grid floor */
+/* Blood drip effect */
 .wallet-registration-overlay::before {
   content: '';
   position: absolute;
@@ -43,27 +43,27 @@
   width: 100%;
   height: 100%;
   background: 
-    /* Scanlines */
+    /* Blood drips */
     repeating-linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.15) 0px,
-      rgba(0, 0, 0, 0.15) 1px,
+      rgba(139, 0, 0, 0.15) 0px,
+      rgba(139, 0, 0, 0.15) 1px,
       transparent 1px,
       transparent 2px
     ),
-    /* Bottom grid */
+    /* Dark fog */
     linear-gradient(
       to bottom,
       transparent 0%,
       transparent 50%,
-      rgba(255, 215, 0, 0.05) 50%,
-      rgba(255, 215, 0, 0.05) 100%
+      rgba(255, 0, 0, 0.02) 50%,
+      rgba(255, 0, 0, 0.02) 100%
     );
   pointer-events: none;
   z-index: 1;
 }
 
-/* Golden glow animation */
+/* Red blood glow animation */
 .wallet-registration-overlay::after {
   content: '';
   position: absolute;
@@ -73,7 +73,7 @@
   height: 200%;
   background: radial-gradient(
     circle,
-    rgba(255, 215, 0, 0.1) 0%,
+    rgba(255, 0, 0, 0.08) 0%,
     transparent 50%
   );
   animation: rotate 20s linear infinite;
@@ -81,12 +81,14 @@
   z-index: 0;
 }
 
-@keyframes scanlines {
-  0% {
+@keyframes bloodPulse {
+  0%, 100% {
     background-position: 0 0, 0 0, 0 0, 0 0;
+    filter: brightness(0.7);
   }
-  100% {
-    background-position: 0 100px, 0 100px, 0 0, 0 0;
+  50% {
+    background-position: 0 50px, 0 50px, 0 0, 0 0;
+    filter: brightness(0.85);
   }
 }
 
@@ -96,6 +98,55 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Blood rain effect */
+.blood-rain-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.blood-drop {
+  position: absolute;
+  top: -50px;
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(139, 0, 0, 0.8) 20%,
+    rgba(255, 0, 0, 0.9) 50%,
+    rgba(139, 0, 0, 0.6) 80%,
+    transparent 100%
+  );
+  filter: blur(0.5px);
+  animation: bloodRainFall linear infinite;
+  box-shadow: 
+    0 0 3px rgba(255, 0, 0, 0.5),
+    0 0 6px rgba(139, 0, 0, 0.3);
+}
+
+@keyframes bloodRainFall {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
   }
 }
 
@@ -110,7 +161,7 @@
   height: auto;
   position: relative;
   z-index: 2;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Creepster', cursive;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,87 +201,128 @@
   }
 }
 
-.logo-image {
+/* Skull logo container */
+.skull-logo-container {
+  position: relative;
   width: 180px;
   height: 180px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
-          drop-shadow(0 0 40px rgba(255, 215, 0, 0.4));
-  animation: logoRotate 4s linear infinite, logoGlow 3s ease-in-out infinite alternate;
   margin-bottom: 20px;
 }
 
-@keyframes logoRotate {
-  from {
-    transform: rotate(0deg);
+/* Skull logo */
+.skull-logo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.8))
+          drop-shadow(0 0 60px rgba(139, 0, 0, 0.6));
+  animation: skullGlow 2s ease-in-out infinite alternate;
+}
+
+/* Skull eyes glow */
+.skull-eye {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.6) 40%, transparent 70%);
+  border-radius: 50%;
+  animation: eyeGlow 2s ease-in-out infinite alternate;
+  pointer-events: none;
+  filter: blur(2px);
+}
+
+.skull-eye.left-eye {
+  top: 45%;
+  left: 35%;
+}
+
+.skull-eye.right-eye {
+  top: 45%;
+  right: 35%;
+}
+
+@keyframes eyeGlow {
+  0% {
+    opacity: 0.6;
+    box-shadow: 
+      0 0 10px rgba(255, 0, 0, 0.8),
+      0 0 20px rgba(255, 0, 0, 0.6),
+      0 0 30px rgba(255, 0, 0, 0.4);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
+    box-shadow: 
+      0 0 20px rgba(255, 0, 0, 1),
+      0 0 40px rgba(255, 0, 0, 0.8),
+      0 0 60px rgba(255, 0, 0, 0.6);
   }
 }
 
-@keyframes logoGlow {
+@keyframes skullGlow {
   0% {
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
-            drop-shadow(0 0 40px rgba(255, 215, 0, 0.4));
+    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))
+            drop-shadow(0 0 40px rgba(139, 0, 0, 0.4));
   }
   100% {
-    filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8))
-            drop-shadow(0 0 60px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 40px rgba(255, 0, 0, 1))
+            drop-shadow(0 0 80px rgba(139, 0, 0, 0.8));
   }
 }
 
 .wallet-registration-box h2 {
-  color: #ffed4e;
+  color: #ff0000;
   font-size: 3.5rem;
   font-weight: 900;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 12px;
   line-height: 1.3;
+  font-family: 'Nosifer', cursive;
   text-shadow: 
-    0 0 30px rgba(255, 237, 78, 1),
-    0 0 50px rgba(255, 215, 0, 0.8),
-    0 0 70px rgba(255, 215, 0, 0.6),
-    0 0 90px rgba(212, 175, 55, 0.4),
+    0 0 30px rgba(255, 0, 0, 1),
+    0 0 50px rgba(139, 0, 0, 0.8),
+    0 0 70px rgba(255, 0, 0, 0.6),
+    0 0 90px rgba(139, 0, 0, 0.4),
     3px 3px 0 #000,
-    6px 6px 0 rgba(0, 0, 0, 0.5);
-  animation: titleGlow 3s ease-in-out infinite alternate;
+    6px 6px 0 rgba(0, 0, 0, 0.8),
+    0 10px 20px rgba(139, 0, 0, 0.5);
+  animation: bloodDrip 3s ease-in-out infinite;
   position: relative;
   width: 100%;
   filter: brightness(1.3);
 }
 
-@keyframes titleGlow {
-  0% {
-    filter: brightness(1.2);
+@keyframes bloodDrip {
+  0%, 100% {
+    filter: brightness(1);
     text-shadow: 
-      0 0 25px rgba(255, 237, 78, 1),
-      0 0 45px rgba(255, 215, 0, 0.8),
-      0 0 65px rgba(255, 215, 0, 0.6),
-      0 0 85px rgba(212, 175, 55, 0.4),
+      0 0 25px rgba(255, 0, 0, 1),
+      0 0 45px rgba(139, 0, 0, 0.8),
+      0 0 65px rgba(255, 0, 0, 0.6),
+      0 0 85px rgba(139, 0, 0, 0.4),
       3px 3px 0 #000,
-      6px 6px 0 rgba(0, 0, 0, 0.5);
+      6px 6px 0 rgba(0, 0, 0, 0.8);
   }
-  100% {
+  50% {
     filter: brightness(1.5);
     text-shadow: 
-      0 0 40px rgba(255, 237, 78, 1),
-      0 0 60px rgba(255, 215, 0, 1),
-      0 0 80px rgba(255, 215, 0, 0.8),
-      0 0 100px rgba(212, 175, 55, 0.6),
+      0 0 40px rgba(255, 0, 0, 1),
+      0 0 60px rgba(139, 0, 0, 1),
+      0 0 80px rgba(255, 0, 0, 0.8),
+      0 0 100px rgba(139, 0, 0, 0.6),
       3px 3px 0 #000,
-      6px 6px 0 rgba(0, 0, 0, 0.5);
+      6px 6px 0 rgba(0, 0, 0, 0.8),
+      0 15px 30px rgba(139, 0, 0, 0.8);
   }
 }
 
 .wallet-registration-box p {
-  color: #aaa;
+  color: #ff6666;
   font-size: 1rem;
   margin: 0;
   line-height: 1.6;
   text-shadow: 
-    0 0 6px rgba(170, 170, 170, 0.4),
+    0 0 10px rgba(255, 0, 0, 0.6),
     1px 1px 2px rgba(0, 0, 0, 0.8);
   letter-spacing: 2px;
   font-weight: 400;
@@ -239,39 +331,57 @@
   max-width: 600px;
 }
 
+.horror-text {
+  animation: horrorFlicker 2s ease-in-out infinite;
+}
+
+@keyframes horrorFlicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
 .connect-button {
   background: 
-    linear-gradient(135deg, #d4af37 0%, #f0e68c 50%, #d4af37 100%);
-  color: #1a1a1a;
-  border: 3px solid #1a1a1a;
-  padding: 18px 50px;
-  font-size: 1.1rem;
+    linear-gradient(135deg, #8b0000 0%, #ff0000 50%, #8b0000 100%);
+  color: #ffffff;
+  border: 4px solid #000000;
+  padding: 20px 50px;
+  font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Creepster', cursive;
   position: relative;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  border-radius: 12px;
+  letter-spacing: 4px;
+  border-radius: 0;
   box-shadow: 
-    inset 0 0 0 2px #1a1a1a,
-    inset 0 0 0 4px rgba(212, 175, 55, 0.6),
-    0 0 20px rgba(212, 175, 55, 0.4),
-    0 0 35px rgba(212, 175, 55, 0.2),
-    0 6px 0 #0a0a08,
-    0 10px 20px rgba(0, 0, 0, 0.8);
+    inset 0 0 0 2px #ff0000,
+    inset 0 0 20px rgba(139, 0, 0, 0.8),
+    0 0 40px rgba(255, 0, 0, 0.8),
+    0 0 60px rgba(139, 0, 0, 0.6),
+    0 8px 0 #000000,
+    0 12px 30px rgba(139, 0, 0, 0.9);
   text-shadow: 
-    0 0 6px rgba(255, 255, 255, 0.4),
-    1px 1px 0 rgba(0, 0, 0, 0.6);
+    0 0 15px rgba(255, 0, 0, 1),
+    3px 3px 6px rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
   overflow: hidden;
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
+  /* 不规则撕裂边缘效果 */
   clip-path: polygon(
-    8px 0, calc(100% - 8px) 0,
-    100% 8px, 100% calc(100% - 8px),
-    calc(100% - 8px) 100%, 8px 100%,
-    0 calc(100% - 8px), 0 8px
+    0% 5%, 3% 0%, 8% 2%, 12% 0%, 18% 3%, 25% 0%, 30% 2%, 35% 0%, 
+    42% 3%, 48% 1%, 55% 0%, 62% 2%, 68% 0%, 75% 3%, 82% 1%, 88% 0%, 
+    95% 2%, 100% 0%, 100% 8%, 98% 15%, 100% 22%, 97% 30%, 100% 38%, 
+    98% 45%, 100% 52%, 97% 60%, 100% 68%, 98% 75%, 100% 82%, 97% 90%, 
+    100% 95%, 95% 98%, 88% 100%, 82% 97%, 75% 100%, 68% 98%, 62% 100%, 
+    55% 97%, 48% 100%, 42% 98%, 35% 100%, 30% 97%, 25% 100%, 18% 98%, 
+    12% 100%, 8% 97%, 3% 100%, 0% 95%, 2% 88%, 0% 82%, 3% 75%, 0% 68%, 
+    2% 60%, 0% 52%, 3% 45%, 0% 38%, 2% 30%, 0% 22%, 3% 15%, 0% 8%
   );
 }
 
@@ -285,13 +395,27 @@
   background: linear-gradient(
     45deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 0, 0, 0.5) 50%,
     transparent 70%
   );
-  animation: buttonShine 3s linear infinite;
+  animation: bloodShine 3s linear infinite;
 }
 
-@keyframes buttonShine {
+.connect-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+@keyframes bloodShine {
   0% {
     transform: translateX(-100%) translateY(-100%) rotate(45deg);
   }
@@ -302,15 +426,15 @@
 
 .connect-button:hover:not(:disabled) {
   background: 
-    linear-gradient(135deg, #f0e68c 0%, #fff8dc 50%, #f0e68c 100%);
-  transform: translateY(-3px);
+    linear-gradient(135deg, #ff0000 0%, #ff4444 50%, #ff0000 100%);
+  transform: translateY(-4px) scale(1.02);
   box-shadow: 
-    inset 0 0 0 2px #1a1a1a,
-    inset 0 0 0 4px rgba(240, 230, 140, 0.7),
-    0 0 30px rgba(212, 175, 55, 0.6),
-    0 0 50px rgba(212, 175, 55, 0.4),
-    0 9px 0 #0a0a08,
-    0 14px 30px rgba(0, 0, 0, 0.9);
+    inset 0 0 0 2px #ff0000,
+    inset 0 0 30px rgba(255, 0, 0, 0.9),
+    0 0 50px rgba(255, 0, 0, 1),
+    0 0 80px rgba(139, 0, 0, 0.8),
+    0 12px 0 #000000,
+    0 18px 40px rgba(139, 0, 0, 1);
 }
 
 @keyframes buttonPulse {
@@ -341,49 +465,56 @@
 
 .tutorial-button {
   background: 
-    linear-gradient(135deg, #2a2a28 0%, #3a3a35 50%, #2a2a28 100%);
-  color: #d4af37;
-  border: 2px solid #d4af37;
-  padding: 14px 40px;
-  font-size: 0.9rem;
+    linear-gradient(135deg, #1a0000 0%, #2a0000 50%, #1a0000 100%);
+  color: #ff6666;
+  border: 3px solid #8b0000;
+  padding: 16px 40px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Creepster', cursive;
   position: relative;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  border-radius: 10px;
+  letter-spacing: 3px;
+  border-radius: 0;
   box-shadow: 
-    inset 0 0 0 1px #1a1a18,
-    0 0 15px rgba(212, 175, 55, 0.3),
-    0 5px 0 #0a0a08,
-    0 9px 18px rgba(0, 0, 0, 0.7);
+    inset 0 0 0 1px #ff0000,
+    inset 0 0 15px rgba(139, 0, 0, 0.6),
+    0 0 25px rgba(139, 0, 0, 0.6),
+    0 6px 0 #000000,
+    0 10px 20px rgba(139, 0, 0, 0.8);
   text-shadow: 
-    0 0 6px rgba(212, 175, 55, 0.5),
-    1px 1px 2px rgba(0, 0, 0, 0.8);
+    0 0 10px rgba(255, 0, 0, 0.8),
+    2px 2px 4px rgba(0, 0, 0, 0.9);
   transition: all 0.3s ease;
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
+  /* 不规则撕裂边缘效果 */
   clip-path: polygon(
-    6px 0, calc(100% - 6px) 0,
-    100% 6px, 100% calc(100% - 6px),
-    calc(100% - 6px) 100%, 6px 100%,
-    0 calc(100% - 6px), 0 6px
+    0% 8%, 2% 3%, 5% 0%, 10% 4%, 15% 1%, 20% 5%, 25% 2%, 30% 0%, 
+    35% 4%, 40% 2%, 45% 0%, 50% 3%, 55% 1%, 60% 0%, 65% 4%, 70% 2%, 
+    75% 0%, 80% 5%, 85% 2%, 90% 0%, 95% 4%, 98% 1%, 100% 5%, 100% 15%, 
+    98% 25%, 100% 35%, 97% 45%, 100% 55%, 98% 65%, 100% 75%, 97% 85%, 
+    100% 92%, 95% 96%, 90% 100%, 85% 97%, 80% 100%, 75% 96%, 70% 100%, 
+    65% 97%, 60% 100%, 55% 96%, 50% 100%, 45% 97%, 40% 100%, 35% 96%, 
+    30% 100%, 25% 97%, 20% 100%, 15% 96%, 10% 100%, 5% 97%, 2% 100%, 
+    0% 95%, 3% 85%, 0% 75%, 2% 65%, 0% 55%, 3% 45%, 0% 35%, 2% 25%, 0% 15%
   );
 }
 
 .tutorial-button:hover {
   background: 
-    linear-gradient(135deg, #3a3a35 0%, #4a4a42 50%, #3a3a35 100%);
-  border-color: #f0e68c;
-  color: #f0e68c;
-  transform: translateY(-3px);
+    linear-gradient(135deg, #2a0000 0%, #3a0000 50%, #2a0000 100%);
+  border-color: #ff0000;
+  color: #ff0000;
+  transform: translateY(-4px) scale(1.02);
   box-shadow: 
-    inset 0 0 0 1px #1a1a18,
-    0 0 25px rgba(212, 175, 55, 0.5),
-    0 0 40px rgba(212, 175, 55, 0.3),
-    0 8px 0 #0a0a08,
-    0 13px 25px rgba(0, 0, 0, 0.8);
+    inset 0 0 0 1px #ff0000,
+    inset 0 0 20px rgba(255, 0, 0, 0.7),
+    0 0 35px rgba(255, 0, 0, 0.8),
+    0 0 55px rgba(139, 0, 0, 0.6),
+    0 10px 0 #000000,
+    0 15px 30px rgba(139, 0, 0, 0.9);
 }
 
 .tutorial-button:active {
@@ -544,17 +675,17 @@
 }
 
 .success-message {
-  color: #00ff00;
+  color: #ff0000;
   font-size: 1.1rem;
   text-shadow: 
-    0 0 10px #00ff00,
-    0 0 20px #00ff00,
+    0 0 15px #ff0000,
+    0 0 30px #8b0000,
     2px 2px 0 #000;
   line-height: 2;
-  animation: successGlow 1s ease-in-out infinite alternate;
+  animation: bloodSuccessGlow 1s ease-in-out infinite alternate;
 }
 
-@keyframes successGlow {
+@keyframes bloodSuccessGlow {
   0% {
     filter: brightness(1);
   }
@@ -564,49 +695,49 @@
 }
 
 .success-message p {
-  color: #00ff00;
+  color: #ff0000;
   margin-bottom: 25px;
   font-size: 1.1rem;
 }
 
 .wallet-address {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Creepster', cursive;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #ffd700;
+  color: #ff0000;
   margin-top: 20px;
   padding: 20px;
   background: 
     repeating-conic-gradient(
       from 0deg at 2px 2px,
       #000 0deg 90deg,
-      #0a0a0a 90deg 180deg,
+      #1a0000 90deg 180deg,
       #000 180deg 270deg,
-      #0a0a0a 270deg 360deg
+      #1a0000 270deg 360deg
     ),
     #000;
   background-size: 4px 4px, 100% 100%;
-  border: 2px solid #ffd700;
+  border: 2px solid #8b0000;
   box-shadow: 
     inset 0 0 0 1px #000,
-    inset 0 0 20px rgba(255, 215, 0, 0.2),
-    0 0 15px rgba(255, 215, 0, 0.4),
-    0 4px 0 #0a0a0a,
-    0 8px 15px rgba(0, 0, 0, 0.7);
+    inset 0 0 20px rgba(139, 0, 0, 0.3),
+    0 0 20px rgba(255, 0, 0, 0.5),
+    0 4px 0 #000000,
+    0 8px 15px rgba(139, 0, 0, 0.7);
   text-shadow: 
-    0 0 5px rgba(255, 215, 0, 0.5),
+    0 0 8px rgba(255, 0, 0, 0.6),
     1px 1px 2px #000;
   letter-spacing: 2px;
 }
 
 .waiting-message {
   margin: 0;
-  color: #00ffff;
+  color: #ff6666;
   font-size: 1.1rem;
   line-height: 2;
   text-shadow: 
-    0 0 15px #00ffff,
-    0 0 30px #00ffff,
+    0 0 15px #ff0000,
+    0 0 30px #8b0000,
     2px 2px 4px #000;
   animation: blink 1.5s ease-in-out infinite;
   letter-spacing: 2px;
@@ -615,12 +746,12 @@
 
 .loading-message {
   margin-top: 25px;
-  color: #ffd700;
+  color: #ff0000;
   font-size: 1rem;
   font-weight: 700;
   text-shadow: 
-    0 0 10px #ffd700,
-    0 0 20px #ffd700,
+    0 0 15px #ff0000,
+    0 0 30px #8b0000,
     2px 2px 0 #000;
   animation: loadingPulse 1s ease-in-out infinite;
   line-height: 1.8;
@@ -646,304 +777,19 @@
   }
 }
 
-/* Flame particle effect */
-.flame-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-}
 
-.flame-particle {
-  position: absolute;
-  bottom: -20px;
-  width: 3px;
-  height: 15px;
-  background: linear-gradient(
-    to top,
-    rgba(212, 175, 55, 0.7) 0%,
-    rgba(184, 134, 11, 0.5) 50%,
-    transparent 100%
-  );
-  border-radius: 50%;
-  filter: blur(2px);
-  animation: flameRise 4s ease-in infinite;
-  box-shadow: 
-    0 0 8px rgba(212, 175, 55, 0.4),
-    0 0 15px rgba(184, 134, 11, 0.3);
-  opacity: 0.6;
-}
 
-@keyframes flameRise {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-50vh) scale(1.5);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-100vh) scale(0.5);
-    opacity: 0;
-  }
-}
-
-/* ===== Starry sky twinkling effect ===== */
-.stars-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #FFD700;
-  border-radius: 50%;
-  box-shadow: 0 0 3px #FFD700;
-  animation: starTwinkle 3s ease-in-out infinite;
-}
-
-@keyframes starTwinkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.5);
-  }
-}
-
-/* ===== Golden energy orbs ===== */
-.energy-orbs-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.energy-orb {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #FFD700, transparent);
-  border-radius: 50%;
-  box-shadow: 
-    0 0 10px #FFD700,
-    0 0 20px rgba(255, 215, 0, 0.5);
-  animation: orbFloat linear infinite;
-}
-
-@keyframes orbFloat {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--orbit-x), var(--orbit-y)) scale(0.5);
-    opacity: 0;
-  }
-}
-
-/* ===== Light beam effect ===== */
-.light-beams-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.light-beam {
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, 
-    transparent 0%, 
-    rgba(255, 215, 0, 0.2) 50%, 
-    transparent 100%
-  );
-  animation: beamPulse 3s ease-in-out infinite;
-}
-
-@keyframes beamPulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scaleY(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scaleY(1.2);
-  }
-}
-
-/* ===== Meteor effect ===== */
-.meteor {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #FFD700;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 2px #FFD700;
-  animation: meteorFall linear;
-  opacity: 0;
-}
-
-@keyframes meteorFall {
-  0% {
-    opacity: 1;
-    transform: translateX(0) translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(300px) translateY(300px);
-  }
-}
-
-.meteor::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 2px;
-  width: 50px;
-  height: 1px;
-  background: linear-gradient(90deg, #FFD700, transparent);
-}
-
-/* ===== Magic circles ===== */
-.magic-circles-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.magic-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: circleRotate linear infinite;
-}
-
-@keyframes circleRotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-/* Title flame effect */
-.title-fire {
+/* Title blood effect */
+.title-blood {
   position: relative;
   display: inline-block;
 }
 
-.title-fire::before {
+.title-blood::before {
   display: none;
 }
 
-@keyframes fireFlicker {
-  0% {
-    opacity: 0.8;
-    transform: translateY(0px) scaleY(1);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(-3px) scaleY(1.05);
-  }
-}
 
-/* Mosaic border decoration - Screen corners */
-.wallet-registration-box .mosaic-corner {
-  position: fixed;
-  width: 80px;
-  height: 80px;
-  background: 
-    repeating-conic-gradient(
-      from 0deg at 2px 2px,
-      #d4af37 0deg 90deg,
-      #1a1a18 90deg 180deg,
-      #d4af37 180deg 270deg,
-      #1a1a18 270deg 360deg
-    );
-  background-size: 8px 8px;
-  box-shadow: 
-    0 0 25px rgba(212, 175, 55, 0.5),
-    inset 0 0 20px rgba(0, 0, 0, 0.6);
-  animation: mosaicPulse 3s ease-in-out infinite;
-  z-index: 10;
-  opacity: 0.8;
-  border-radius: 50%;
-}
-
-.mosaic-corner.top-left {
-  top: 10px;
-  left: 10px;
-  clip-path: ellipse(80% 80% at 0% 0%);
-}
-
-.mosaic-corner.top-right {
-  top: 10px;
-  right: 10px;
-  clip-path: ellipse(80% 80% at 100% 0%);
-}
-
-.mosaic-corner.bottom-left {
-  bottom: 10px;
-  left: 10px;
-  clip-path: ellipse(80% 80% at 0% 100%);
-}
-
-.mosaic-corner.bottom-right {
-  bottom: 10px;
-  right: 10px;
-  clip-path: ellipse(80% 80% at 100% 100%);
-}
-
-@keyframes mosaicPulse {
-  0%, 100% {
-    filter: brightness(1);
-    transform: scale(1);
-  }
-  50% {
-    filter: brightness(1.5);
-    transform: scale(1.1);
-  }
-}
 
 
 
@@ -1027,27 +873,28 @@
   }
 }
 
-/* 80s scanline border */
+/* Blood border */
 .screen-border {
   position: fixed;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .screen-border.top,
 .screen-border.bottom {
   left: 0;
   right: 0;
-  height: 2px;
+  height: 3px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #d4af37 20%,
-    #d4af37 80%,
+    #8b0000 20%,
+    #ff0000 50%,
+    #8b0000 80%,
     transparent 100%
   );
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
 .screen-border.top {
@@ -1062,15 +909,16 @@
 .screen-border.right {
   top: 0;
   bottom: 0;
-  width: 2px;
+  width: 3px;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    #d4af37 20%,
-    #d4af37 80%,
+    #8b0000 20%,
+    #ff0000 50%,
+    #8b0000 80%,
     transparent 100%
   );
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
 .screen-border.left {
@@ -1144,15 +992,7 @@
     letter-spacing: 1.5px;
   }
   
-  .flame-particle {
-    width: 2px;
-    height: 12px;
-  }
-  
-  .mosaic-corner {
-    width: 60px;
-    height: 60px;
-  }
+
   
   .error-message {
     width: 90%;
@@ -1197,10 +1037,7 @@
     letter-spacing: 1px;
   }
   
-  .mosaic-corner {
-    width: 50px;
-    height: 50px;
-  }
+
   
   .error-message {
     width: 95%;

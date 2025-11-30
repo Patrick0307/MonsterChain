@@ -190,125 +190,33 @@ function WalletRegistration({ onRegistrationSuccess }) {
   return (
     <>
       <div className="wallet-registration-overlay">
-        {/* 80年代屏幕边框 */}
-        <div className="screen-border top"></div>
-        <div className="screen-border bottom"></div>
-        <div className="screen-border left"></div>
-        <div className="screen-border right"></div>
-        
-        {/* 星空闪烁效果 */}
-        <div className="stars-container">
-          {[...Array(60)].map((_, i) => (
+        {/* 血雨效果 */}
+        <div className="blood-rain-container">
+          {[...Array(50)].map((_, i) => (
             <div 
               key={i} 
-              className="star"
+              className="blood-drop"
               style={{
                 left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* 火焰粒子效果 */}
-        <div className="flame-particles">
-          {[...Array(30)].map((_, i) => (
-            <div 
-              key={i} 
-              className="flame-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 4}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* 能量球轨迹 */}
-        <div className="energy-orbs-container">
-          {[...Array(20)].map((_, i) => {
-            const angle = (Math.random() * 360) * Math.PI / 180;
-            const distance = 200 + Math.random() * 400;
-            return (
-              <div 
-                key={i} 
-                className="energy-orb"
-                style={{
-                  left: '50%',
-                  top: '50%',
-                  '--orbit-x': `${Math.cos(angle) * distance}px`,
-                  '--orbit-y': `${Math.sin(angle) * distance}px`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${3 + Math.random() * 3}s`
-                }}
-              />
-            );
-          })}
-        </div>
-        
-        {/* 光束效果 */}
-        <div className="light-beams-container">
-          {[...Array(5)].map((_, i) => (
-            <div 
-              key={i} 
-              className="light-beam"
-              style={{
-                left: `${15 + i * 20}%`,
-                animationDelay: `${i * 0.6}s`
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* 流星效果 */}
-        <div className="flame-particles">
-          {[...Array(8)].map((_, i) => (
-            <div 
-              key={i} 
-              className="meteor"
-              style={{
-                left: `${Math.random() * 50}%`,
-                top: `${Math.random() * 50}%`,
-                animationDelay: `${Math.random() * 10}s`,
-                animationDuration: `${1 + Math.random()}s`,
-                animationIterationCount: 'infinite'
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* 魔法圆环 */}
-        <div className="magic-circles-container">
-          {[800, 600, 400].map((size, i) => (
-            <div 
-              key={i} 
-              className="magic-circle"
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                animationDuration: `${20 - i * 5}s`,
-                animationDirection: i % 2 === 0 ? 'normal' : 'reverse'
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${0.5 + Math.random() * 0.5}s`
               }}
             />
           ))}
         </div>
         
         <div className="wallet-registration-box">
-          {/* 马赛克装饰角 */}
-          <div className="mosaic-corner top-left"></div>
-          <div className="mosaic-corner top-right"></div>
-          <div className="mosaic-corner bottom-left"></div>
-          <div className="mosaic-corner bottom-right"></div>
           
-          <img src="/logo.png" alt="TaixuChain Logo" className="logo-image" />
+          <div className="skull-logo-container">
+            <img src="/logo.png" alt="Monster Chain Logo" className="skull-logo" />
+            <div className="skull-eye left-eye"></div>
+            <div className="skull-eye right-eye"></div>
+          </div>
           
           <h2>
-            <span className="title-fire">TAIXUCHAIN</span>
+            <span className="title-blood">MONSTER CHAIN</span>
           </h2>
-          <p>Connect your OneChain wallet to enter the world</p>
+          <p className="horror-text">🩸 Connect your wallet... if you dare 🩸</p>
           
           {!walletAddress ? (
             <>

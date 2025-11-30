@@ -94,87 +94,31 @@ function CharacterSelection({ onCharacterSelected, onWalletConnected, shouldShow
 
   return (
     <div className="character-selection">
-      {/* 马赛克动态背景 */}
-      <div className="mosaic-bg"></div>
-      <div className="mosaic-overlay"></div>
-      
-      {/* 魔法圆环 */}
-      <div className="magic-circle"></div>
-      
-      {/* 星空闪烁效果 */}
-      <div className="stars-container">
+      {/* 血雨效果 */}
+      <div className="blood-rain-container">
         {[...Array(50)].map((_, i) => (
-          <div key={i} className="star" style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${2 + Math.random() * 2}s`
-          }}></div>
+          <div 
+            key={i} 
+            className="blood-drop"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 2}s`,
+              animationDuration: `${0.5 + Math.random() * 0.5}s`
+            }}
+          />
         ))}
       </div>
-      
-      {/* 金色粒子效果 */}
-      <div className="particles-container">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className="particle" style={{
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${5 + Math.random() * 5}s`
-          }}></div>
-        ))}
-      </div>
-      
-      {/* 流星效果 */}
-      <div className="particles-container">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="meteor" style={{
-            left: `${Math.random() * 50}%`,
-            top: `${Math.random() * 50}%`,
-            animationDelay: `${Math.random() * 10}s`,
-            animationDuration: `${1 + Math.random()}s`,
-            animationIterationCount: 'infinite'
-          }}></div>
-        ))}
-      </div>
-      
-      {/* 能量球轨迹 */}
-      <div className="particles-container">
-        {[...Array(15)].map((_, i) => {
-          const angle = (Math.random() * 360) * Math.PI / 180;
-          const distance = 200 + Math.random() * 300;
-          return (
-            <div key={i} className="energy-orb" style={{
-              left: '50%',
-              top: '50%',
-              '--orbit-x': `${Math.cos(angle) * distance}px`,
-              '--orbit-y': `${Math.sin(angle) * distance}px`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 3}s`
-            }}></div>
-          );
-        })}
-      </div>
-      
-      {/* 光束效果 */}
-      {[...Array(3)].map((_, i) => (
-        <div key={i} className="light-beam" style={{
-          left: `${20 + i * 30}%`,
-          animationDelay: `${i * 1}s`
-        }}></div>
-      ))}
 
       <div className="selection-content">
         {/* 标题区域 */}
-        <div className="title-section">
           <h1 className="selection-title">
-            <span className="title-main">Choose Your Destiny</span>
+            <span className="title-main">Choose Your Fate</span>
           </h1>
           <div className="title-decoration">
             <div className="decoration-line left"></div>
-            <div className="decoration-center">✦</div>
+            <div className="decoration-center">☠</div>
             <div className="decoration-line right"></div>
           </div>
-        </div>
 
         {/* 角色卡片容器 */}
         <div className="classes-grid">
@@ -198,10 +142,10 @@ function CharacterSelection({ onCharacterSelected, onWalletConnected, shouldShow
               <div className="character-display">
                 <div className="character-frame">
                   <div className="frame-corners">
-                    <span className="corner top-left"></span>
-                    <span className="corner top-right"></span>
-                    <span className="corner bottom-left"></span>
-                    <span className="corner bottom-right"></span>
+                    <span className="corner top-left">☠</span>
+                    <span className="corner top-right">☠</span>
+                    <span className="corner bottom-left">☠</span>
+                    <span className="corner bottom-right">☠</span>
                   </div>
                   <AnimatedCharacter 
                     character={{
@@ -252,7 +196,7 @@ function CharacterSelection({ onCharacterSelected, onWalletConnected, shouldShow
               {/* 选中指示器 */}
               {selectedClass === classData.id && (
                 <div className="selected-indicator">
-                  <span className="indicator-icon">✓</span>
+                  <img src="/logo.png" alt="Selected" className="indicator-icon" />
                 </div>
               )}
             </div>
@@ -262,7 +206,7 @@ function CharacterSelection({ onCharacterSelected, onWalletConnected, shouldShow
         {/* 确认按钮 */}
         {selectedClass && (
           <button className="selection-confirm-btn" onClick={handleConfirm}>
-            <span className="button-text">Begin Your Journey</span>
+            <span className="button-text">Enter the Darkness</span>
           </button>
         )}
       </div>

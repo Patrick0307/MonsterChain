@@ -1,0 +1,13 @@
+[package]
+name = "LingStone"
+version = "0.0.1"
+edition = "2024.beta"
+published-at = "0xb4c8177c0a999d5e49e532e17c67b69c83b059a018a94b70e24fcf1551f42888"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+
+[addresses]
+lingstone = "0x0"
+taixu = "0x0"
+std = "0x1"

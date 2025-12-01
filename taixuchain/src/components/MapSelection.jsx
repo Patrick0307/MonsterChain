@@ -185,90 +185,96 @@ function MapSelection({ character, onMapSelected }) {
         </div>
       </div>
 
-      {/* 右侧主内容区 */}
+      {/* 右侧主内容区 - 左右分栏布局 */}
       <div className="right-content">
-        {/* 地图选择区 */}
-        <div className="maps-section">
-          <div className="maps-grid">
+        {/* 左侧地图列表 */}
+        <div className="maps-list-section">
+          <div className="maps-list">
             {maps.map((map, index) => (
               <div
                 key={map.id}
-                className={`map-tile ${selectedMap === map.id ? 'active' : ''} ${map.locked ? 'locked' : ''}`}
+                className={`map-list-item ${selectedMap === map.id ? 'active' : ''} ${map.locked ? 'locked' : ''}`}
                 onClick={() => handleMapClick(map)}
                 style={{ '--map-color': map.color }}
               >
-                <div className="map-tile-bg"></div>
-                <div className="map-tile-border"></div>
+                <div className="map-list-bg"></div>
                 
                 {map.locked && (
-                  <div className="lock-overlay">
-                    <div className="lock-icon">⚰️</div>
-                    <div className="lock-chains">
-                      <div className="chain chain-1">🔗</div>
-                      <div className="chain chain-2">🔗</div>
-                    </div>
-                    <div className="unlock-text">{map.unlockRequirement}</div>
+                  <div className="lock-badge">
+                    <span className="lock-icon-small">⚰️</span>
                   </div>
                 )}
                 
-                <div className="map-icon-large" style={{ opacity: map.locked ? 0.3 : 1 }}>{map.icon}</div>
-                <div className="map-name" style={{ opacity: map.locked ? 0.5 : 1 }}>{map.name}</div>
-                <div className="map-desc" style={{ opacity: map.locked ? 0.5 : 1 }}>{map.description}</div>
-                
-                <div className="map-difficulty-tag">
-                  <span className="difficulty-text">{map.difficulty}</span>
+                <div className="map-list-icon" style={{ opacity: map.locked ? 0.3 : 1 }}>{map.icon}</div>
+                <div className="map-list-info">
+                  <div className="map-list-name" style={{ opacity: map.locked ? 0.5 : 1 }}>{map.name}</div>
+                  <div className="map-list-difficulty">
+                    <span className="difficulty-badge">{map.difficulty}</span>
+                    {map.locked && <span className="locked-text">{map.unlockRequirement}</span>}
+                  </div>
                 </div>
                 
-                <div className="map-pixels"></div>
+                <div className="map-list-arrow">▶</div>
+                <div className="map-list-pixels"></div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 地图详情信息区 */}
-        {selectedMapData && (
-          <div className="map-details">
-            <div className="details-header">
-              <span className="details-icon">{selectedMapData.icon}</span>
-              <span className="details-title">{selectedMapData.name}</span>
-            </div>
-
-            <div className="details-grid">
-              <div className="details-section">
-                <div className="section-title">💀 ENEMIES</div>
-                <div className="section-list">
-                  {selectedMapData.enemies.map((enemy, i) => (
-                    <div key={i} className="list-item">☠ {enemy}</div>
-                  ))}
+        {/* 右侧地图详情信息区 */}
+        <div className="map-details-section">
+          {selectedMapData ? (
+            <div className="map-details">
+              <div className="details-header">
+                <span className="details-icon">{selectedMapData.icon}</span>
+                <div className="details-header-info">
+                  <span className="details-title">{selectedMapData.name}</span>
+                  <span className="details-desc">{selectedMapData.description}</span>
                 </div>
               </div>
 
-              <div className="details-section rewards-section">
-                <div className="section-title">🩸 WEAPON DROPS</div>
-                <div className="rewards-columns">
-                  <div className="reward-column">
-                    <div className="reward-category">🗡️ Swords</div>
-                    {selectedMapData.rewards.swords.map((sword, i) => (
-                      <div key={i} className="list-item">☠ {sword}</div>
+              <div className="details-content">
+                <div className="details-section enemies-section">
+                  <div className="section-title">💀 ENEMIES</div>
+                  <div className="section-list">
+                    {selectedMapData.enemies.map((enemy, i) => (
+                      <div key={i} className="list-item">☠ {enemy}</div>
                     ))}
                   </div>
-                  <div className="reward-column">
-                    <div className="reward-category">🏹 Bows</div>
-                    {selectedMapData.rewards.bows.map((bow, i) => (
-                      <div key={i} className="list-item">☠ {bow}</div>
-                    ))}
-                  </div>
-                  <div className="reward-column">
-                    <div className="reward-category">🔮 Staves</div>
-                    {selectedMapData.rewards.staves.map((stave, i) => (
-                      <div key={i} className="list-item">☠ {stave}</div>
-                    ))}
+                </div>
+
+                <div className="details-section rewards-section">
+                  <div className="section-title">🩸 WEAPON DROPS</div>
+                  <div className="rewards-columns">
+                    <div className="reward-column">
+                      <div className="reward-category">🗡️ Swords</div>
+                      {selectedMapData.rewards.swords.map((sword, i) => (
+                        <div key={i} className="list-item">☠ {sword}</div>
+                      ))}
+                    </div>
+                    <div className="reward-column">
+                      <div className="reward-category">🏹 Bows</div>
+                      {selectedMapData.rewards.bows.map((bow, i) => (
+                        <div key={i} className="list-item">☠ {bow}</div>
+                      ))}
+                    </div>
+                    <div className="reward-column">
+                      <div className="reward-category">🔮 Staves</div>
+                      {selectedMapData.rewards.staves.map((stave, i) => (
+                        <div key={i} className="list-item">☠ {stave}</div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="map-details-placeholder">
+              <div className="placeholder-icon">🗺️</div>
+              <div className="placeholder-text">SELECT A MAP</div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* 确认按钮 */}

@@ -1,10 +1,13 @@
+/* 导入恐怖字体 */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Metal+Mania&display=swap');
+
 .tutorial-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,16 +22,16 @@
 
 .tutorial-popup {
   position: relative;
-  background: linear-gradient(135deg, #0a0a0f 0%, #1a1510 50%, #0f0c08 100%);
-  border: 2px solid #ffd700;
-  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+  border: 3px solid #8B0000;
+  border-radius: 15px;
   padding: 35px;
-  max-width: 480px;
+  max-width: 500px;
   width: 90%;
   box-shadow: 
-    0 0 40px rgba(255, 215, 0, 0.4),
-    0 0 80px rgba(255, 215, 0, 0.2),
-    inset 0 0 30px rgba(255, 215, 0, 0.05);
+    0 8px 30px rgba(139, 0, 0, 0.5),
+    0 0 20px rgba(139, 0, 0, 0.3),
+    inset 0 1px 0 rgba(139, 0, 0, 0.2);
   transform: scale(0.8);
   opacity: 0;
   transition: all 0.3s ease;
@@ -40,7 +43,7 @@
   opacity: 1;
 }
 
-/* 粒子容器 */
+/* 粒子容器 - 血色粒子 */
 .tutorial-particles {
   position: absolute;
   top: 0;
@@ -51,10 +54,11 @@
   overflow: hidden;
 }
 
-/* 单个粒子 */
+
+/* 单个粒子 - 血色 */
 .tutorial-particle {
   position: absolute;
-  background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+  background: radial-gradient(circle, #FF0000 0%, transparent 70%);
   border-radius: 50%;
   animation: particleFloat 3s ease-in-out infinite;
   opacity: 0;
@@ -66,12 +70,12 @@
     transform: translateY(0) scale(0.5);
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.6;
     transform: translateY(-20px) scale(1);
   }
 }
 
-/* 呼吸光晕 */
+/* 呼吸光晕 - 血色 */
 .tutorial-glow {
   position: absolute;
   top: -50%;
@@ -80,8 +84,8 @@
   height: 200%;
   background: radial-gradient(
     ellipse at center,
-    rgba(255, 215, 0, 0.1) 0%,
-    rgba(255, 215, 0, 0.05) 30%,
+    rgba(139, 0, 0, 0.15) 0%,
+    rgba(139, 0, 0, 0.05) 30%,
     transparent 60%
   );
   animation: breatheGlow 4s ease-in-out infinite;
@@ -107,28 +111,31 @@
 }
 
 .tutorial-header h2 {
-  color: #ffd700;
-  font-size: 28px;
+  color: #FF0000;
+  font-size: 1.8rem;
   margin: 0;
+  font-family: 'Creepster', 'Metal Mania', 'Impact', 'Arial Black', sans-serif;
+  letter-spacing: 3px;
   text-shadow: 
-    0 0 10px rgba(255, 215, 0, 0.8),
-    0 0 20px rgba(255, 215, 0, 0.5),
-    0 0 30px rgba(255, 215, 0, 0.3);
-  animation: titleGlow 2s ease-in-out infinite;
+    3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    0 0 20px rgba(255, 0, 0, 0.8),
+    0 0 40px rgba(255, 0, 0, 0.5);
+  animation: titleBloodPulse 2s ease-in-out infinite;
 }
 
-@keyframes titleGlow {
+@keyframes titleBloodPulse {
   0%, 100% {
     text-shadow: 
-      0 0 10px rgba(255, 215, 0, 0.8),
-      0 0 20px rgba(255, 215, 0, 0.5),
-      0 0 30px rgba(255, 215, 0, 0.3);
+      3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.5);
   }
   50% {
     text-shadow: 
-      0 0 15px rgba(255, 215, 0, 1),
-      0 0 30px rgba(255, 215, 0, 0.7),
-      0 0 45px rgba(255, 215, 0, 0.5);
+      3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.8);
   }
 }
 
@@ -150,52 +157,59 @@
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%);
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.5) 100%);
   border-radius: 10px;
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  border: 1px solid #8B0000;
   transition: all 0.3s ease;
 }
 
 .control-item:hover {
-  border-color: rgba(255, 215, 0, 0.6);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  border-color: #FF0000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
   transform: translateY(-2px);
 }
 
+
 .control-key {
-  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
-  color: #0a0a0f;
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.8) 0%, rgba(74, 0, 0, 0.9) 100%);
+  color: #FF0000;
   padding: 5px 12px;
   border-radius: 6px;
-  font-family: 'Courier New', monospace;
+  font-family: 'Creepster', 'Metal Mania', 'Impact', 'Arial Black', sans-serif;
   font-weight: bold;
   font-size: 12px;
   min-width: 65px;
   text-align: center;
+  border: 1px solid #8B0000;
   box-shadow: 
     0 2px 8px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 0 10px rgba(139, 0, 0, 0.3);
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
 .control-desc {
-  color: #d4af37;
+  color: rgba(255, 0, 0, 0.8);
   font-size: 14px;
   font-weight: 500;
+  font-family: 'Creepster', 'Metal Mania', 'Impact', 'Arial Black', sans-serif;
+  letter-spacing: 1px;
 }
 
 .tutorial-tips {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
-  border: 1px solid rgba(255, 215, 0, 0.4);
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%);
+  border: 1px solid #8B0000;
   border-radius: 12px;
   padding: 18px;
   margin-bottom: 25px;
 }
 
 .tutorial-tips h3 {
-  color: #ffd700;
+  color: #FF0000;
   margin: 0 0 12px 0;
   font-size: 16px;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+  font-family: 'Creepster', 'Metal Mania', 'Impact', 'Arial Black', sans-serif;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+  letter-spacing: 2px;
 }
 
 .tutorial-tips ul {
@@ -204,33 +218,52 @@
 }
 
 .tutorial-tips li {
-  color: #c9a227;
+  color: rgba(255, 0, 0, 0.7);
   font-size: 13px;
   margin-bottom: 8px;
   line-height: 1.4;
+  font-family: 'Creepster', 'Metal Mania', 'Impact', 'Arial Black', sans-serif;
 }
 
 .tutorial-tips li:last-child {
   margin-bottom: 0;
 }
 
+.tutorial-tips li::marker {
+  color: #8B0000;
+}
+
 .tutorial-close-btn {
   position: relative;
   width: 100%;
-  padding: 16px;
-  background: linear-gradient(135deg, #ffd700 0%, #b8860b 50%, #8b6914 100%);
-  border: none;
-  border-radius: 12px;
-  color: #0a0a0f;
-  font-size: 18px;
+  padding: 15px;
+  background: none;
+  background-color: transparent;
+  border: 3px solid #8B0000;
+  border-radius: 30px;
+  color: #8B0000;
+  font-size: 1rem;
   font-weight: bold;
+  font-family: 'Creepster', 'Metal Mania', 'Impact', 'Arial Black', sans-serif;
+  letter-spacing: 2px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 
-    0 4px 20px rgba(255, 215, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.6);
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.8);
   overflow: hidden;
   z-index: 1;
+  animation: buttonBreath 3s ease-in-out infinite;
+}
+
+@keyframes buttonBreath {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.6);
+    border-color: #8B0000;
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 0, 0, 0.9);
+    border-color: #FF0000;
+  }
 }
 
 .tutorial-close-btn::before {
@@ -243,7 +276,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.3),
+    rgba(255, 0, 0, 0.2),
     transparent
   );
   transition: left 0.5s ease;
@@ -251,9 +284,13 @@
 
 .tutorial-close-btn:hover {
   transform: translateY(-3px);
+  border-color: #FF0000;
+  color: #FF0000;
   box-shadow: 
-    0 6px 30px rgba(255, 215, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    0 0 50px rgba(255, 0, 0, 1),
+    0 10px 40px rgba(139, 0, 0, 0.6),
+    inset 0 0 30px rgba(139, 0, 0, 0.3);
+  text-shadow: 0 0 15px rgba(255, 0, 0, 1);
 }
 
 .tutorial-close-btn:hover::before {

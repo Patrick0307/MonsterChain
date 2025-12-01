@@ -751,14 +751,14 @@
 .stat-value {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #8B0000;
-  text-shadow: 0 0 8px rgba(139, 0, 0, 0.8);
+  color: #FF0000 !important;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
   transition: all 0.3s ease;
 }
 
 .class-card.selected .stat-value {
-  color: #FF0000;
-  text-shadow: 0 0 10px rgba(255, 0, 0, 1);
+  color: #FF0000 !important;
+  text-shadow: 0 0 12px rgba(255, 0, 0, 1);
 }
 
 .stat-bar-bg {
@@ -1401,5 +1401,227 @@
 
   .selection-confirm-btn .button-text {
     font-size: 0.7rem;
+  }
+}
+
+
+/* ===== 战士卡片专属恐怖效果 ===== */
+.class-card:first-child {
+  background: linear-gradient(135deg, rgba(30, 0, 0, 0.98) 0%, rgba(0, 0, 0, 1) 50%, rgba(20, 0, 0, 0.98) 100%);
+  border-color: #4a0000;
+  box-shadow: 
+    0 8px 30px rgba(74, 0, 0, 0.8),
+    0 0 30px rgba(139, 0, 0, 0.4),
+    inset 0 0 50px rgba(74, 0, 0, 0.3);
+  animation: cardSlideIn 0.6s ease-out backwards, warriorCardPulse 4s ease-in-out infinite;
+}
+
+@keyframes warriorCardPulse {
+  0%, 100% {
+    box-shadow: 
+      0 8px 30px rgba(74, 0, 0, 0.8),
+      0 0 30px rgba(139, 0, 0, 0.4),
+      inset 0 0 50px rgba(74, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 8px 40px rgba(139, 0, 0, 1),
+      0 0 50px rgba(139, 0, 0, 0.6),
+      inset 0 0 60px rgba(74, 0, 0, 0.5);
+  }
+}
+
+.class-card:first-child:hover {
+  border-color: #8b0000;
+  box-shadow: 
+    0 20px 60px rgba(139, 0, 0, 0.9),
+    0 0 60px rgba(139, 0, 0, 0.7),
+    inset 0 0 80px rgba(74, 0, 0, 0.4);
+}
+
+.class-card:first-child.selected {
+  border-color: #cc0000 !important;
+  box-shadow: 
+    0 0 80px rgba(204, 0, 0, 0.9) !important,
+    0 20px 60px rgba(139, 0, 0, 0.8) !important,
+    inset 0 0 100px rgba(74, 0, 0, 0.5) !important;
+}
+
+/* 战士卡片血迹效果 */
+.class-card:first-child::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(74, 0, 0, 0.4) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  animation: bloodStainPulse 5s ease-in-out infinite;
+}
+
+@keyframes bloodStainPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 战士卡片滴血效果 */
+.class-card:first-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(to bottom, #cc0000, #8b0000, #4a0000);
+  border-radius: 0 0 50% 50%;
+  animation: cardBloodDrip 4s ease-in infinite;
+  z-index: 10;
+}
+
+@keyframes cardBloodDrip {
+  0% {
+    height: 0;
+    opacity: 0;
+    top: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    height: 60px;
+    opacity: 0;
+    top: 0;
+  }
+}
+
+/* 战士角色框架特殊效果 */
+.class-card:first-child .character-frame {
+  background: 
+    radial-gradient(circle at center, rgba(139, 0, 0, 0.2) 0%, transparent 70%),
+    linear-gradient(45deg, transparent 0%, rgba(74, 0, 0, 0.2) 50%, transparent 100%);
+  animation: frameBreath 3s ease-in-out infinite, skullFrameGlow 2s ease-in-out infinite;
+}
+
+@keyframes skullFrameGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(139, 0, 0, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8)) drop-shadow(0 0 25px rgba(74, 0, 0, 0.5));
+  }
+}
+
+/* 战士角落骷髅特效 */
+.class-card:first-child .corner {
+  color: #cc0000 !important;
+  text-shadow: 
+    0 0 15px rgba(204, 0, 0, 1),
+    0 0 30px rgba(139, 0, 0, 0.8) !important;
+  animation: cornerPulse 2s ease-in-out infinite, skullCornerShake 0.1s ease-in-out infinite !important;
+}
+
+@keyframes skullCornerShake {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+.class-card:first-child:hover .corner,
+.class-card:first-child.selected .corner {
+  color: #ff0000 !important;
+  text-shadow: 
+    0 0 20px rgba(255, 0, 0, 1),
+    0 0 40px rgba(255, 0, 0, 0.9),
+    0 0 60px rgba(139, 0, 0, 0.6) !important;
+}
+
+/* 战士名称特殊样式 */
+.class-card:first-child .name-en {
+  color: #cc0000 !important;
+  text-shadow: 
+    2px 2px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    0 0 20px rgba(204, 0, 0, 1),
+    0 0 40px rgba(139, 0, 0, 0.8) !important;
+  animation: deathKnightNamePulse 3s ease-in-out infinite;
+}
+
+@keyframes deathKnightNamePulse {
+  0%, 100% {
+    text-shadow: 
+      2px 2px 0 #000,
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      0 0 20px rgba(204, 0, 0, 1),
+      0 0 40px rgba(139, 0, 0, 0.8);
+  }
+  50% {
+    text-shadow: 
+      2px 2px 0 #000,
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      0 0 30px rgba(255, 0, 0, 1),
+      0 0 60px rgba(204, 0, 0, 1),
+      0 0 80px rgba(139, 0, 0, 0.6);
+  }
+}
+
+/* 战士描述文字 */
+.class-card:first-child .class-description {
+  color: rgba(139, 0, 0, 0.9);
+  font-style: italic;
+}
+
+/* 战士属性值 */
+.class-card:first-child .stat-value {
+  color: #cc0000;
+  text-shadow: 0 0 10px rgba(204, 0, 0, 0.9);
+}
+
+.class-card:first-child.selected .stat-value {
+  color: #ff0000;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 1);
+}
+
+
+/* ===== 射手卡片专属南瓜风格 ===== */
+/* 射手卡片保持红色边框，只有内部南瓜光效 */
+
+/* 射手角色框架特殊效果 - 南瓜光效 */
+.class-card:nth-child(2) .character-frame {
+  background: 
+    radial-gradient(circle at center, rgba(255, 140, 0, 0.15) 0%, transparent 70%),
+    linear-gradient(45deg, transparent 0%, rgba(255, 69, 0, 0.1) 50%, transparent 100%);
+  animation: frameBreath 3s ease-in-out infinite, pumpkinFrameGlow 2s ease-in-out infinite;
+}
+
+@keyframes pumpkinFrameGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(255, 140, 0, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 140, 0, 0.7)) drop-shadow(0 0 25px rgba(255, 69, 0, 0.4));
   }
 }

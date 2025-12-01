@@ -1,20 +1,54 @@
-/* Marketplace overlay - Black & Gold theme */
+/* 🩸 HORROR DARK THEME - 阴间市场 UI 🩸 */
+/* 恐怖红黑配色 - 地狱交易所风格 */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Orbitron:wght@400;700;900&display=swap');
+
+/* Marketplace overlay - 血色迷雾 */
 .marketplace-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.92);
+  background: rgba(0, 0, 0, 0.97);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  animation: fadeIn 0.3s ease-in;
-  backdrop-filter: blur(8px);
+  animation: fadeIn 0.5s ease, bloodPulse 4s ease-in-out infinite;
+  backdrop-filter: blur(12px);
 }
 
-/* Mosaic background effect */
+@keyframes bloodPulse {
+  0%, 100% { background: rgba(0, 0, 0, 0.97); }
+  50% { background: rgba(30, 0, 0, 0.97); }
+}
+
+/* 血滴粒子效果 */
+.marketplace-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 10% 20%, rgba(139, 0, 0, 0.8), transparent),
+    radial-gradient(3px 3px at 30% 50%, rgba(178, 34, 34, 0.6), transparent),
+    radial-gradient(2px 2px at 50% 30%, rgba(220, 20, 60, 0.7), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(139, 0, 0, 0.9), transparent),
+    radial-gradient(2px 2px at 90% 40%, rgba(178, 34, 34, 0.5), transparent);
+  background-size: 200% 200%;
+  animation: bloodDrip 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes bloodDrip {
+  0%, 100% { background-position: 0% 0%; opacity: 0.8; }
+  50% { background-position: 100% 100%; opacity: 1; }
+}
+
+/* 裂痕背景效果 */
 .marketplace-overlay::before {
   content: '';
   position: absolute;
@@ -23,43 +57,31 @@
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
-    linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
-    linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  opacity: 0.3;
-  animation: mosaicScroll 30s linear infinite;
+    linear-gradient(45deg, #0a0000 25%, transparent 25%),
+    linear-gradient(-45deg, #0a0000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #0a0000 75%),
+    linear-gradient(-45deg, transparent 75%, #0a0000 75%);
+  background-size: 30px 30px;
+  opacity: 0.4;
+  animation: crackScroll 40s linear infinite;
   pointer-events: none;
 }
 
-@keyframes mosaicScroll {
-  0% {
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  }
-  100% {
-    background-position: 20px 20px, 20px 30px, 30px 10px, 10px 20px;
-  }
+@keyframes crackScroll {
+  0% { background-position: 0 0, 0 15px, 15px -15px, -15px 0px; }
+  100% { background-position: 30px 30px, 30px 45px, 45px 15px, 15px 30px; }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Black & Gold Theme - Marketplace UI */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-
-/* Marketplace container - Black & Gold theme */
+/* Marketplace container - 地狱交易所 */
 .marketplace-container {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(15, 15, 15, 0.95) 100%);
-  border: 3px solid rgba(255, 215, 0, 0.7);
+  background: linear-gradient(135deg, rgba(10, 0, 0, 0.98) 0%, rgba(30, 5, 5, 0.95) 50%, rgba(15, 0, 0, 0.98) 100%);
+  border: 4px solid rgba(139, 0, 0, 0.8);
   border-radius: 15px;
   width: 90%;
   max-width: 1200px;
@@ -67,127 +89,120 @@
   display: flex;
   flex-direction: column;
   box-shadow: 
-    0 0 60px rgba(255, 215, 0, 0.5),
-    0 10px 70px rgba(0, 0, 0, 0.9),
-    inset 0 0 50px rgba(255, 215, 0, 0.08);
-  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1), borderBreathing 3s ease-in-out infinite;
+    0 0 80px rgba(139, 0, 0, 0.6),
+    0 0 150px rgba(178, 34, 34, 0.4),
+    0 10px 70px rgba(0, 0, 0, 0.95),
+    inset 0 0 60px rgba(139, 0, 0, 0.15);
+  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1), hellGatePulse 3s ease-in-out infinite, horrorFlicker 8s ease-in-out infinite;
   font-family: 'Orbitron', sans-serif;
-  /* Pixel-style border */
   clip-path: polygon(
-    0 8px, 8px 8px, 8px 0,
-    calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
-    100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
-    8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+    0 10px, 10px 10px, 10px 0,
+    calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px)
   );
 }
 
-@keyframes borderBreathing {
+@keyframes hellGatePulse {
   0%, 100% {
-    border-color: rgba(255, 215, 0, 0.6);
+    border-color: rgba(139, 0, 0, 0.8);
     box-shadow: 
-      0 0 60px rgba(255, 215, 0, 0.5),
-      0 0 100px rgba(255, 215, 0, 0.3),
-      0 0 140px rgba(255, 215, 0, 0.2),
-      0 10px 70px rgba(0, 0, 0, 0.9),
-      inset 0 0 50px rgba(255, 215, 0, 0.1);
+      0 0 80px rgba(139, 0, 0, 0.6),
+      0 0 150px rgba(178, 34, 34, 0.4),
+      0 10px 70px rgba(0, 0, 0, 0.95),
+      inset 0 0 60px rgba(139, 0, 0, 0.15);
   }
   50% {
-    border-color: rgba(255, 215, 0, 1);
+    border-color: rgba(220, 20, 60, 1);
     box-shadow: 
-      0 0 100px rgba(255, 215, 0, 0.8),
-      0 0 150px rgba(255, 215, 0, 0.6),
-      0 0 200px rgba(255, 215, 0, 0.4),
-      0 0 250px rgba(255, 215, 0, 0.2),
-      0 10px 70px rgba(0, 0, 0, 0.9),
-      inset 0 0 80px rgba(255, 215, 0, 0.2);
+      0 0 120px rgba(220, 20, 60, 0.9),
+      0 0 200px rgba(178, 34, 34, 0.7),
+      0 0 280px rgba(139, 0, 0, 0.5),
+      0 10px 70px rgba(0, 0, 0, 0.95),
+      inset 0 0 100px rgba(220, 20, 60, 0.25);
   }
 }
 
-/* Glowing scan effect */
+@keyframes horrorFlicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.3; }
+  94% { opacity: 1; }
+  96% { opacity: 0.5; }
+  97% { opacity: 1; }
+}
+
+/* 血光扫描效果 */
 .marketplace-container::after {
   content: '';
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    transparent 40%,
-    rgba(255, 215, 0, 0.8) 50%,
-    rgba(255, 255, 255, 0.9) 52%,
-    rgba(255, 215, 0, 0.8) 54%,
-    transparent 60%,
+    transparent 35%,
+    rgba(220, 20, 60, 0.9) 48%,
+    rgba(255, 0, 0, 1) 50%,
+    rgba(220, 20, 60, 0.9) 52%,
+    transparent 65%,
     transparent 100%
   );
   border-radius: 15px;
-  animation: borderScan 4s linear infinite;
+  animation: bloodScan 5s linear infinite;
   pointer-events: none;
   z-index: 1;
   clip-path: polygon(
-    0 8px, 8px 8px, 8px 0,
-    calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
-    100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
-    8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+    0 10px, 10px 10px, 10px 0,
+    calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px)
   );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
-  padding: 3px;
+  padding: 4px;
 }
 
-@keyframes borderScan {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+@keyframes bloodScan {
+  0% { background-position: -300% 0; }
+  100% { background-position: 300% 0; }
 }
 
-/* Container glow effect */
+/* 阴森光晕 */
 .marketplace-container::before {
   content: '';
   position: absolute;
-  inset: -20px;
-  background: radial-gradient(ellipse, rgba(255, 215, 0, 0.25) 0%, transparent 70%);
+  inset: -25px;
+  background: radial-gradient(ellipse, rgba(139, 0, 0, 0.4) 0%, rgba(50, 0, 0, 0.2) 40%, transparent 70%);
   z-index: -1;
-  animation: containerGlow 3s ease-in-out infinite;
+  animation: demonGlow 4s ease-in-out infinite;
   pointer-events: none;
 }
 
-@keyframes containerGlow {
-  0%, 100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
+@keyframes demonGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(60px) scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
+  from { transform: translateY(80px) scale(0.9); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
 }
 
-/* Marketplace header - Black & Gold theme */
+/* Marketplace header - 血色标题 */
 .marketplace-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 25px 35px;
-  border-bottom: 3px solid rgba(255, 215, 0, 0.5);
-  background: linear-gradient(90deg, rgba(255, 215, 0, 0.12) 0%, transparent 100%);
+  border-bottom: 3px solid rgba(139, 0, 0, 0.6);
+  background: linear-gradient(90deg, rgba(139, 0, 0, 0.15) 0%, rgba(50, 0, 0, 0.1) 50%, rgba(139, 0, 0, 0.15) 100%);
   position: relative;
 }
 
-/* Title decoration lines */
+/* 标题装饰血线 */
 .marketplace-header::before,
 .marketplace-header::after {
   content: '';
@@ -195,58 +210,47 @@
   bottom: -3px;
   width: 120px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, #ffd700, transparent);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
-  animation: lineGlow 2s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, #dc143c, #8b0000, transparent);
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.9);
+  animation: bloodLineGlow 2.5s ease-in-out infinite;
 }
 
-.marketplace-header::before {
-  left: 35px;
-}
+.marketplace-header::before { left: 35px; }
+.marketplace-header::after { right: 35px; }
 
-.marketplace-header::after {
-  right: 35px;
-}
-
-@keyframes lineGlow {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
+@keyframes bloodLineGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; box-shadow: 0 0 30px rgba(220, 20, 60, 1); }
 }
 
 .marketplace-header h2 {
   margin: 0;
-  color: #ffd700;
+  color: #dc143c;
   font-size: 2rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 4px;
   text-shadow: 
-    0 0 25px rgba(255, 215, 0, 1),
-    0 2px 6px rgba(0, 0, 0, 0.9);
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    0 0 30px rgba(220, 20, 60, 1),
+    0 0 60px rgba(139, 0, 0, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(135deg, #dc143c 0%, #ff4444 30%, #dc143c 50%, #8b0000 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: titleShine 3s linear infinite;
-  background-size: 200% 100%;
+  animation: bloodTitleShine 4s linear infinite;
+  background-size: 300% 100%;
 }
 
-@keyframes titleShine {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
+@keyframes bloodTitleShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
 }
 
+/* 关闭按钮 - 血色X */
 .marketplace-close-btn {
   position: relative;
-  background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+  background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
   border: none;
   color: #fff;
   font-size: 24px;
@@ -259,26 +263,24 @@
   align-items: center;
   justify-content: center;
   box-shadow: 
-    0 0 0 3px rgba(0, 0, 0, 0.3),
-    0 0 0 5px rgba(255, 71, 87, 0.4),
-    0 4px 12px rgba(255, 71, 87, 0.5),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3);
-  /* Pixel style */
+    0 0 0 3px rgba(0, 0, 0, 0.5),
+    0 0 0 6px rgba(139, 0, 0, 0.5),
+    0 4px 15px rgba(139, 0, 0, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(255, 100, 100, 0.2);
   clip-path: polygon(
     0 5px, 5px 5px, 5px 0,
     calc(100% - 5px) 0, calc(100% - 5px) 5px, 100% 5px,
     100% calc(100% - 5px), calc(100% - 5px) calc(100% - 5px), calc(100% - 5px) 100%,
     5px 100%, 5px calc(100% - 5px), 0 calc(100% - 5px)
   );
-  image-rendering: pixelated;
 }
 
 .marketplace-close-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+  background: linear-gradient(135deg, rgba(255, 100, 100, 0.3) 0%, transparent 50%);
   opacity: 0;
   transition: opacity 0.3s;
   clip-path: inherit;
@@ -288,50 +290,27 @@
   content: '';
   position: absolute;
   inset: -10px;
-  background: radial-gradient(circle, rgba(255, 71, 87, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(220, 20, 60, 0.5) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   z-index: -1;
 }
 
 .marketplace-close-btn:hover {
-  background: linear-gradient(135deg, #ff6b7a 0%, #ff5252 100%);
+  background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
   transform: scale(1.15) rotate(90deg);
   box-shadow: 
-    0 0 0 3px rgba(0, 0, 0, 0.4),
-    0 0 0 5px rgba(255, 71, 87, 0.6),
-    0 6px 20px rgba(255, 71, 87, 0.8),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.4),
-    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    0 0 0 3px rgba(0, 0, 0, 0.6),
+    0 0 0 6px rgba(220, 20, 60, 0.8),
+    0 6px 25px rgba(220, 20, 60, 0.9);
 }
 
-.marketplace-close-btn:hover::before {
-  opacity: 1;
-}
+.marketplace-close-btn:hover::before { opacity: 1; }
+.marketplace-close-btn:hover::after { opacity: 1; animation: demonPulse 1.5s ease-in-out infinite; }
 
-.marketplace-close-btn:hover::after {
-  opacity: 1;
-  animation: pulseGlow 1.5s ease-in-out infinite;
-}
-
-.marketplace-close-btn:active {
-  transform: scale(1.05) rotate(90deg);
-  box-shadow: 
-    0 0 0 3px rgba(0, 0, 0, 0.5),
-    0 0 0 5px rgba(255, 71, 87, 0.8),
-    0 2px 8px rgba(255, 71, 87, 0.9),
-    inset 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
+@keyframes demonPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.4); opacity: 0.9; }
 }
 
 /* Marketplace content area */
@@ -353,39 +332,54 @@
   padding-right: 10px;
 }
 
-/* Marketplace grid - Black & Gold theme */
+/* Marketplace grid - 血色网格 */
 .marketplace-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
   gap: 15px;
   padding: 20px;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(10, 10, 10, 0.5) 100%);
+  background: linear-gradient(135deg, rgba(15, 0, 0, 0.7) 0%, rgba(25, 5, 5, 0.6) 100%);
   border-radius: 12px;
-  border: 2px solid rgba(255, 215, 0, 0.4);
+  border: 2px solid rgba(139, 0, 0, 0.5);
   box-shadow: 
-    0 0 25px rgba(255, 215, 0, 0.2),
-    inset 0 2px 10px rgba(0, 0, 0, 0.8);
+    0 0 30px rgba(139, 0, 0, 0.3),
+    inset 0 2px 15px rgba(0, 0, 0, 0.9);
   flex: 1;
   overflow-y: auto;
   align-content: start;
 }
 
-/* Marketplace stats - Black & Gold theme */
+/* 血色滚动条 */
+.marketplace-grid::-webkit-scrollbar { width: 10px; }
+.marketplace-grid::-webkit-scrollbar-track {
+  background: rgba(20, 0, 0, 0.5);
+  border-radius: 5px;
+}
+.marketplace-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b0000, #dc143c, #8b0000);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+}
+.marketplace-grid::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #dc143c, #ff4444, #dc143c);
+}
+
+/* Marketplace stats - 统计信息 */
 .marketplace-stats {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(15, 15, 15, 0.7) 100%);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.8) 0%, rgba(30, 5, 5, 0.7) 100%);
   border-radius: 10px;
-  color: #ffd700;
+  color: #dc143c;
   font-size: 0.9rem;
   font-weight: 700;
-  border: 2px solid rgba(255, 215, 0, 0.4);
+  border: 2px solid rgba(139, 0, 0, 0.5);
   box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.2),
-    inset 0 2px 8px rgba(0, 0, 0, 0.6);
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    0 0 25px rgba(139, 0, 0, 0.3),
+    inset 0 2px 10px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0 15px rgba(220, 20, 60, 0.7);
   letter-spacing: 1px;
   margin-top: 15px;
   flex-shrink: 0;
@@ -394,11 +388,12 @@
 /* Right side: Weapon details area */
 .marketplace-details-section {
   flex: 1;
-  background: rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, rgba(15, 0, 0, 0.6) 0%, rgba(25, 5, 5, 0.5) 100%);
   border-radius: 10px;
   padding: 20px;
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  border: 2px solid rgba(139, 0, 0, 0.4);
   overflow-y: auto;
+  box-shadow: inset 0 0 30px rgba(139, 0, 0, 0.15);
 }
 
 /* Loading state */
@@ -407,8 +402,15 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #ffd700;
+  color: #dc143c;
   font-size: 18px;
+  text-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+  animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
 /* Empty state */
@@ -418,34 +420,41 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #888;
+  color: #8b0000;
   text-align: center;
 }
 
 .marketplace-empty .empty-icon {
   font-size: 80px;
   margin-bottom: 20px;
-  opacity: 0.5;
+  opacity: 0.6;
+  animation: ghostFloat 3s ease-in-out infinite;
+}
+
+@keyframes ghostFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(-15px); opacity: 0.8; }
 }
 
 .marketplace-empty p {
   margin: 10px 0;
   font-size: 18px;
+  color: #dc143c;
 }
 
 .marketplace-empty .empty-hint {
   font-size: 14px;
-  color: #666;
+  color: #8b0000;
   font-style: italic;
 }
 
-/* Buy button - Black & Gold theme */
+/* Buy button - 血色购买按钮 */
 .btn-buy {
   width: 100%;
   padding: 14px 20px;
-  background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.1) 100%);
-  border: 2px solid rgba(76, 175, 80, 0.6);
-  color: #4CAF50;
+  background: linear-gradient(135deg, rgba(0, 100, 0, 0.3) 0%, rgba(0, 80, 0, 0.2) 100%);
+  border: 2px solid rgba(0, 139, 0, 0.7);
+  color: #00cc00;
   font-size: 1rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -453,11 +462,10 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  text-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
-  box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+  text-shadow: 0 0 15px rgba(0, 204, 0, 0.7);
+  box-shadow: 0 0 25px rgba(0, 139, 0, 0.4);
   position: relative;
   font-family: 'Orbitron', sans-serif;
-  /* Pixel style */
   clip-path: polygon(
     0 4px, 4px 4px, 4px 0,
     calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
@@ -470,46 +478,50 @@
   content: '';
   position: absolute;
   inset: -8px;
-  background: radial-gradient(circle, rgba(76, 175, 80, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 204, 0, 0.4) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   z-index: -1;
 }
 
 .btn-buy:hover:not(:disabled) {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-  border-color: #4CAF50;
-  color: #000;
+  background: linear-gradient(135deg, #006600 0%, #004400 100%);
+  border-color: #00cc00;
+  color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+  box-shadow: 0 0 40px rgba(0, 204, 0, 0.7);
 }
 
-.btn-buy:hover:not(:disabled)::before {
-  opacity: 1;
-}
+.btn-buy:hover:not(:disabled)::before { opacity: 1; }
 
 .btn-buy:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
-  background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, rgba(80, 80, 80, 0.1) 100%);
-  border-color: rgba(150, 150, 150, 0.3);
-  color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(50, 50, 50, 0.3) 0%, rgba(30, 30, 30, 0.2) 100%);
+  border-color: rgba(80, 80, 80, 0.4);
+  color: rgba(150, 150, 150, 0.4);
   transform: none;
 }
 
-/* Marketplace notice */
+/* Marketplace notice - 血色提示 */
 .marketplace-notice {
   margin-top: 15px;
   padding: 12px;
-  background: rgba(255, 193, 7, 0.1);
-  border: 1px solid rgba(255, 193, 7, 0.3);
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.2) 0%, rgba(100, 0, 0, 0.15) 100%);
+  border: 1px solid rgba(220, 20, 60, 0.5);
   border-radius: 8px;
-  color: #ffc107;
+  color: #ff6666;
   font-size: 13px;
   line-height: 1.5;
+  animation: noticeGlow 3s ease-in-out infinite;
 }
 
-/* Weapon details styles */
+@keyframes noticeGlow {
+  0%, 100% { border-color: rgba(220, 20, 60, 0.5); }
+  50% { border-color: rgba(255, 68, 68, 0.8); box-shadow: 0 0 15px rgba(220, 20, 60, 0.3); }
+}
+
+/* Weapon details styles - 武器详情 */
 .weapon-details {
   display: flex;
   flex-direction: column;
@@ -521,21 +533,22 @@
 
 .marketplace-details-section .weapon-details h3 {
   margin: 0;
-  color: #ffd700;
+  color: #dc143c;
   font-size: 1rem;
   font-weight: 900;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   text-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.9),
-    0 2px 4px rgba(0, 0, 0, 0.8);
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    0 0 25px rgba(220, 20, 60, 1),
+    0 0 50px rgba(139, 0, 0, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(135deg, #dc143c 0%, #ff6666 30%, #dc143c 50%, #8b0000 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: titleShine 3s linear infinite;
-  background-size: 200% 100%;
+  animation: bloodTitleShine 4s linear infinite;
+  background-size: 300% 100%;
   word-break: break-word;
   overflow-wrap: break-word;
   padding: 0 5px;
@@ -544,35 +557,43 @@
   overflow: visible !important;
   display: block !important;
   -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
   -webkit-box-orient: unset !important;
 }
 
 .weapon-icon-large {
   text-align: center;
-  padding: 8px;
-  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.5) 0%, rgba(30, 5, 5, 0.4) 100%);
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80px;
-  max-height: 90px;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  min-height: 100px;
+  max-height: 120px;
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  box-shadow: inset 0 0 20px rgba(139, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
 }
 
 .weapon-detail-img {
-  max-width: 100%;
-  max-height: 75px;
+  max-width: 80%;
+  max-height: 90px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   image-rendering: pixelated;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 4px 10px rgba(139, 0, 0, 0.6));
+  margin: 0 auto;
+  display: block;
 }
 
 .weapon-stats {
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.5) 0%, rgba(30, 5, 5, 0.4) 100%);
   border-radius: 8px;
   padding: 6px;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(139, 0, 0, 0.3);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
@@ -584,26 +605,27 @@
   align-items: center;
   justify-content: center;
   padding: 8px 10px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(15, 0, 0, 0.4);
   border-radius: 4px;
   gap: 4px;
   min-height: 55px;
   text-align: center;
+  border: 1px solid rgba(139, 0, 0, 0.2);
 }
 
 .stat-label {
-  color: #ffd700;
+  color: #dc143c;
   font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.7);
   line-height: 1.2;
 }
 
 .stat-value {
-  color: #ffffff;
+  color: #ffcccc;
   font-weight: 900;
   font-size: 0.85rem;
   text-align: center;
@@ -617,18 +639,18 @@
 }
 
 .stat-value.attack {
-  color: #ff6b6b;
-  text-shadow: 0 0 10px rgba(255, 107, 107, 0.6), 0 1px 3px rgba(0, 0, 0, 0.9);
+  color: #ff4444;
+  text-shadow: 0 0 15px rgba(255, 68, 68, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .stat-value.rarity {
-  color: #9c27b0;
-  text-shadow: 0 0 10px rgba(156, 39, 176, 0.6), 0 1px 3px rgba(0, 0, 0, 0.9);
+  color: #ff6666;
+  text-shadow: 0 0 15px rgba(255, 102, 102, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
-/* Price display */
+/* Price display - 价格显示 */
 .stat-value.price {
-  color: #ffd700;
+  color: #ff4444;
   font-weight: bold;
   font-size: 0.8rem;
   white-space: nowrap;
@@ -636,19 +658,20 @@
   flex-direction: column;
   align-items: center;
   gap: 2px;
+  text-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
 }
 
 .weapon-description {
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.5) 0%, rgba(30, 5, 5, 0.4) 100%);
   border-radius: 8px;
   padding: 8px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 200, 200, 0.8);
   font-size: 0.6rem;
   line-height: 1.4;
   font-style: italic;
   word-break: break-word;
   overflow-wrap: break-word;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(139, 0, 0, 0.3);
 }
 
 .weapon-actions {
@@ -661,43 +684,24 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #888;
+  color: #8b0000;
   text-align: center;
 }
 
 .no-selection .empty-icon {
   font-size: 60px;
   margin-bottom: 15px;
-  opacity: 0.5;
+  opacity: 0.6;
+  animation: ghostFloat 3s ease-in-out infinite;
 }
 
 .no-selection p {
   margin: 5px 0;
   font-size: 14px;
+  color: #dc143c;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Scrollbar styles */
+/* Scrollbar styles - 血色滚动条 */
 .marketplace-grid-section::-webkit-scrollbar,
 .marketplace-details-section::-webkit-scrollbar {
   width: 8px;
@@ -705,19 +709,19 @@
 
 .marketplace-grid-section::-webkit-scrollbar-track,
 .marketplace-details-section::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(20, 0, 0, 0.4);
   border-radius: 10px;
 }
 
 .marketplace-grid-section::-webkit-scrollbar-thumb,
 .marketplace-details-section::-webkit-scrollbar-thumb {
-  background: rgba(255, 215, 0, 0.3);
+  background: linear-gradient(180deg, #8b0000, #dc143c);
   border-radius: 10px;
 }
 
 .marketplace-grid-section::-webkit-scrollbar-thumb:hover,
 .marketplace-details-section::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 215, 0, 0.5);
+  background: linear-gradient(180deg, #dc143c, #ff4444);
 }
 
 /* Responsive design */

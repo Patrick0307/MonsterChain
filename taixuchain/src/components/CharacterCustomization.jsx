@@ -3,15 +3,25 @@ import '../css/CharacterCustomization.css'
 import AnimatedCharacter from './AnimatedCharacter'
 
 function CharacterCustomization({ characterClass, onCustomizationComplete, onBack }) {
+  // 特殊角色风格的默认值
+  const isWarrior = characterClass.id === 'warrior'
+  const isArcher = characterClass.id === 'archer'
+  const isMage = characterClass.id === 'mage'
+  
   const [customization, setCustomization] = useState({
     gender: 'male',
-    skinColor: '#ffd4a3',
-    hairStyle: 'short',
-    hairColor: '#000000',
+    skinColor: isWarrior ? '#d4c4a8' :   // 战士用骨头色
+               isArcher ? '#ff8c00' :     // 射手用南瓜橙色
+               isMage ? '#e8c4c4' :       // 法师用魅魔苍白肤色
+               '#ffd4a3',
+    hairStyle: (isWarrior || isArcher) ? 'frontponytail' : 
+               isMage ? 'long' : 'short',
+    hairColor: isWarrior ? '#1a1a1a' : 
+               isMage ? '#1a0a1a' : '#000000',
     clothesStyle: 'default',
-    clothesColor: characterClass.id === 'warrior' ? '#8b0000' : 
-                  characterClass.id === 'archer' ? '#228b22' : '#4b0082',
-    shoesColor: '#4a4a4a'
+    clothesColor: isWarrior ? '#4a0000' : 
+                  isArcher ? '#228b22' : '#4b0082',
+    shoesColor: (isWarrior || isArcher || isMage) ? '#1a1a1a' : '#4a4a4a'
   })
   const [characterScale, setCharacterScale] = useState(3)
 
@@ -77,7 +87,7 @@ function CharacterCustomization({ characterClass, onCustomizationComplete, onBac
       {/* 标题 */}
       <div className="title-section">
         <h1 className="customization-title">
-          <span className="title-main">Customize Your Mage</span>
+          <span className="title-main">Customize Your {characterClass.name}</span>
         </h1>
         <div className="title-decoration">
           <div className="decoration-line left"></div>
@@ -151,7 +161,9 @@ function CharacterCustomization({ characterClass, onCustomizationComplete, onBac
           {/* Colors Grid */}
           <div className="colors-grid">
             <div className="color-card">
-              <h3 className="color-title">Skin Color</h3>
+              <h3 className="color-title">
+                {isWarrior ? 'Bone Color' : isArcher ? 'Pumpkin Color' : isMage ? 'Skin Tone' : 'Skin Color'}
+              </h3>
               <input 
                 type="color" 
                 value={customization.skinColor}
@@ -161,7 +173,9 @@ function CharacterCustomization({ characterClass, onCustomizationComplete, onBac
             </div>
 
             <div className="color-card">
-              <h3 className="color-title">Hair Color</h3>
+              <h3 className="color-title">
+                {isArcher ? 'Vine Color' : 'Hair Color'}
+              </h3>
               <input 
                 type="color" 
                 value={customization.hairColor}
@@ -171,7 +185,9 @@ function CharacterCustomization({ characterClass, onCustomizationComplete, onBac
             </div>
 
             <div className="color-card">
-              <h3 className="color-title">Clothes Color</h3>
+              <h3 className="color-title">
+                {isWarrior ? 'Armor Color' : isArcher ? 'Cape Color' : isMage ? 'Corset Color' : 'Clothes Color'}
+              </h3>
               <input 
                 type="color" 
                 value={customization.clothesColor}
@@ -181,7 +197,9 @@ function CharacterCustomization({ characterClass, onCustomizationComplete, onBac
             </div>
 
             <div className="color-card">
-              <h3 className="color-title">Shoes Color</h3>
+              <h3 className="color-title">
+                {isMage ? 'Heels Color' : (isWarrior || isArcher) ? 'Boots Color' : 'Shoes Color'}
+              </h3>
               <input 
                 type="color" 
                 value={customization.shoesColor}

@@ -40,22 +40,22 @@ function CharacterSelection({ onCharacterSelected, onWalletConnected, shouldShow
   const classes = [
     {
       id: 'warrior',
-      name: 'Warrior',
-      description: '',
+      name: 'Death Knight',
+      description: 'Risen from the grave, bound by dark magic',
       stats: { hp: 500, attack: 15 },
-      color: '#8b0000'
+      color: '#4a0000'
     },
     {
       id: 'archer',
-      name: 'Archer',
-      description: '',
+      name: 'Pumpkin Hunter',
+      description: 'A cursed soul trapped in a jack-o-lantern',
       stats: { hp: 500, attack: 18 },
       color: '#228b22'
     },
     {
       id: 'mage',
-      name: 'Mage',
-      description: '',
+      name: 'Succubus',
+      description: 'A seductive demon queen thirsting for blood',
       stats: { hp: 500, attack: 20 },
       color: '#4b0082'
     }
@@ -152,12 +152,18 @@ function CharacterSelection({ onCharacterSelected, onWalletConnected, shouldShow
                       ...classData,
                       customization: {
                         gender: 'male',
-                        skinColor: '#ffd4a3',
-                        hairStyle: 'short',
-                        hairColor: '#000000',
+                        skinColor: classData.id === 'warrior' ? '#d4c4a8' : 
+                                   classData.id === 'archer' ? '#ff8c00' : 
+                                   classData.id === 'mage' ? '#e8c4c4' : '#ffd4a3',
+                        hairStyle: classData.id === 'warrior' ? 'frontponytail' : 
+                                   classData.id === 'archer' ? 'frontponytail' : 
+                                   classData.id === 'mage' ? 'long' : 'short',
+                        hairColor: classData.id === 'mage' ? '#1a0a1a' : '#000000',
                         clothesStyle: 'default',
                         clothesColor: classData.color,
-                        shoesColor: '#4a4a4a'
+                        shoesColor: classData.id === 'warrior' ? '#2a2a2a' : 
+                                    classData.id === 'archer' ? '#2a2a2a' : 
+                                    classData.id === 'mage' ? '#1a1a1a' : '#4a4a4a'
                       }
                     }}
                     scale={characterScale}

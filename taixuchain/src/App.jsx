@@ -58,9 +58,20 @@ function App() {
     setWalletAddress(address)
     setIsCheckingPlayer(true)
     
+    // 记录开始时间，确保 loading 至少显示 5 秒
+    const startTime = Date.now()
+    const MIN_LOADING_TIME = 2000 // 5秒
+    
     try {
       // Check if wallet already has a character
       const existingPlayer = await checkExistingPlayer(address)
+      
+      // 计算还需要等待多久
+      const elapsed = Date.now() - startTime
+      const remainingTime = Math.max(0, MIN_LOADING_TIME - elapsed)
+      
+      // 等待剩余时间
+      await new Promise(resolve => setTimeout(resolve, remainingTime))
       
       if (existingPlayer) {
         // Has character, directly load character info and jump to map selection
@@ -116,6 +127,10 @@ function App() {
       }
     } catch (error) {
       console.error('Error checking existing player:', error)
+      // 即使出错也要等够 5 秒
+      const elapsed = Date.now() - startTime
+      const remainingTime = Math.max(0, MIN_LOADING_TIME - elapsed)
+      await new Promise(resolve => setTimeout(resolve, remainingTime))
       // On error, also enter character selection stage
       setGameStage('selection')
     } finally {

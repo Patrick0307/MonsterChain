@@ -69,19 +69,23 @@ function AnimatedCharacter({ character, scale = 2.5 }) {
           <>
             <div className="warrior-aura"></div>
             <div className="warrior-glow"></div>
+            <div className="warrior-skull-eyes"></div>
+            <div className="warrior-blood-pool"></div>
           </>
         )}
         {character.id === 'archer' && (
           <>
-            <div className="archer-wind wind-1"></div>
-            <div className="archer-wind wind-2"></div>
-            <div className="archer-wind wind-3"></div>
+            <div className="archer-wind"></div>
+            <div className="archer-pumpkin-eyes"></div>
+            <div className="archer-pumpkin-mouth"></div>
           </>
         )}
         {character.id === 'mage' && (
           <>
+            <div className="mage-aura"></div>
             <div className="mage-circle circle-1"></div>
             <div className="mage-circle circle-2"></div>
+            <div className="mage-eyes-glow"></div>
           </>
         )}
       </div>
@@ -117,18 +121,31 @@ function AnimatedCharacter({ character, scale = 2.5 }) {
       {/* 前景特效层 */}
       <div className={`effect-layer effect-foreground ${character.id}-effect-fg`}>
         {character.id === 'warrior' && (
-          <div className="warrior-sparks">
-            <div className="spark spark-1"></div>
-            <div className="spark spark-2"></div>
-            <div className="spark spark-3"></div>
+          <>
+            <div className="warrior-sparks">
+              <div className="spark spark-1"></div>
+              <div className="spark spark-2"></div>
+              <div className="spark spark-3"></div>
+            </div>
+            <div className="warrior-souls">
+              <div className="soul soul-1">💀</div>
+              <div className="soul soul-2">💀</div>
+              <div className="soul soul-3">☠</div>
+            </div>
+          </>
+        )}
+        {character.id === 'archer' && (
+          <div className="archer-bats">
+            <div className="bat bat-1">🦇</div>
+            <div className="bat bat-2">🦇</div>
+            <div className="bat bat-3">🦇</div>
           </div>
         )}
         {character.id === 'mage' && (
-          <div className="mage-stars">
-            <div className="star star-1">✦</div>
-            <div className="star star-2">✧</div>
-            <div className="star star-3">✦</div>
-            <div className="star star-4">✧</div>
+          <div className="mage-hearts">
+            <div className="heart heart-1">🖤</div>
+            <div className="heart heart-2">🖤</div>
+            <div className="heart heart-3">💔</div>
           </div>
         )}
       </div>

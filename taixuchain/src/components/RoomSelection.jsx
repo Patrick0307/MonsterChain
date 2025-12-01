@@ -116,14 +116,14 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
 
   const renderMenu = () => (
     <div className="room-menu">
-      <h2>🎮 MULTIPLAYER</h2>
+      <h2>👻 MULTIPLAYER</h2>
       
       <div className="menu-buttons">
         <button 
           className="menu-button create"
           onClick={() => setMode('create')}
         >
-          <span className="button-icon">🏠</span>
+          <span className="button-icon">⚰️</span>
           <span className="button-text">CREATE ROOM</span>
         </button>
 
@@ -131,7 +131,7 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
           className="menu-button join"
           onClick={() => setMode('join')}
         >
-          <span className="button-icon">🔑</span>
+          <span className="button-icon">🗝️</span>
           <span className="button-text">JOIN ROOM</span>
         </button>
 
@@ -139,7 +139,7 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
           className="menu-button public"
           onClick={handleShowPublicRooms}
         >
-          <span className="button-icon">🌐</span>
+          <span className="button-icon">💀</span>
           <span className="button-text">PUBLIC ROOMS</span>
         </button>
 
@@ -147,7 +147,7 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
           className="menu-button back"
           onClick={onBack}
         >
-          <span className="button-icon">⬅️</span>
+          <span className="button-icon">🩸</span>
           <span className="button-text">BACK</span>
         </button>
       </div>
@@ -156,11 +156,11 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
 
   const renderCreate = () => (
     <div className="room-create">
-      <h2>🏠 CREATE ROOM</h2>
+      <h2>⚰️ CREATE ROOM</h2>
       
       <div className="create-options">
         <div className="option-group">
-          <label>ROOM TYPE:</label>
+          <label>☠ ROOM TYPE:</label>
           <div className="radio-group">
             <label className="radio-label">
               <input 
@@ -182,8 +182,8 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
         </div>
 
         <div className="option-info">
-          <p>MAP: 🌲 Misty Forest</p>
-          <p>CHARACTER: {character.name} ({character.id})</p>
+          <p>🪦 MAP: Haunted Forest</p>
+          <p>💀 CHARACTER: {character.name} ({character.id})</p>
         </div>
       </div>
 
@@ -195,7 +195,7 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
           onClick={handleCreateRoom}
           disabled={isConnecting}
         >
-          {isConnecting ? 'CREATING...' : 'CREATE & ENTER'}
+          {isConnecting ? 'SUMMONING...' : 'CREATE & ENTER'}
         </button>
         <button 
           className="action-button secondary"
@@ -210,10 +210,10 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
 
   const renderJoin = () => (
     <div className="room-join">
-      <h2>🔑 JOIN ROOM</h2>
+      <h2>🗝️ JOIN ROOM</h2>
       
       <div className="join-form">
-        <label>ROOM ID:</label>
+        <label>☠ ROOM ID:</label>
         <input 
           type="text"
           className="room-input"
@@ -233,7 +233,7 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
           onClick={() => handleJoinRoom()}
           disabled={isConnecting || !roomId.trim()}
         >
-          {isConnecting ? 'JOINING...' : 'JOIN ROOM'}
+          {isConnecting ? 'ENTERING...' : 'JOIN ROOM'}
         </button>
         <button 
           className="action-button secondary"
@@ -248,22 +248,22 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
 
   const renderPublic = () => (
     <div className="room-public">
-      <h2>🌐 PUBLIC ROOMS</h2>
+      <h2>💀 PUBLIC ROOMS</h2>
       
       <div className="rooms-list">
         {publicRooms.length === 0 ? (
           <div className="no-rooms">
-            <p>NO PUBLIC ROOMS AVAILABLE</p>
-            <p>CREATE A NEW ROOM!</p>
+            <p>NO SOULS FOUND...</p>
+            <p>SUMMON A NEW ROOM!</p>
           </div>
         ) : (
           publicRooms.map(room => (
             <div key={room.id} className="room-card">
               <div className="room-info">
-                <div className="room-id">ROOM ID: {room.id}</div>
-                <div className="room-map">MAP: 🌲 {room.mapName}</div>
+                <div className="room-id">☠ ROOM: {room.id}</div>
+                <div className="room-map">🪦 MAP: {room.mapName}</div>
                 <div className="room-players">
-                  PLAYERS: {room.playerCount}/{room.maxPlayers}
+                  👻 SOULS: {room.playerCount}/{room.maxPlayers}
                 </div>
               </div>
               <button 
@@ -271,7 +271,7 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
                 onClick={() => handleJoinRoom(room.id)}
                 disabled={isConnecting || room.playerCount >= room.maxPlayers}
               >
-                {room.playerCount >= room.maxPlayers ? 'FULL' : 'JOIN'}
+                {room.playerCount >= room.maxPlayers ? 'SEALED' : 'ENTER'}
               </button>
             </div>
           ))
@@ -294,72 +294,16 @@ function RoomSelection({ character, onRoomJoined, onBack }) {
 
   return (
     <div className="room-selection-container">
-      {/* 粒子特效容器 */}
-      <div className="particles-container">
-        {/* 星空 */}
-        {[...Array(50)].map((_, i) => (
+      {/* 血雨效果 */}
+      <div className="blood-rain-container">
+        {[...Array(40)].map((_, i) => (
           <div
-            key={`star-${i}`}
-            className="star"
+            key={`blood-${i}`}
+            className="blood-drop"
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              animationDuration: `${1.5 + Math.random() * 1.5}s`,
               animationDelay: `${Math.random() * 3}s`
-            }}
-          />
-        ))}
-        
-        {/* 金色粒子 */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={`particle-${i}`}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${8 + Math.random() * 4}s`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        ))}
-        
-        {/* 能量球 */}
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={`orb-${i}`}
-            className="energy-orb"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              '--orbit-x': `${(Math.random() - 0.5) * 400}px`,
-              '--orbit-y': `${(Math.random() - 0.5) * 400}px`,
-              animationDuration: `${6 + Math.random() * 4}s`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        ))}
-        
-        {/* 流星 */}
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={`meteor-${i}`}
-            className="meteor"
-            style={{
-              left: `${Math.random() * 50}%`,
-              top: `${Math.random() * 50}%`,
-              animationDuration: `${1 + Math.random()}s`,
-              animationDelay: `${Math.random() * 10}s`
-            }}
-          />
-        ))}
-        
-        {/* 光束 */}
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={`beam-${i}`}
-            className="light-beam"
-            style={{
-              left: `${20 + i * 15}%`,
-              animationDelay: `${i * 0.5}s`
             }}
           />
         ))}

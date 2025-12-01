@@ -15,7 +15,11 @@ export const WEAPON_MINT_CAP = import.meta.env.VITE_WEAPON_MINT_CAP || '0xb7bd7f
 export const CLASS_MAP = {
   'Mage': 1,
   'Warrior': 2,
-  'Archer': 3
+  'Archer': 3,
+  // Halloween theme names
+  'Succubus': 1,        // Mage class
+  'Death Knight': 2,    // Warrior class
+  'Pumpkin Hunter': 3   // Archer class
 }
 
 /**

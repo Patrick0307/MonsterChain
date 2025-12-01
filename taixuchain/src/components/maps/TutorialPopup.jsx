@@ -65,7 +65,7 @@ function TutorialPopup({ onClose }) {
         <div className="tutorial-glow" />
         
         <div className="tutorial-header">
-          <h2>⚔️ Controls Guide</h2>
+          <h2>☠️ CONTROLS GUIDE</h2>
         </div>
         
         <div className="tutorial-content">
@@ -79,17 +79,17 @@ function TutorialPopup({ onClose }) {
           </div>
           
           <div className="tutorial-tips">
-            <h3>💡 Tips</h3>
+            <h3>🩸 TIPS</h3>
             <ul>
-              <li>Defeat monsters to get loot boxes</li>
-              <li>Open loot boxes to receive random weapons</li>
-              <li>Trade weapons in the marketplace</li>
+              <li>☠ Slay monsters to claim their souls</li>
+              <li>☠ Open cursed boxes for dark weapons</li>
+              <li>☠ Trade relics in the blood market</li>
             </ul>
           </div>
         </div>
         
         <button className="tutorial-close-btn" onClick={handleClose}>
-          Got it!
+          ENTER THE DARKNESS
         </button>
       </div>
     </div>

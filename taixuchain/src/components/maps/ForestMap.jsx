@@ -1615,83 +1615,16 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
   if (isLoading) {
     return (
       <div className="forest-map-loading">
-        {/* 马赛克背景层 */}
-        <div className="mosaic-bg"></div>
-        <div className="mosaic-overlay"></div>
-        
-        {/* 魔法圆环 */}
-        <div className="magic-circle"></div>
-        
-        {/* 粒子特效容器 */}
-        <div className="particles-container">
-          {/* 星空 */}
-          {[...Array(50)].map((_, i) => (
+        {/* 血雨效果 */}
+        <div className="blood-rain-container">
+          {[...Array(40)].map((_, i) => (
             <div
-              key={`star-${i}`}
-              className="star"
+              key={`blood-${i}`}
+              className="blood-drop"
               style={{
                 left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                animationDuration: `${1.5 + Math.random() * 1.5}s`,
                 animationDelay: `${Math.random() * 3}s`
-              }}
-            />
-          ))}
-          
-          {/* 金色粒子 */}
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={`particle-${i}`}
-              className="particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDuration: `${8 + Math.random() * 4}s`,
-                animationDelay: `${Math.random() * 5}s`
-              }}
-            />
-          ))}
-          
-          {/* 能量球 */}
-          {[...Array(15)].map((_, i) => {
-            const angle = (Math.random() * 360) * Math.PI / 180;
-            const distance = 200 + Math.random() * 300;
-            return (
-              <div
-                key={`orb-${i}`}
-                className="energy-orb"
-                style={{
-                  left: '50%',
-                  top: '50%',
-                  '--orbit-x': `${Math.cos(angle) * distance}px`,
-                  '--orbit-y': `${Math.sin(angle) * distance}px`,
-                  animationDuration: `${3 + Math.random() * 3}s`,
-                  animationDelay: `${Math.random() * 5}s`
-                }}
-              />
-            );
-          })}
-          
-          {/* 流星 */}
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={`meteor-${i}`}
-              className="meteor"
-              style={{
-                left: `${Math.random() * 50}%`,
-                top: `${Math.random() * 50}%`,
-                animationDuration: `${1 + Math.random()}s`,
-                animationDelay: `${Math.random() * 10}s`
-              }}
-            />
-          ))}
-          
-          {/* 光束 */}
-          {[...Array(3)].map((_, i) => (
-            <div
-              key={`beam-${i}`}
-              className="light-beam"
-              style={{
-                left: `${20 + i * 30}%`,
-                animationDelay: `${i * 1}s`
               }}
             />
           ))}
@@ -1699,20 +1632,18 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
         
         {/* Loading 内容卡片 */}
         <div className="loading-card">
-          {/* 马赛克装饰角 */}
+          {/* 骷髅装饰角 */}
           <div className="card-corner tl"></div>
           <div className="card-corner tr"></div>
           <div className="card-corner bl"></div>
           <div className="card-corner br"></div>
           
           {/* 地图图标 */}
-          <div className="loading-icon">🌲</div>
+          <div className="loading-icon">🪦</div>
           
           {/* 标题 */}
           <h2 className="loading-title">
-            <span className="title-line"></span>
-            <span className="title-text">LOADING FOREST</span>
-            <span className="title-line"></span>
+            <span className="title-text">ENTERING HAUNTED FOREST</span>
           </h2>
           
           {/* 进度条容器 */}
@@ -1733,7 +1664,7 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
             <span className="hint-dot"></span>
             <span className="hint-dot"></span>
             <span className="hint-dot"></span>
-            <span className="hint-text">Loading tiles and assets</span>
+            <span className="hint-text">Summoning dark spirits...</span>
           </div>
         </div>
       </div>

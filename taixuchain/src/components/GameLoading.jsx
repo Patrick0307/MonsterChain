@@ -1,60 +1,36 @@
 import { useState, useEffect } from 'react'
 import '../css/GameLoading.css'
-import AnimatedCharacter from './AnimatedCharacter'
 
-function GameLoading() {
+function GameLoading({ onLoadingComplete }) {
   const [progress, setProgress] = useState(0)
   const [currentStage, setCurrentStage] = useState(0)
+  const [glitchText, setGlitchText] = useState(false)
+  const [showJumpscare, setShowJumpscare] = useState(true)
 
   const loadingStages = [
-    { text: 'Waking up cold server...', duration: 3000, progress: 25 },
-    { text: 'Checking existing character...', duration: 2000, progress: 50 },
-    { text: 'Rendering game world...', duration: 2000, progress: 75 },
-    { text: 'Almost ready...', duration: 1500, progress: 100 }
+    { text: 'Awakening the sleeping demon...', duration: 2000, progress: 20 },
+    { text: 'Blood is boiling...', duration: 1500, progress: 40 },
+    { text: 'Souls are being torn apart...', duration: 1500, progress: 60 },
+    { text: 'Darkness is consuming everything...', duration: 1500, progress: 80 },
+    { text: 'Welcome to hell...', duration: 2000, progress: 100 }
   ]
 
-  // 三个角色配置
-  const characters = [
-    {
-      id: 'warrior',
-      name: 'Warrior',
-      customization: {
-        gender: 'male',
-        skinColor: '#ffd4a3',
-        hairStyle: 'short',
-        hairColor: '#000000',
-        clothesStyle: 'default',
-        clothesColor: '#8b0000',
-        shoesColor: '#4a4a4a'
-      }
-    },
-    {
-      id: 'archer',
-      name: 'Archer',
-      customization: {
-        gender: 'male',
-        skinColor: '#ffd4a3',
-        hairStyle: 'short',
-        hairColor: '#000000',
-        clothesStyle: 'default',
-        clothesColor: '#228b22',
-        shoesColor: '#4a4a4a'
-      }
-    },
-    {
-      id: 'mage',
-      name: 'Mage',
-      customization: {
-        gender: 'male',
-        skinColor: '#ffd4a3',
-        hairStyle: 'short',
-        hairColor: '#000000',
-        clothesStyle: 'default',
-        clothesColor: '#4b0082',
-        shoesColor: '#4a4a4a'
-      }
-    }
-  ]
+  // Jumpscare effect on load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowJumpscare(false)
+    }, 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Random glitch effect
+  useEffect(() => {
+    const glitchInterval = setInterval(() => {
+      setGlitchText(true)
+      setTimeout(() => setGlitchText(false), 150)
+    }, 3000 + Math.random() * 2000)
+    return () => clearInterval(glitchInterval)
+  }, [])
 
   useEffect(() => {
     let stageIndex = 0
@@ -74,6 +50,12 @@ function GameLoading() {
             setCurrentStage(stageIndex)
             if (stageIndex < loadingStages.length) {
               updateProgress()
+            } else {
+              setTimeout(() => {
+                if (onLoadingComplete) {
+                  onLoadingComplete()
+                }
+              }, 5000)
             }
           }
           setProgress(Math.min(progressValue, 100))
@@ -82,34 +64,43 @@ function GameLoading() {
     }
 
     updateProgress()
-  }, [])
+  }, [onLoadingComplete])
 
   return (
-    <div className="game-loading">
-      {/* 马赛克背景效果 */}
-      <div className="mosaic-background"></div>
-      
-      {/* 粒子特效容器 */}
-      <div className="particles-container">
-        {/* 星空闪烁 */}
-        {[...Array(50)].map((_, i) => (
+    <div className="game-loading horror">
+      {showJumpscare && (
+        <div className="jumpscare-overlay">
+          <img src="/logo.png" alt="Logo" className="jumpscare-logo" />
+        </div>
+      )}
+
+      <div className="blood-drip-container">
+        {[...Array(20)].map((_, i) => (
           <div 
-            key={`star-${i}`}
-            className="star"
+            key={`drip-${i}`}
+            className="blood-drip"
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 4}s`
             }}
           />
         ))}
-        
-        {/* 金色粒子上升 */}
-        {[...Array(20)].map((_, i) => (
+      </div>
+
+      <div className="red-flash"></div>
+      <div className="cracks-overlay"></div>
+
+      <div className="fog-container">
+        <div className="fog fog-1"></div>
+        <div className="fog fog-2"></div>
+      </div>
+
+      <div className="particles-container">
+        {[...Array(30)].map((_, i) => (
           <div 
-            key={`particle-${i}`}
-            className="particle"
+            key={`ash-${i}`}
+            className="ash-particle"
             style={{
               left: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 5}s`,
@@ -117,102 +108,55 @@ function GameLoading() {
             }}
           />
         ))}
-        
-        {/* 能量球轨迹 */}
-        {[...Array(15)].map((_, i) => {
-          const angle = (Math.random() * 360) * Math.PI / 180;
-          const distance = 200 + Math.random() * 300;
-          return (
-            <div 
-              key={`orb-${i}`}
-              className="energy-orb"
-              style={{
-                left: '50%',
-                top: '50%',
-                '--orbit-x': `${Math.cos(angle) * distance}px`,
-                '--orbit-y': `${Math.sin(angle) * distance}px`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${3 + Math.random() * 3}s`
-              }}
-            />
-          );
-        })}
-        
-        {/* 流星效果 */}
-        {[...Array(5)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <div 
-            key={`meteor-${i}`}
-            className="meteor"
+            key={`ember-${i}`}
+            className="ember"
             style={{
-              left: `${Math.random() * 50}%`,
-              top: `${Math.random() * 50}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${1 + Math.random()}s`,
-              animationIterationCount: 'infinite'
-            }}
-          />
-        ))}
-        
-        {/* 光束效果 */}
-        {[...Array(4)].map((_, i) => (
-          <div 
-            key={`beam-${i}`}
-            className="light-beam"
-            style={{
-              left: `${20 + i * 25}%`,
-              animationDelay: `${i * 0.75}s`
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`
             }}
           />
         ))}
       </div>
       
       <div className="loading-content">
-        {/* 标题 */}
-        <h1 className="loading-title">
-          <span className="title-text">TAIXU</span>
-          <span className="title-glow"></span>
+        <h1 className={`loading-title horror-title ${glitchText ? 'glitch' : ''}`}>
+          <span className="title-text" data-text="MONSTER CHAIN">MONSTER CHAIN</span>
         </h1>
 
-        {/* 进度条容器 */}
-        <div className="progress-container">
+        <p className="horror-subtitle">ABANDON ALL HOPE</p>
+
+        <div className="progress-container horror-progress">
           <div className="progress-bar-wrapper">
             <div 
-              className="progress-bar-fill" 
+              className="progress-bar-fill blood-fill" 
               style={{ width: `${progress}%` }}
             >
-              <div className="progress-shine"></div>
+              <div className="blood-bubble"></div>
             </div>
-            <div className="progress-border"></div>
           </div>
-          <div className="progress-text">{Math.floor(progress)}%</div>
+          <div className="progress-text horror-text">{Math.floor(progress)}%</div>
         </div>
 
-        {/* 加载状态文字 */}
         <div className="loading-stage">
-          <p className="stage-text">
-            {progress >= 100 ? 'Waking up cold server...' : loadingStages[currentStage]?.text}
+          <p className={`stage-text horror-stage ${glitchText ? 'glitch-text' : ''}`}>
+            {progress >= 100 ? 'Are you ready to face your fears...' : loadingStages[currentStage]?.text}
           </p>
         </div>
 
-        {/* 底部三个角色 */}
-        <div className="characters-showcase">
-          {characters.map((char, index) => (
-            <div 
-              key={char.id} 
-              className="character-item"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="character-wrapper">
-                <AnimatedCharacter 
-                  character={char}
-                  scale={1.8}
-                />
-              </div>
-              <div className="character-label">{char.name}</div>
-            </div>
-          ))}
+        <div className="horror-symbols">
+          <img src="/logo.png" alt="Logo" className="horror-logo" />
         </div>
+
+        {progress >= 100 && (
+          <div className="warning-text pulse">
+            ⚠ ENTERING SOON... ⚠
+          </div>
+        )}
       </div>
+
+      <div className="blood-vignette"></div>
     </div>
   )
 }

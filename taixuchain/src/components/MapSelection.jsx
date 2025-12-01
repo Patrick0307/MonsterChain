@@ -12,11 +12,11 @@ function MapSelection({ character, onMapSelected }) {
   const maps = [
     {
       id: 'forest',
-      name: 'Misty Forest',
-      description: 'Ancient forest filled with unknown dangers',
+      name: 'Haunted Forest',
+      description: 'Cursed woods where lost souls wander eternally',
       difficulty: 'EASY',
-      icon: '🌲',
-      color: '#2d5016',
+      icon: '🪦',
+      color: '#2d0000',
       locked: false,
       rewards: {
         swords: ['Iron Sword', 'Azure Edge Sword', 'Dragon Roar Sword'],
@@ -30,11 +30,11 @@ function MapSelection({ character, onMapSelected }) {
     },
     {
       id: 'mountain',
-      name: 'Snow Peak',
-      description: 'Cold highlands testing your survival skills',
+      name: 'Bone Peak',
+      description: 'Frozen graveyard of ancient warriors',
       difficulty: 'MEDIUM',
-      icon: '⛰️',
-      color: '#5a4a00',
+      icon: '💀',
+      color: '#3a0000',
       locked: true,
       unlockRequirement: 'Comming Soon',
       rewards: {
@@ -49,11 +49,11 @@ function MapSelection({ character, onMapSelected }) {
     },
     {
       id: 'desert',
-      name: 'Scorching Desert',
-      description: 'Hot desert ruins hiding ancient secrets',
+      name: 'Blood Wasteland',
+      description: 'Crimson sands soaked with the blood of fallen',
       difficulty: 'HARD',
-      icon: '🏜️',
-      color: '#5a1a00',
+      icon: '☠️',
+      color: '#4a0000',
       locked: true,
       unlockRequirement: 'Comming Soon',
       rewards: {
@@ -110,72 +110,16 @@ function MapSelection({ character, onMapSelected }) {
       {/* 魔法圆环 */}
       <div className="magic-circle"></div>
       
-      {/* 粒子特效容器 */}
-      <div className="particles-container">
-        {/* 星空 */}
-        {[...Array(50)].map((_, i) => (
+      {/* 血雨效果容器 */}
+      <div className="blood-rain-container">
+        {[...Array(40)].map((_, i) => (
           <div
-            key={`star-${i}`}
-            className="star"
+            key={`blood-${i}`}
+            className="blood-drop"
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              animationDuration: `${1.5 + Math.random() * 1.5}s`,
               animationDelay: `${Math.random() * 3}s`
-            }}
-          />
-        ))}
-        
-        {/* 金色粒子 */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={`particle-${i}`}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${8 + Math.random() * 4}s`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        ))}
-        
-        {/* 能量球 */}
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={`orb-${i}`}
-            className="energy-orb"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              '--orbit-x': `${(Math.random() - 0.5) * 400}px`,
-              '--orbit-y': `${(Math.random() - 0.5) * 400}px`,
-              animationDuration: `${6 + Math.random() * 4}s`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        ))}
-        
-        {/* 流星 */}
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={`meteor-${i}`}
-            className="meteor"
-            style={{
-              left: `${Math.random() * 50}%`,
-              top: `${Math.random() * 50}%`,
-              animationDuration: `${1 + Math.random()}s`,
-              animationDelay: `${Math.random() * 10}s`
-            }}
-          />
-        ))}
-        
-        {/* 光束 */}
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={`beam-${i}`}
-            className="light-beam"
-            style={{
-              left: `${20 + i * 15}%`,
-              animationDelay: `${i * 0.5}s`
             }}
           />
         ))}
@@ -225,7 +169,7 @@ function MapSelection({ character, onMapSelected }) {
               className={`mode-tile ${gameMode === 'single' ? 'active' : ''}`}
               onClick={() => setGameMode('single')}
             >
-              <div className="mode-icon">🎮</div>
+              <div className="mode-icon">🩸</div>
               <div className="mode-name">SOLO</div>
               <div className="mode-pixels"></div>
             </div>
@@ -233,7 +177,7 @@ function MapSelection({ character, onMapSelected }) {
               className={`mode-tile ${gameMode === 'multi' ? 'active' : ''}`}
               onClick={() => setGameMode('multi')}
             >
-              <div className="mode-icon">👥</div>
+              <div className="mode-icon">👻</div>
               <div className="mode-name">MULTIPLAYER</div>
               <div className="mode-pixels"></div>
             </div>
@@ -258,10 +202,10 @@ function MapSelection({ character, onMapSelected }) {
                 
                 {map.locked && (
                   <div className="lock-overlay">
-                    <div className="lock-icon">🔒</div>
+                    <div className="lock-icon">⚰️</div>
                     <div className="lock-chains">
-                      <div className="chain chain-1">⛓️</div>
-                      <div className="chain chain-2">⛓️</div>
+                      <div className="chain chain-1">🔗</div>
+                      <div className="chain chain-2">🔗</div>
                     </div>
                     <div className="unlock-text">{map.unlockRequirement}</div>
                   </div>
@@ -291,33 +235,33 @@ function MapSelection({ character, onMapSelected }) {
 
             <div className="details-grid">
               <div className="details-section">
-                <div className="section-title">⚔️ ENEMIES</div>
+                <div className="section-title">💀 ENEMIES</div>
                 <div className="section-list">
                   {selectedMapData.enemies.map((enemy, i) => (
-                    <div key={i} className="list-item">• {enemy}</div>
+                    <div key={i} className="list-item">☠ {enemy}</div>
                   ))}
                 </div>
               </div>
 
               <div className="details-section rewards-section">
-                <div className="section-title">💎 WEAPON DROPS</div>
+                <div className="section-title">🩸 WEAPON DROPS</div>
                 <div className="rewards-columns">
                   <div className="reward-column">
-                    <div className="reward-category">⚔️ Swords</div>
+                    <div className="reward-category">🗡️ Swords</div>
                     {selectedMapData.rewards.swords.map((sword, i) => (
-                      <div key={i} className="list-item">• {sword}</div>
+                      <div key={i} className="list-item">☠ {sword}</div>
                     ))}
                   </div>
                   <div className="reward-column">
                     <div className="reward-category">🏹 Bows</div>
                     {selectedMapData.rewards.bows.map((bow, i) => (
-                      <div key={i} className="list-item">• {bow}</div>
+                      <div key={i} className="list-item">☠ {bow}</div>
                     ))}
                   </div>
                   <div className="reward-column">
                     <div className="reward-category">🔮 Staves</div>
                     {selectedMapData.rewards.staves.map((stave, i) => (
-                      <div key={i} className="list-item">• {stave}</div>
+                      <div key={i} className="list-item">☠ {stave}</div>
                     ))}
                   </div>
                 </div>

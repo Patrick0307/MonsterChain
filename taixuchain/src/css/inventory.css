@@ -1,25 +1,30 @@
-/* Black & Gold Theme - Inventory UI */
-/* Black & Gold Theme - Inventory UI */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+/* 🩸 HORROR DARK THEME - 阴间背包 UI 🩸 */
+/* 恐怖红黑配色 - 阴森森的地狱风格 */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Orbitron:wght@400;700;900&display=swap');
 
-/* Inventory overlay - Black & Gold theme */
+/* Inventory overlay - 血色迷雾 */
 .inventory-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.92);
+  background: rgba(0, 0, 0, 0.97);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  animation: fadeIn 0.3s ease;
-  backdrop-filter: blur(8px);
+  animation: fadeIn 0.5s ease, bloodPulse 4s ease-in-out infinite;
+  backdrop-filter: blur(12px);
   overflow: hidden;
 }
 
-/* Breathing particle container */
+@keyframes bloodPulse {
+  0%, 100% { background: rgba(0, 0, 0, 0.97); }
+  50% { background: rgba(30, 0, 0, 0.97); }
+}
+
+/* 血滴粒子效果 */
 .inventory-overlay::after {
   content: '';
   position: absolute;
@@ -28,40 +33,27 @@
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(2px 2px at 20% 30%, rgba(255, 215, 0, 0.4), transparent),
-    radial-gradient(2px 2px at 60% 70%, rgba(255, 215, 0, 0.3), transparent),
-    radial-gradient(1px 1px at 50% 50%, rgba(255, 215, 0, 0.5), transparent),
-    radial-gradient(1px 1px at 80% 10%, rgba(255, 215, 0, 0.4), transparent),
-    radial-gradient(2px 2px at 90% 60%, rgba(255, 215, 0, 0.3), transparent),
-    radial-gradient(1px 1px at 33% 80%, rgba(255, 215, 0, 0.4), transparent),
-    radial-gradient(2px 2px at 15% 90%, rgba(255, 215, 0, 0.3), transparent);
+    radial-gradient(2px 2px at 10% 20%, rgba(139, 0, 0, 0.8), transparent),
+    radial-gradient(3px 3px at 30% 50%, rgba(178, 34, 34, 0.6), transparent),
+    radial-gradient(2px 2px at 50% 30%, rgba(220, 20, 60, 0.7), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(139, 0, 0, 0.9), transparent),
+    radial-gradient(2px 2px at 90% 40%, rgba(178, 34, 34, 0.5), transparent),
+    radial-gradient(3px 3px at 15% 70%, rgba(220, 20, 60, 0.6), transparent),
+    radial-gradient(2px 2px at 85% 15%, rgba(139, 0, 0, 0.7), transparent);
   background-size: 200% 200%;
-  background-position: 0% 0%;
-  animation: particleFloat 20s ease-in-out infinite;
+  animation: bloodDrip 15s ease-in-out infinite;
   pointer-events: none;
   z-index: 1;
 }
 
-@keyframes particleFloat {
-  0%, 100% {
-    background-position: 0% 0%;
-    opacity: 0.6;
-  }
-  25% {
-    background-position: 100% 100%;
-    opacity: 1;
-  }
-  50% {
-    background-position: 0% 100%;
-    opacity: 0.8;
-  }
-  75% {
-    background-position: 100% 0%;
-    opacity: 1;
-  }
+@keyframes bloodDrip {
+  0%, 100% { background-position: 0% 0%; opacity: 0.8; }
+  25% { background-position: 100% 100%; opacity: 1; }
+  50% { background-position: 50% 100%; opacity: 0.9; }
+  75% { background-position: 100% 50%; opacity: 1; }
 }
 
-/* Mosaic background effect */
+/* 裂痕背景效果 */
 .inventory-overlay::before {
   content: '';
   position: absolute;
@@ -70,40 +62,32 @@
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
-    linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
-    linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  opacity: 0.3;
-  animation: mosaicScroll 30s linear infinite;
+    linear-gradient(45deg, #0a0000 25%, transparent 25%),
+    linear-gradient(-45deg, #0a0000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #0a0000 75%),
+    linear-gradient(-45deg, transparent 75%, #0a0000 75%);
+  background-size: 30px 30px;
+  background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+  opacity: 0.4;
+  animation: crackScroll 40s linear infinite;
   pointer-events: none;
 }
 
-@keyframes mosaicScroll {
-  0% {
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  }
-  100% {
-    background-position: 20px 20px, 20px 30px, 30px 10px, 10px 20px;
-  }
+@keyframes crackScroll {
+  0% { background-position: 0 0, 0 15px, 15px -15px, -15px 0px; }
+  100% { background-position: 30px 30px, 30px 45px, 45px 15px, 15px 30px; }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Inventory container - Black & Gold theme */
+/* Inventory container - 地狱之门 */
 .inventory-container {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(15, 15, 15, 0.95) 100%);
-  border: 3px solid rgba(255, 215, 0, 0.6);
+  background: linear-gradient(135deg, rgba(10, 0, 0, 0.98) 0%, rgba(30, 5, 5, 0.95) 50%, rgba(15, 0, 0, 0.98) 100%);
+  border: 4px solid rgba(139, 0, 0, 0.8);
   border-radius: 15px;
   width: 92%;
   max-width: 1100px;
@@ -112,231 +96,209 @@
   display: flex;
   flex-direction: column;
   box-shadow: 
-    0 0 50px rgba(255, 215, 0, 0.4),
-    0 10px 60px rgba(0, 0, 0, 0.9),
-    inset 0 0 40px rgba(255, 215, 0, 0.05);
-  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1), borderBreathing 3s ease-in-out infinite;
+    0 0 80px rgba(139, 0, 0, 0.6),
+    0 0 150px rgba(178, 34, 34, 0.4),
+    0 10px 60px rgba(0, 0, 0, 0.95),
+    inset 0 0 60px rgba(139, 0, 0, 0.15);
+  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1), hellGatePulse 3s ease-in-out infinite;
   font-family: 'Orbitron', sans-serif;
   z-index: 10;
-  /* Pixel-style border */
   clip-path: polygon(
-    0 8px, 8px 8px, 8px 0,
-    calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
-    100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
-    8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+    0 10px, 10px 10px, 10px 0,
+    calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px)
   );
 }
 
-@keyframes borderBreathing {
+@keyframes hellGatePulse {
   0%, 100% {
-    border-color: rgba(255, 215, 0, 0.6);
+    border-color: rgba(139, 0, 0, 0.8);
     box-shadow: 
-      0 0 60px rgba(255, 215, 0, 0.5),
-      0 0 100px rgba(255, 215, 0, 0.3),
-      0 0 140px rgba(255, 215, 0, 0.2),
-      0 10px 60px rgba(0, 0, 0, 0.9),
-      inset 0 0 50px rgba(255, 215, 0, 0.1);
+      0 0 80px rgba(139, 0, 0, 0.6),
+      0 0 150px rgba(178, 34, 34, 0.4),
+      0 10px 60px rgba(0, 0, 0, 0.95),
+      inset 0 0 60px rgba(139, 0, 0, 0.15);
   }
   50% {
-    border-color: rgba(255, 215, 0, 1);
+    border-color: rgba(220, 20, 60, 1);
     box-shadow: 
-      0 0 100px rgba(255, 215, 0, 0.8),
-      0 0 150px rgba(255, 215, 0, 0.6),
-      0 0 200px rgba(255, 215, 0, 0.4),
-      0 0 250px rgba(255, 215, 0, 0.2),
-      0 10px 60px rgba(0, 0, 0, 0.9),
-      inset 0 0 80px rgba(255, 215, 0, 0.2);
+      0 0 120px rgba(220, 20, 60, 0.9),
+      0 0 200px rgba(178, 34, 34, 0.7),
+      0 0 280px rgba(139, 0, 0, 0.5),
+      0 10px 60px rgba(0, 0, 0, 0.95),
+      inset 0 0 100px rgba(220, 20, 60, 0.25);
   }
 }
 
-/* Glowing scan effect */
+/* 血光扫描效果 */
 .inventory-container::after {
   content: '';
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    transparent 40%,
-    rgba(255, 215, 0, 0.8) 50%,
-    rgba(255, 255, 255, 0.9) 52%,
-    rgba(255, 215, 0, 0.8) 54%,
-    transparent 60%,
+    transparent 35%,
+    rgba(220, 20, 60, 0.9) 48%,
+    rgba(255, 0, 0, 1) 50%,
+    rgba(220, 20, 60, 0.9) 52%,
+    transparent 65%,
     transparent 100%
   );
   border-radius: 15px;
-  animation: borderScan 4s linear infinite;
+  animation: bloodScan 5s linear infinite;
   pointer-events: none;
   z-index: 11;
   clip-path: polygon(
-    0 8px, 8px 8px, 8px 0,
-    calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
-    100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
-    8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+    0 10px, 10px 10px, 10px 0,
+    calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px)
   );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
-  padding: 3px;
+  padding: 4px;
 }
 
-@keyframes borderScan {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+@keyframes bloodScan {
+  0% { background-position: -300% 0; }
+  100% { background-position: 300% 0; }
 }
 
-/* Container glow effect */
+/* 阴森光晕 */
 .inventory-container::before {
   content: '';
   position: absolute;
-  inset: -15px;
-  background: radial-gradient(ellipse, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+  inset: -20px;
+  background: radial-gradient(ellipse, rgba(139, 0, 0, 0.4) 0%, rgba(50, 0, 0, 0.2) 40%, transparent 70%);
   z-index: -1;
-  animation: containerGlow 3s ease-in-out infinite;
+  animation: demonGlow 4s ease-in-out infinite;
   pointer-events: none;
 }
 
-@keyframes containerGlow {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
+@keyframes demonGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(60px) scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
+  from { transform: translateY(80px) scale(0.9); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
 }
 
-/* Inventory header - Black & Gold theme */
+/* Inventory header - 血色标题 */
 .inventory-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px;
-  border-bottom: 3px solid rgba(255, 215, 0, 0.4);
-  background: linear-gradient(90deg, rgba(255, 215, 0, 0.08) 0%, transparent 100%);
+  border-bottom: 3px solid rgba(139, 0, 0, 0.6);
+  background: linear-gradient(90deg, rgba(139, 0, 0, 0.15) 0%, rgba(50, 0, 0, 0.1) 50%, rgba(139, 0, 0, 0.15) 100%);
   position: relative;
 }
 
-/* Title decoration lines */
+/* 标题装饰血线 */
 .inventory-header::before,
 .inventory-header::after {
   content: '';
   position: absolute;
   bottom: -3px;
-  width: 100px;
+  width: 120px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, #ffd700, transparent);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-  animation: lineGlow 2s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, #dc143c, #8b0000, transparent);
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.9);
+  animation: bloodLineGlow 2.5s ease-in-out infinite;
 }
 
-.inventory-header::before {
-  left: 30px;
-}
+.inventory-header::before { left: 30px; }
+.inventory-header::after { right: 30px; }
 
-.inventory-header::after {
-  right: 30px;
-}
-
-@keyframes lineGlow {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
+@keyframes bloodLineGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; box-shadow: 0 0 30px rgba(220, 20, 60, 1); }
 }
 
 .inventory-header h2 {
   margin: 0;
-  color: #ffd700;
+  color: #dc143c;
   font-size: 1.8rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.9),
-    0 2px 4px rgba(0, 0, 0, 0.8);
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    0 0 30px rgba(220, 20, 60, 1),
+    0 0 60px rgba(139, 0, 0, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(135deg, #dc143c 0%, #ff4444 30%, #dc143c 50%, #8b0000 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: titleShine 3s linear infinite;
-  background-size: 200% 100%;
+  animation: bloodTitleShine 4s linear infinite;
+  background-size: 300% 100%;
+  font-family: 'Orbitron', sans-serif;
 }
 
-@keyframes titleShine {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
+@keyframes bloodTitleShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
 }
 
-/* LingStone display - Black & Gold theme */
+/* LingStone display - 灵石显示（血色版） */
 .lingstone-display {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(20, 20, 20, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.95) 0%, rgba(40, 5, 5, 0.9) 100%);
   padding: 10px 20px;
   border-radius: 25px;
-  border: 2px solid rgba(255, 215, 0, 0.5);
+  border: 2px solid rgba(139, 0, 0, 0.7);
   box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.3),
-    inset 0 2px 8px rgba(0, 0, 0, 0.6);
+    0 0 25px rgba(139, 0, 0, 0.5),
+    inset 0 2px 10px rgba(0, 0, 0, 0.8);
   position: relative;
 }
 
-/* Currency icon */
 .lingstone-display::before {
-  content: '💰';
-  font-size: 1.2rem;
-  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+  content: '💀';
+  font-size: 1.3rem;
+  filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.9));
+  animation: skullFloat 2s ease-in-out infinite;
+}
+
+@keyframes skullFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(5deg); }
 }
 
 .lingstone-label {
-  color: #ffd700;
+  color: #dc143c;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  text-shadow: 0 0 15px rgba(220, 20, 60, 0.8);
 }
 
 .lingstone-amount {
-  color: #ffd700;
+  color: #ff4444;
   font-size: 1.3rem;
   font-weight: 900;
   text-shadow: 
-    0 0 15px rgba(255, 215, 0, 0.9),
-    0 2px 4px rgba(0, 0, 0, 0.8);
+    0 0 20px rgba(255, 68, 68, 1),
+    0 2px 4px rgba(0, 0, 0, 0.9);
   min-width: 80px;
   text-align: right;
   letter-spacing: 1px;
 }
 
 .lingstone-request-btn {
-  background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
-  border: 2px solid rgba(0, 0, 0, 0.8);
-  color: #000;
+  background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+  border: 2px solid rgba(0, 0, 0, 0.9);
+  color: #fff;
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -348,84 +310,77 @@
   align-items: center;
   justify-content: center;
   box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.6),
-    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    0 0 25px rgba(220, 20, 60, 0.7),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
   position: relative;
 }
 
 .lingstone-request-btn::before {
   content: '';
   position: absolute;
-  inset: -6px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+  inset: -8px;
+  background: radial-gradient(circle, rgba(220, 20, 60, 0.5) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   z-index: -1;
 }
 
 .lingstone-request-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #ffed4e 0%, #ffd700 100%);
-  transform: scale(1.15) rotate(90deg);
+  background: linear-gradient(135deg, #ff4444 0%, #dc143c 100%);
+  transform: scale(1.2) rotate(180deg);
   box-shadow: 
-    0 0 30px rgba(255, 215, 0, 0.9),
-    inset 0 2px 6px rgba(255, 255, 255, 0.6);
+    0 0 40px rgba(255, 68, 68, 1),
+    inset 0 2px 6px rgba(255, 255, 255, 0.3);
 }
 
 .lingstone-request-btn:hover:not(:disabled)::before {
   opacity: 1;
-  animation: pulseGlow 1.5s ease-in-out infinite;
+  animation: demonPulse 1.5s ease-in-out infinite;
 }
 
 .lingstone-request-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
-  background: linear-gradient(135deg, #444, #333);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #333, #222);
+  border-color: rgba(100, 100, 100, 0.3);
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.3);
-    opacity: 0.8;
-  }
+@keyframes demonPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.4); opacity: 0.9; }
 }
 
+/* 关闭按钮 - 血色X */
 .inventory-close-btn {
   position: relative;
-  background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+  background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
   border: none;
   color: #fff;
-  width: 40px;
-  height: 40px;
-  font-size: 1.3rem;
+  width: 42px;
+  height: 42px;
+  font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   box-shadow: 
-    0 0 0 3px rgba(0, 0, 0, 0.3),
-    0 0 0 5px rgba(255, 71, 87, 0.4),
-    0 4px 12px rgba(255, 71, 87, 0.5),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3);
-  /* Pixel style */
+    0 0 0 3px rgba(0, 0, 0, 0.5),
+    0 0 0 6px rgba(139, 0, 0, 0.5),
+    0 4px 15px rgba(139, 0, 0, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(255, 100, 100, 0.2);
   clip-path: polygon(
-    0 4px, 4px 4px, 4px 0,
-    calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
-    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
-    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    0 5px, 5px 5px, 5px 0,
+    calc(100% - 5px) 0, calc(100% - 5px) 5px, 100% 5px,
+    100% calc(100% - 5px), calc(100% - 5px) calc(100% - 5px), calc(100% - 5px) 100%,
+    5px 100%, 5px calc(100% - 5px), 0 calc(100% - 5px)
   );
-  image-rendering: pixelated;
 }
 
 .inventory-close-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+  background: linear-gradient(135deg, rgba(255, 100, 100, 0.3) 0%, transparent 50%);
   opacity: 0;
   transition: opacity 0.3s;
   clip-path: inherit;
@@ -434,51 +389,34 @@
 .inventory-close-btn::after {
   content: '';
   position: absolute;
-  inset: -8px;
-  background: radial-gradient(circle, rgba(255, 71, 87, 0.4) 0%, transparent 70%);
+  inset: -10px;
+  background: radial-gradient(circle, rgba(220, 20, 60, 0.5) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   z-index: -1;
 }
 
 .inventory-close-btn:hover {
-  background: linear-gradient(135deg, #ff6b7a 0%, #ff5252 100%);
+  background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
   transform: scale(1.15) rotate(90deg);
   box-shadow: 
-    0 0 0 3px rgba(0, 0, 0, 0.4),
-    0 0 0 5px rgba(255, 71, 87, 0.6),
-    0 6px 20px rgba(255, 71, 87, 0.8),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.4),
-    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    0 0 0 3px rgba(0, 0, 0, 0.6),
+    0 0 0 6px rgba(220, 20, 60, 0.8),
+    0 6px 25px rgba(220, 20, 60, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.6),
+    inset 0 2px 4px rgba(255, 150, 150, 0.3);
 }
 
-.inventory-close-btn:hover::before {
-  opacity: 1;
-}
-
-.inventory-close-btn:hover::after {
-  opacity: 1;
-  animation: pulseGlow 1.5s ease-in-out infinite;
-}
+.inventory-close-btn:hover::before { opacity: 1; }
+.inventory-close-btn:hover::after { opacity: 1; animation: demonPulse 1.5s ease-in-out infinite; }
 
 .inventory-close-btn:active {
   transform: scale(1.05) rotate(90deg);
   box-shadow: 
-    0 0 0 3px rgba(0, 0, 0, 0.5),
-    0 0 0 5px rgba(255, 71, 87, 0.8),
-    0 2px 8px rgba(255, 71, 87, 0.9),
-    inset 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
+    0 0 0 3px rgba(0, 0, 0, 0.7),
+    0 0 0 6px rgba(220, 20, 60, 1),
+    0 2px 10px rgba(220, 20, 60, 1),
+    inset 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 /* Inventory content area */
@@ -494,45 +432,40 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border-right: 2px solid #4a4a6a;
+  border-right: 2px solid rgba(139, 0, 0, 0.5);
   overflow-y: auto;
-  /* Optimize scroll performance */
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
 
-/* Scrollbar styles */
-.inventory-grid-section::-webkit-scrollbar {
-  width: 8px;
-}
-
+/* 血色滚动条 */
+.inventory-grid-section::-webkit-scrollbar { width: 10px; }
 .inventory-grid-section::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
+  background: rgba(20, 0, 0, 0.5);
+  border-radius: 5px;
 }
-
 .inventory-grid-section::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  background: linear-gradient(180deg, #8b0000, #dc143c, #8b0000);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
 }
-
 .inventory-grid-section::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(180deg, #dc143c, #ff4444, #dc143c);
 }
 
-/* Merge info panel */
+/* Merge info panel - 合成面板 */
 .merge-info-panel {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(30, 0, 0, 0.5);
   border-radius: 8px;
   padding: 12px;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(139, 0, 0, 0.4);
   margin-bottom: 10px;
 }
 
 /* Merge mode banner */
 .merge-mode-banner {
-  background: linear-gradient(135deg, rgba(156, 39, 176, 0.3), rgba(123, 31, 162, 0.3));
-  border: 2px solid #9c27b0;
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.4), rgba(80, 0, 0, 0.4));
+  border: 2px solid #dc143c;
   border-radius: 8px;
   padding: 12px 15px;
   margin-bottom: 15px;
@@ -540,35 +473,26 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  animation: mergePulse 2s ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(156, 39, 176, 0.4);
+  animation: hellMergePulse 2s ease-in-out infinite;
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.5);
 }
 
-@keyframes mergePulse {
-  0%, 100% {
-    border-color: #9c27b0;
-    box-shadow: 0 0 20px rgba(156, 39, 176, 0.4);
-  }
-  50% {
-    border-color: #ba68c8;
-    box-shadow: 0 0 30px rgba(156, 39, 176, 0.6);
-  }
+@keyframes hellMergePulse {
+  0%, 100% { border-color: #dc143c; box-shadow: 0 0 25px rgba(220, 20, 60, 0.5); }
+  50% { border-color: #ff4444; box-shadow: 0 0 40px rgba(255, 68, 68, 0.7); }
 }
 
 .merge-mode-banner span {
   color: #fff;
   font-weight: bold;
   font-size: 0.9rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.merge-count {
-  color: #ffd700 !important;
-  font-size: 1rem !important;
-}
+.merge-count { color: #ff4444 !important; font-size: 1rem !important; }
 
 .btn-confirm-merge {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
+  background: linear-gradient(135deg, #8b0000, #5c0000);
   border: none;
   color: white;
   padding: 8px 20px;
@@ -576,19 +500,19 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 2px 10px rgba(139, 0, 0, 0.5);
 }
 
 .btn-confirm-merge:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.6);
+  box-shadow: 0 4px 15px rgba(220, 20, 60, 0.7);
 }
 
-/* Equipment bar - Black & Gold theme */
+/* Equipment bar - 装备栏（血色版） */
 .equipped-section {
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+  border-bottom: 2px solid rgba(139, 0, 0, 0.4);
   position: relative;
 }
 
@@ -598,21 +522,21 @@
   bottom: -2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
+  width: 120px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #ffd700, transparent);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  background: linear-gradient(90deg, transparent, #dc143c, #8b0000, transparent);
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.9);
 }
 
 .equipped-section h3 {
   margin: 0 0 15px 0;
-  color: #ffd700;
+  color: #dc143c;
   font-size: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-align: center;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  text-shadow: 0 0 20px rgba(220, 20, 60, 0.9);
 }
 
 .equipped-slot {
@@ -623,17 +547,17 @@
 
 .empty-equipped-slot {
   aspect-ratio: 1;
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px dashed #4a4a6a;
+  background: rgba(20, 0, 0, 0.6);
+  border: 2px dashed rgba(139, 0, 0, 0.5);
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #777;
+  color: #8b0000;
   font-size: 0.85rem;
   text-align: center;
   padding: 10px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .inventory-grid {
@@ -641,16 +565,15 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
   margin-bottom: 15px;
-  /* Optimize rendering of many elements */
   will-change: scroll-position;
   padding: 5px;
 }
 
-/* Inventory slot - Black & Gold theme */
+/* Inventory slot - 阴间格子 🩸 */
 .inventory-slot {
   aspect-ratio: 1;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(15, 15, 15, 0.8) 100%);
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  background: linear-gradient(135deg, rgba(15, 0, 0, 0.95) 0%, rgba(30, 5, 5, 0.9) 100%);
+  border: 2px solid rgba(139, 0, 0, 0.4);
   border-radius: 12px;
   display: flex;
   justify-content: center;
@@ -659,23 +582,22 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.6),
-    inset 0 2px 6px rgba(0, 0, 0, 0.8);
-  /* Pixel-style border */
+    0 4px 15px rgba(0, 0, 0, 0.7),
+    inset 0 2px 8px rgba(0, 0, 0, 0.9);
   clip-path: polygon(
-    0 4px, 4px 4px, 4px 0,
-    calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
-    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
-    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    0 5px, 5px 5px, 5px 0,
+    calc(100% - 5px) 0, calc(100% - 5px) 5px, 100% 5px,
+    100% calc(100% - 5px), calc(100% - 5px) calc(100% - 5px), calc(100% - 5px) 100%,
+    5px 100%, 5px calc(100% - 5px), 0 calc(100% - 5px)
   );
 }
 
-/* Slot glow effect */
+/* 格子血光效果 */
 .inventory-slot::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(220, 20, 60, 0.15) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
@@ -683,51 +605,49 @@
 }
 
 .inventory-slot:hover {
-  border-color: rgba(255, 215, 0, 0.6);
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.9) 100%);
-  transform: translateY(-4px) scale(1.05);
+  border-color: rgba(220, 20, 60, 0.7);
+  background: linear-gradient(135deg, rgba(25, 0, 0, 0.98) 0%, rgba(45, 10, 10, 0.95) 100%);
+  transform: translateY(-5px) scale(1.08);
   box-shadow: 
-    0 0 25px rgba(255, 215, 0, 0.4),
-    0 8px 20px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(220, 20, 60, 0.5),
+    0 10px 25px rgba(0, 0, 0, 0.9),
+    inset 0 2px 10px rgba(0, 0, 0, 0.95);
+}
+
+.inventory-slot:hover::before { opacity: 1; }
+
+.inventory-slot.has-item {
+  border-color: rgba(178, 34, 34, 0.6);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.98) 0%, rgba(40, 8, 8, 0.95) 100%);
+  box-shadow: 
+    0 0 20px rgba(178, 34, 34, 0.4),
+    0 4px 15px rgba(0, 0, 0, 0.8),
     inset 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-.inventory-slot:hover::before {
-  opacity: 1;
-}
-
-.inventory-slot.has-item {
-  border-color: rgba(255, 215, 0, 0.5);
-  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(25, 25, 25, 0.9) 100%);
-  box-shadow: 
-    0 0 15px rgba(255, 215, 0, 0.3),
-    0 4px 12px rgba(0, 0, 0, 0.7),
-    inset 0 2px 6px rgba(0, 0, 0, 0.8);
-}
-
 .inventory-slot.selected {
-  border-color: #ffd700;
-  background: linear-gradient(135deg, rgba(15, 15, 15, 1) 0%, rgba(30, 30, 30, 0.98) 100%);
+  border-color: #dc143c;
+  background: linear-gradient(135deg, rgba(30, 0, 0, 1) 0%, rgba(50, 10, 10, 0.98) 100%);
   box-shadow: 
-    0 0 40px rgba(255, 215, 0, 0.8),
-    0 8px 25px rgba(255, 215, 0, 0.5),
-    inset 0 0 20px rgba(255, 215, 0, 0.15);
-  transform: translateY(-4px) scale(1.08);
-  animation: selectedPulse 2s ease-in-out infinite;
+    0 0 50px rgba(220, 20, 60, 0.9),
+    0 10px 30px rgba(139, 0, 0, 0.7),
+    inset 0 0 25px rgba(220, 20, 60, 0.2);
+  transform: translateY(-5px) scale(1.1);
+  animation: selectedBloodPulse 2s ease-in-out infinite;
 }
 
-@keyframes selectedPulse {
+@keyframes selectedBloodPulse {
   0%, 100% {
     box-shadow: 
-      0 0 40px rgba(255, 215, 0, 0.8),
-      0 8px 25px rgba(255, 215, 0, 0.5),
-      inset 0 0 20px rgba(255, 215, 0, 0.15);
+      0 0 50px rgba(220, 20, 60, 0.9),
+      0 10px 30px rgba(139, 0, 0, 0.7),
+      inset 0 0 25px rgba(220, 20, 60, 0.2);
   }
   50% {
     box-shadow: 
-      0 0 60px rgba(255, 215, 0, 1),
-      0 8px 35px rgba(255, 215, 0, 0.7),
-      inset 0 0 30px rgba(255, 215, 0, 0.25);
+      0 0 80px rgba(255, 68, 68, 1),
+      0 10px 40px rgba(220, 20, 60, 0.9),
+      inset 0 0 35px rgba(255, 68, 68, 0.3);
   }
 }
 
@@ -745,59 +665,65 @@
   height: 75%;
   object-fit: contain;
   image-rendering: pixelated;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7)) sepia(20%) saturate(150%);
   transition: all 0.2s;
 }
 
 .inventory-slot:hover .weapon-icon-img {
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8)) brightness(1.1);
-  transform: scale(1.05);
+  filter: drop-shadow(0 4px 10px rgba(220, 20, 60, 0.6)) brightness(1.1) sepia(10%);
+  transform: scale(1.08);
 }
 
 .inventory-slot.selected .weapon-icon-img {
-  filter: drop-shadow(0 4px 10px rgba(255, 215, 0, 0.6)) brightness(1.15);
+  filter: drop-shadow(0 4px 12px rgba(255, 68, 68, 0.8)) brightness(1.15);
 }
 
 .weapon-level {
   font-size: 0.7rem;
-  color: #ffd700;
+  color: #ff4444;
   font-weight: bold;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  background: rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  background: rgba(20, 0, 0, 0.8);
   padding: 2px 6px;
   border-radius: 4px;
   margin-top: 2px;
+  border: 1px solid rgba(139, 0, 0, 0.4);
 }
 
-/* Equipped marker */
+/* Equipped marker - 装备标记 */
 .inventory-slot.equipped::after {
-  content: '✓';
+  content: '☠';
   position: absolute;
   top: 4px;
   right: 4px;
-  background: #4CAF50;
-  color: white;
-  width: 20px;
-  height: 20px;
+  background: linear-gradient(135deg, #8b0000, #5c0000);
+  color: #fff;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.6);
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(139, 0, 0, 0.8);
   z-index: 10;
+  animation: skullBounce 2s ease-in-out infinite;
+}
+
+@keyframes skullBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 /* Cannot equip weapon */
 .inventory-slot.cannot-equip {
-  opacity: 0.6;
-  border-color: #ff6b6b;
+  opacity: 0.5;
+  border-color: #5c0000;
 }
 
 .inventory-slot.cannot-equip:hover {
-  border-color: #ff8888;
-  background: rgba(255, 100, 100, 0.1);
+  border-color: #8b0000;
+  background: rgba(50, 0, 0, 0.3);
 }
 
 .cannot-equip-icon {
@@ -805,7 +731,7 @@
   top: 4px;
   left: 4px;
   font-size: 1rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
   z-index: 10;
 }
 
@@ -819,16 +745,16 @@
 
 .empty-icon {
   font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(139, 0, 0, 0.3);
 }
 
-/* Inventory stats */
+/* Inventory stats - 统计信息 */
 .inventory-stats {
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 6px;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.6) 0%, rgba(30, 5, 5, 0.5) 100%);
+  border-radius: 8px;
   text-align: center;
-  color: #aaa;
+  color: #ff6666;
   font-size: 0.9rem;
   display: flex;
   justify-content: space-around;
@@ -836,15 +762,16 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
-  /* Fixed at bottom, doesn't scroll */
   position: sticky;
   bottom: 0;
   z-index: 10;
+  border: 1px solid rgba(139, 0, 0, 0.3);
 }
 
 .equipped-indicator {
-  color: #4CAF50;
+  color: #dc143c;
   font-weight: bold;
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.6);
 }
 
 /* Right side: Weapon details area */
@@ -861,8 +788,9 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #aaa;
+  color: #dc143c;
   font-size: 1.1rem;
+  text-shadow: 0 0 15px rgba(220, 20, 60, 0.6);
 }
 
 .no-selection {
@@ -871,22 +799,29 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #666;
+  color: #8b0000;
   text-align: center;
 }
 
-.empty-icon {
+.no-selection .empty-icon {
   font-size: 4rem;
   margin-bottom: 15px;
-  opacity: 0.3;
+  opacity: 0.5;
+  animation: ghostFloat 3s ease-in-out infinite;
+}
+
+@keyframes ghostFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(-10px); opacity: 0.7; }
 }
 
 .no-selection p {
   font-size: 1rem;
   margin: 0;
+  color: #dc143c;
 }
 
-/* Weapon details - Black & Gold theme */
+/* Weapon details - 武器详情（血色版） */
 .weapon-details {
   display: flex;
   flex-direction: column;
@@ -896,42 +831,38 @@
   padding-right: 5px;
 }
 
-/* Scrollbar styles */
-.weapon-details::-webkit-scrollbar {
-  width: 6px;
-}
-
+/* 详情滚动条 */
+.weapon-details::-webkit-scrollbar { width: 6px; }
 .weapon-details::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(20, 0, 0, 0.4);
   border-radius: 3px;
 }
-
 .weapon-details::-webkit-scrollbar-thumb {
-  background: rgba(255, 215, 0, 0.4);
+  background: linear-gradient(180deg, #8b0000, #dc143c);
   border-radius: 3px;
 }
-
 .weapon-details::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 215, 0, 0.6);
+  background: linear-gradient(180deg, #dc143c, #ff4444);
 }
 
 .weapon-details h3 {
   margin: 0;
-  color: #ffd700;
+  color: #dc143c;
   font-size: 1rem;
   font-weight: 900;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   text-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.9),
-    0 2px 4px rgba(0, 0, 0, 0.8);
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    0 0 25px rgba(220, 20, 60, 1),
+    0 0 50px rgba(139, 0, 0, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(135deg, #dc143c 0%, #ff6666 30%, #dc143c 50%, #8b0000 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: titleShine 3s linear infinite;
-  background-size: 200% 100%;
+  animation: bloodTitleShine 4s linear infinite;
+  background-size: 300% 100%;
   word-break: break-word;
   overflow-wrap: break-word;
   padding: 0 5px;
@@ -940,44 +871,43 @@
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
-}
-
-@keyframes titleShine {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
 }
 
 .weapon-icon-large {
   text-align: center;
-  padding: 8px;
-  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.5) 0%, rgba(30, 5, 5, 0.4) 100%);
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80px;
-  max-height: 90px;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  min-height: 100px;
+  max-height: 120px;
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  box-shadow: inset 0 0 20px rgba(139, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
 }
 
 .weapon-detail-img {
-  max-width: 100%;
-  max-height: 75px;
+  max-width: 80%;
+  max-height: 90px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   image-rendering: pixelated;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 4px 10px rgba(139, 0, 0, 0.6));
+  margin: 0 auto;
+  display: block;
 }
 
 .weapon-stats {
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.5) 0%, rgba(30, 5, 5, 0.4) 100%);
   border-radius: 8px;
   padding: 6px;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(139, 0, 0, 0.3);
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 4px !important;
@@ -989,25 +919,24 @@
   align-items: center !important;
   justify-content: center !important;
   padding: 4px 3px !important;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(15, 0, 0, 0.4);
   border-radius: 4px;
   gap: 2px !important;
   min-height: 42px !important;
   text-align: center !important;
+  border: 1px solid rgba(139, 0, 0, 0.2);
 }
 
-.stat-row:last-child {
-  border-bottom: none;
-}
+.stat-row:last-child { border-bottom: none; }
 
 .inventory-stat-label {
-  color: #ffd700 !important;
+  color: #dc143c !important;
   font-size: 0.5rem !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   white-space: nowrap !important;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6) !important;
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.7) !important;
   opacity: 1 !important;
   line-height: 1.2 !important;
   display: block !important;
@@ -1018,7 +947,7 @@
 }
 
 .inventory-stat-value {
-  color: #ffffff !important;
+  color: #ffcccc !important;
   font-weight: 900 !important;
   font-size: 0.75rem !important;
   text-align: center !important;
@@ -1038,20 +967,20 @@
 }
 
 .inventory-stat-value.attack {
-  color: #ff6b6b !important;
-  text-shadow: 0 0 10px rgba(255, 107, 107, 0.6), 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+  color: #ff4444 !important;
+  text-shadow: 0 0 15px rgba(255, 68, 68, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 .inventory-stat-value.rarity {
-  color: #9c27b0 !important;
-  text-shadow: 0 0 10px rgba(156, 39, 176, 0.6), 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+  color: #ff6666 !important;
+  text-shadow: 0 0 15px rgba(255, 102, 102, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 .weapon-description {
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.5) 0%, rgba(30, 5, 5, 0.4) 100%);
   border-radius: 8px;
   padding: 8px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 200, 200, 0.8);
   font-size: 0.6rem;
   line-height: 1.4;
   font-style: italic;
@@ -1059,26 +988,20 @@
   overflow-wrap: break-word;
   max-height: 50px;
   overflow-y: auto;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(139, 0, 0, 0.3);
 }
 
-/* Description area scrollbar */
-.weapon-description::-webkit-scrollbar {
-  width: 4px;
-}
-
+.weapon-description::-webkit-scrollbar { width: 4px; }
 .weapon-description::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(20, 0, 0, 0.4);
   border-radius: 2px;
 }
-
 .weapon-description::-webkit-scrollbar-thumb {
-  background: rgba(255, 215, 0, 0.3);
+  background: rgba(220, 20, 60, 0.5);
   border-radius: 2px;
 }
-
 .weapon-description::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 215, 0, 0.5);
+  background: rgba(220, 20, 60, 0.7);
 }
 
 .weapon-actions {
@@ -1103,7 +1026,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* 像素风格 */
   clip-path: polygon(
     0 4px, 4px 4px, 4px 0,
     calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
@@ -1122,182 +1044,157 @@
   z-index: -1;
 }
 
-.weapon-actions button:hover:not(:disabled)::before {
-  opacity: 0.3;
-}
+.weapon-actions button:hover:not(:disabled)::before { opacity: 0.3; }
 
+/* 装备按钮 - 血绿色 */
 .btn-equip {
-  background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.1) 100%);
-  border-color: rgba(76, 175, 80, 0.6);
-  color: #4CAF50;
-  box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+  background: linear-gradient(135deg, rgba(0, 100, 0, 0.3) 0%, rgba(0, 80, 0, 0.2) 100%);
+  border-color: rgba(0, 139, 0, 0.7);
+  color: #00cc00;
+  box-shadow: 0 0 20px rgba(0, 139, 0, 0.4);
 }
 
 .btn-equip:hover:not(:disabled) {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-  border-color: #4CAF50;
-  color: #000;
+  background: linear-gradient(135deg, #006600 0%, #004400 100%);
+  border-color: #00cc00;
+  color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+  box-shadow: 0 0 35px rgba(0, 204, 0, 0.7);
 }
 
 .btn-equip.equipped {
-  background: linear-gradient(135deg, rgba(100, 100, 100, 0.3) 0%, rgba(80, 80, 80, 0.2) 100%);
-  border-color: rgba(150, 150, 150, 0.5);
-  color: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, rgba(60, 60, 60, 0.4) 0%, rgba(40, 40, 40, 0.3) 100%);
+  border-color: rgba(100, 100, 100, 0.5);
+  color: rgba(200, 200, 200, 0.5);
   cursor: default;
 }
 
 .btn-equip:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
-  background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, rgba(80, 80, 80, 0.1) 100%);
-  border-color: rgba(150, 150, 150, 0.3);
-  color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(50, 50, 50, 0.3) 0%, rgba(30, 30, 30, 0.2) 100%);
+  border-color: rgba(80, 80, 80, 0.4);
+  color: rgba(150, 150, 150, 0.4);
 }
 
-.btn-upgrade {
-  background: linear-gradient(135deg, rgba(33, 150, 243, 0.2) 0%, rgba(33, 150, 243, 0.1) 100%);
-  border-color: rgba(33, 150, 243, 0.6);
-  color: #2196F3;
-  box-shadow: 0 0 20px rgba(33, 150, 243, 0.3);
-}
-
-.btn-upgrade:hover:not(:disabled) {
-  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-  border-color: #2196F3;
-  color: #000;
-  transform: translateY(-3px);
-  box-shadow: 0 0 30px rgba(33, 150, 243, 0.6);
-}
-
-.btn-upgrade:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, rgba(80, 80, 80, 0.1) 100%);
-  border-color: rgba(150, 150, 150, 0.3);
-  color: rgba(255, 255, 255, 0.4);
-}
-
+/* 合成按钮 - 血紫色 */
 .btn-merge {
-  background: linear-gradient(135deg, rgba(156, 39, 176, 0.2) 0%, rgba(156, 39, 176, 0.1) 100%);
-  border-color: rgba(156, 39, 176, 0.6);
-  color: #9c27b0;
-  box-shadow: 0 0 20px rgba(156, 39, 176, 0.3);
+  background: linear-gradient(135deg, rgba(100, 0, 100, 0.3) 0%, rgba(80, 0, 80, 0.2) 100%);
+  border-color: rgba(139, 0, 139, 0.7);
+  color: #cc00cc;
+  box-shadow: 0 0 20px rgba(139, 0, 139, 0.4);
 }
 
 .btn-merge:hover:not(:disabled) {
-  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
-  border-color: #9c27b0;
+  background: linear-gradient(135deg, #660066 0%, #440044 100%);
+  border-color: #cc00cc;
   color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 0 30px rgba(156, 39, 176, 0.6);
+  box-shadow: 0 0 35px rgba(204, 0, 204, 0.7);
 }
 
 .btn-merge.active {
-  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-  border-color: #ff9800;
-  color: #000;
-  box-shadow: 0 0 40px rgba(255, 152, 0, 0.8);
-  animation: mergePulse 2s ease-in-out infinite;
-}
-
-@keyframes mergePulse {
-  0%, 100% {
-    box-shadow: 0 0 40px rgba(255, 152, 0, 0.8);
-  }
-  50% {
-    box-shadow: 0 0 60px rgba(255, 152, 0, 1);
-  }
+  background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+  border-color: #ff4444;
+  color: #fff;
+  box-shadow: 0 0 50px rgba(220, 20, 60, 0.9);
+  animation: hellMergePulse 2s ease-in-out infinite;
 }
 
 .btn-merge:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
-  background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, rgba(80, 80, 80, 0.1) 100%);
-  border-color: rgba(150, 150, 150, 0.3);
-  color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(50, 50, 50, 0.3) 0%, rgba(30, 30, 30, 0.2) 100%);
+  border-color: rgba(80, 80, 80, 0.4);
+  color: rgba(150, 150, 150, 0.4);
 }
 
+/* 燃烧按钮 - 地狱火焰 🔥 */
 .btn-burn {
-  background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(244, 67, 54, 0.1) 100%);
-  border-color: rgba(244, 67, 54, 0.6);
-  color: #f44336;
-  box-shadow: 0 0 20px rgba(244, 67, 54, 0.3);
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.4) 0%, rgba(100, 0, 0, 0.3) 100%);
+  border-color: rgba(178, 34, 34, 0.8);
+  color: #ff4444;
+  box-shadow: 0 0 25px rgba(178, 34, 34, 0.5);
 }
 
 .btn-burn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
-  border-color: #f44336;
+  background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
+  border-color: #ff4444;
   color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 0 30px rgba(244, 67, 54, 0.6);
+  box-shadow: 0 0 40px rgba(255, 68, 68, 0.8);
+  animation: fireFlicker 0.3s ease-in-out infinite;
+}
+
+@keyframes fireFlicker {
+  0%, 100% { box-shadow: 0 0 40px rgba(255, 68, 68, 0.8); }
+  50% { box-shadow: 0 0 50px rgba(255, 100, 0, 0.9); }
 }
 
 .btn-burn:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
-  background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, rgba(80, 80, 80, 0.1) 100%);
-  border-color: rgba(150, 150, 150, 0.3);
-  color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(50, 50, 50, 0.3) 0%, rgba(30, 30, 30, 0.2) 100%);
+  border-color: rgba(80, 80, 80, 0.4);
+  color: rgba(150, 150, 150, 0.4);
 }
 
+/* 升级按钮 */
+.btn-upgrade {
+  background: linear-gradient(135deg, rgba(0, 80, 139, 0.3) 0%, rgba(0, 60, 100, 0.2) 100%);
+  border-color: rgba(0, 100, 178, 0.7);
+  color: #4488ff;
+  box-shadow: 0 0 20px rgba(0, 100, 178, 0.4);
+}
+
+.btn-upgrade:hover:not(:disabled) {
+  background: linear-gradient(135deg, #004488 0%, #003366 100%);
+  border-color: #4488ff;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(68, 136, 255, 0.7);
+}
+
+.btn-upgrade:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, rgba(50, 50, 50, 0.3) 0%, rgba(30, 30, 30, 0.2) 100%);
+  border-color: rgba(80, 80, 80, 0.4);
+  color: rgba(150, 150, 150, 0.4);
+}
+
+/* 警告信息 */
 .weapon-warning {
-  background: rgba(255, 152, 0, 0.2);
-  border: 1px solid rgba(255, 152, 0, 0.5);
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.3) 0%, rgba(100, 0, 0, 0.2) 100%);
+  border: 1px solid rgba(220, 20, 60, 0.6);
   border-radius: 6px;
   padding: 8px;
-  color: #ff9800;
+  color: #ff6666;
   font-size: 0.65rem;
   text-align: center;
   margin-top: 0;
-  animation: warningPulse 2s ease-in-out infinite;
+  animation: warningBloodPulse 2s ease-in-out infinite;
   line-height: 1.3;
 }
 
-@keyframes warningPulse {
+@keyframes warningBloodPulse {
   0%, 100% {
-    border-color: rgba(255, 152, 0, 0.5);
-    box-shadow: 0 0 0 rgba(255, 152, 0, 0.4);
+    border-color: rgba(220, 20, 60, 0.6);
+    box-shadow: 0 0 0 rgba(220, 20, 60, 0.4);
   }
   50% {
-    border-color: rgba(255, 152, 0, 0.8);
-    box-shadow: 0 0 10px rgba(255, 152, 0, 0.4);
+    border-color: rgba(255, 68, 68, 0.9);
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
   }
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .inventory-container {
-    width: 95%;
-    height: 90vh;
-  }
-
-  .inventory-content {
-    flex-direction: column;
-  }
-
-  .inventory-grid-section {
-    border-right: none;
-    border-bottom: 2px solid #4a4a6a;
-  }
-
-  .inventory-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .inventory-details-section {
-    width: 100%;
-  }
-}
-
-/* List to market button - Black & Gold theme */
+/* 上架市场按钮 - 血橙色 */
 .btn-list-market {
   width: 48%;
   padding: 9px 12px;
-  background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(255, 152, 0, 0.1) 100%);
-  border: 2px solid rgba(255, 152, 0, 0.6);
-  color: #ff9800;
+  background: linear-gradient(135deg, rgba(139, 69, 0, 0.3) 0%, rgba(100, 50, 0, 0.2) 100%);
+  border: 2px solid rgba(178, 89, 0, 0.7);
+  color: #ff8800;
   font-size: 0.7rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -1305,14 +1202,13 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  text-shadow: 0 0 10px rgba(255, 152, 0, 0.6);
-  box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+  text-shadow: 0 0 12px rgba(255, 136, 0, 0.7);
+  box-shadow: 0 0 20px rgba(178, 89, 0, 0.4);
   position: relative;
   font-family: 'Orbitron', sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* 像素风格 */
   clip-path: polygon(
     0 4px, 4px 4px, 4px 0,
     calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
@@ -1325,29 +1221,178 @@
   content: '';
   position: absolute;
   inset: -8px;
-  background: radial-gradient(circle, rgba(255, 152, 0, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 136, 0, 0.4) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   z-index: -1;
 }
 
 .btn-list-market:hover:not(:disabled) {
-  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-  border-color: #ff9800;
-  color: #000;
+  background: linear-gradient(135deg, #8b4500 0%, #5c2e00 100%);
+  border-color: #ff8800;
+  color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 0 30px rgba(255, 152, 0, 0.6);
+  box-shadow: 0 0 35px rgba(255, 136, 0, 0.7);
 }
 
-.btn-list-market:hover:not(:disabled)::before {
-  opacity: 1;
-}
+.btn-list-market:hover:not(:disabled)::before { opacity: 1; }
 
 .btn-list-market:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
-  background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, rgba(80, 80, 80, 0.1) 100%);
-  border-color: rgba(150, 150, 150, 0.3);
-  color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(50, 50, 50, 0.3) 0%, rgba(30, 30, 30, 0.2) 100%);
+  border-color: rgba(80, 80, 80, 0.4);
+  color: rgba(150, 150, 150, 0.4);
   transform: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .inventory-container {
+    width: 95%;
+    height: 90vh;
+  }
+
+  .inventory-content {
+    flex-direction: column;
+  }
+
+  .inventory-grid-section {
+    border-right: none;
+    border-bottom: 2px solid rgba(139, 0, 0, 0.5);
+  }
+
+  .inventory-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .inventory-details-section {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   🩸 额外的恐怖效果 - HORROR EXTRAS 🩸
+   ======================================== */
+
+/* 血迹滴落动画 */
+@keyframes bloodDrop {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* 闪烁效果 - 像恐怖电影 */
+@keyframes horrorFlicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.3; }
+  94% { opacity: 1; }
+  96% { opacity: 0.5; }
+  97% { opacity: 1; }
+}
+
+/* 应用闪烁效果到容器 */
+.inventory-container {
+  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+             hellGatePulse 3s ease-in-out infinite,
+             horrorFlicker 8s ease-in-out infinite;
+}
+
+/* 血色阴影文字效果 */
+.inventory-header h2::after {
+  content: '🩸';
+  position: absolute;
+  right: -30px;
+  animation: bloodDrip 3s ease-in-out infinite;
+}
+
+/* 骷髅装饰 */
+.equipped-section h3::before {
+  content: '💀 ';
+}
+
+.equipped-section h3::after {
+  content: ' 💀';
+}
+
+/* 恐怖悬停音效提示 */
+.inventory-slot:hover {
+  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="24" font-size="24">🩸</text></svg>'), pointer;
+}
+
+/* 血色边框呼吸 */
+.inventory-slot.has-item {
+  animation: slotBreathing 4s ease-in-out infinite;
+}
+
+@keyframes slotBreathing {
+  0%, 100% { border-color: rgba(178, 34, 34, 0.6); }
+  50% { border-color: rgba(220, 20, 60, 0.8); }
+}
+
+/* 武器图标血色滤镜 */
+.weapon-detail-img {
+  animation: weaponPulse 3s ease-in-out infinite;
+}
+
+@keyframes weaponPulse {
+  0%, 100% { 
+    filter: drop-shadow(0 4px 10px rgba(139, 0, 0, 0.6)); 
+  }
+  50% { 
+    filter: drop-shadow(0 4px 20px rgba(220, 20, 60, 0.9)) brightness(1.1); 
+  }
+}
+
+/* 地狱之门裂缝效果 */
+.inventory-container {
+  background-image: 
+    linear-gradient(135deg, rgba(10, 0, 0, 0.98) 0%, rgba(30, 5, 5, 0.95) 50%, rgba(15, 0, 0, 0.98) 100%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(139, 0, 0, 0.03) 10px,
+      rgba(139, 0, 0, 0.03) 20px
+    );
+}
+
+/* 阴间雾气效果 */
+.inventory-overlay {
+  background-image: 
+    radial-gradient(ellipse at 20% 80%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(178, 34, 34, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.97) 0%, rgba(20, 0, 0, 0.95) 100%);
+}
+
+/* 血色按钮悬停特效 */
+.weapon-actions button:hover:not(:disabled) {
+  animation: buttonShake 0.1s ease-in-out;
+}
+
+@keyframes buttonShake {
+  0%, 100% { transform: translateY(-3px) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(-1deg); }
+  75% { transform: translateY(-3px) rotate(1deg); }
+}
+
+/* 恐怖字体效果 */
+.inventory-header h2,
+.equipped-section h3,
+.weapon-details h3 {
+  font-family: 'Orbitron', 'Creepster', sans-serif;
+}
+
+/* 最终的阴间氛围 */
+.inventory-container * {
+  transition: all 0.2s ease;
+}
+
+/* 血色焦点效果 */
+.inventory-slot:focus,
+.weapon-actions button:focus {
+  outline: 2px solid rgba(220, 20, 60, 0.8);
+  outline-offset: 2px;
 }

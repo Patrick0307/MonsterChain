@@ -1,191 +1,367 @@
-.game-loading {
+.game-loading.horror {
   width: 100%;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: #0a0a0a;
+  background: 
+    radial-gradient(ellipse at top, #0d0000 0%, #000000 50%),
+    linear-gradient(180deg, #050000 0%, #000000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Mosaic background effect */
-.mosaic-background {
+/* Blood rain container */
+.blood-drip-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(45deg, #000000 25%, transparent 25%),
-    linear-gradient(-45deg, #000000 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #000000 75%),
-    linear-gradient(-45deg, transparent 75%, #000000 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  opacity: 0.3;
-  animation: mosaicMove 20s linear infinite;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes mosaicMove {
+.blood-drip {
+  position: absolute;
+  top: -50px;
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(139, 0, 0, 0.8) 20%,
+    rgba(255, 0, 0, 0.9) 50%,
+    rgba(139, 0, 0, 0.6) 80%,
+    transparent 100%
+  );
+  filter: blur(0.5px);
+  animation: bloodRainFall linear infinite;
+  box-shadow: 
+    0 0 3px rgba(255, 0, 0, 0.5),
+    0 0 6px rgba(139, 0, 0, 0.3);
+}
+
+@keyframes bloodRainFall {
   0% {
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
   }
   100% {
-    background-position: 20px 20px, 20px 30px, 30px 10px, 10px 20px;
+    transform: translateY(100vh);
+    opacity: 0;
   }
 }
 
+/* Red flash */
+.red-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(139, 0, 0, 0.3) 100%);
+  animation: redPulse 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes redPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Remove cracks overlay - no grid pattern */
+.cracks-overlay {
+  display: none;
+}
+
+/* Fog effect */
+.fog-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.fog {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(50, 0, 0, 0.3) 25%, 
+    rgba(80, 0, 0, 0.2) 50%, 
+    rgba(50, 0, 0, 0.3) 75%, 
+    transparent 100%
+  );
+}
+
+.fog-1 {
+  animation: fogMove1 20s linear infinite;
+}
+
+.fog-2 {
+  animation: fogMove2 25s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes fogMove1 {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes fogMove2 {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Particles container */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Ash particles */
+.ash-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #333;
+  border-radius: 50%;
+  animation: ashFloat linear infinite;
+  opacity: 0;
+}
+
+@keyframes ashFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Ember effect */
+.ember {
+  position: absolute;
+  bottom: 0;
+  width: 3px;
+  height: 3px;
+  background: #ff4500;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ff4500, 0 0 12px #ff0000;
+  animation: emberRise 4s ease-out infinite;
+}
+
+@keyframes emberRise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-300px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Content area */
 .loading-content {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
   width: 90%;
   max-width: 800px;
 }
 
-/* Title styles */
-.loading-title {
+/* Horror title */
+.horror-title {
   position: relative;
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: bold;
   margin: 0;
   text-align: center;
 }
 
-.title-text {
+.horror-title .title-text {
   position: relative;
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #8b0000;
   text-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.5),
-    0 0 40px rgba(255, 215, 0, 0.3);
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
-  animation: titlePulse 2s ease-in-out infinite;
-  letter-spacing: 8px;
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 40px #8b0000,
+    0 0 80px #8b0000,
+    2px 2px 0 #000,
+    -2px -2px 0 #000;
+  animation: bloodPulse 2s ease-in-out infinite;
+  letter-spacing: 15px;
+  font-family: 'Times New Roman', serif;
 }
 
-@keyframes titlePulse {
+@keyframes bloodPulse {
   0%, 100% {
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    text-shadow: 
+      0 0 10px #ff0000,
+      0 0 20px #ff0000,
+      0 0 40px #8b0000,
+      0 0 80px #8b0000,
+      2px 2px 0 #000,
+      -2px -2px 0 #000;
   }
   50% {
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1));
+    text-shadow: 
+      0 0 20px #ff0000,
+      0 0 40px #ff0000,
+      0 0 60px #8b0000,
+      0 0 100px #8b0000,
+      2px 2px 0 #000,
+      -2px -2px 0 #000;
   }
 }
 
-/* Progress bar container */
-.progress-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+/* Glitch effect */
+.horror-title.glitch .title-text {
+  animation: glitchEffect 0.15s linear;
 }
 
-.progress-bar-wrapper {
-  position: relative;
-  width: 100%;
-  height: 30px;
-  background: #1a1a1a;
-  border: 3px solid #FFD700;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.3),
-    inset 0 2px 10px rgba(0, 0, 0, 0.8);
-}
-
-.progress-bar-fill {
-  position: relative;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    #FFD700 0%, 
-    #FFA500 25%, 
-    #FFD700 50%, 
-    #FFA500 75%, 
-    #FFD700 100%
-  );
-  background-size: 200% 100%;
-  animation: progressShimmer 2s linear infinite;
-  transition: width 0.3s ease-out;
-  box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.6),
-    inset 0 2px 5px rgba(255, 255, 255, 0.3);
-}
-
-@keyframes progressShimmer {
+@keyframes glitchEffect {
   0% {
-    background-position: 200% 0;
+    transform: translate(0);
+    text-shadow: -2px 0 #ff0000, 2px 0 #00ff00;
+  }
+  25% {
+    transform: translate(-5px, 2px);
+    text-shadow: 2px 0 #ff0000, -2px 0 #0000ff;
+  }
+  50% {
+    transform: translate(5px, -2px);
+    text-shadow: -2px 0 #00ff00, 2px 0 #ff0000;
+  }
+  75% {
+    transform: translate(-2px, 1px);
+    text-shadow: 2px 0 #0000ff, -2px 0 #ff0000;
   }
   100% {
-    background-position: -200% 0;
+    transform: translate(0);
+    text-shadow: 0 0 10px #ff0000;
   }
 }
 
-.progress-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
+/* Subtitle */
+.horror-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  margin: -20px 0 20px 0;
+  animation: subtitleFlicker 4s ease-in-out infinite;
+}
+
+@keyframes subtitleFlicker {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+  52% { opacity: 0.3; }
+  54% { opacity: 1; }
+}
+
+/* Blood progress bar */
+.horror-progress {
   width: 100%;
+}
+
+.horror-progress .progress-bar-wrapper {
+  position: relative;
+  width: 100%;
+  height: 25px;
+  background: #1a0505;
+  border: 3px solid #4a0000;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 
+    0 0 20px rgba(139, 0, 0, 0.5),
+    inset 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.blood-fill {
+  position: relative;
   height: 100%;
   background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255, 255, 255, 0.4) 50%, 
-    transparent 100%
+    #4a0000 0%, 
+    #8b0000 25%, 
+    #ff0000 50%, 
+    #8b0000 75%, 
+    #4a0000 100%
   );
-  animation: shine 2s ease-in-out infinite;
+  background-size: 200% 100%;
+  animation: bloodFlow 3s linear infinite;
+  transition: width 0.3s ease-out;
+  box-shadow: 
+    0 0 15px rgba(255, 0, 0, 0.6),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes shine {
-  0% {
-    left: -100%;
-  }
-  50%, 100% {
-    left: 200%;
-  }
+@keyframes bloodFlow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-.progress-border {
+.blood-bubble {
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  border-radius: 15px;
-  background: linear-gradient(45deg, 
-    #FFD700, 
-    #FFA500, 
-    #FFD700, 
-    #FFA500
-  );
-  background-size: 400% 400%;
-  animation: borderGlow 3s ease infinite;
-  z-index: -1;
+  top: 50%;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #ff4444 0%, #8b0000 100%);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  animation: bubble 1s ease-in-out infinite;
 }
 
-@keyframes borderGlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+@keyframes bubble {
+  0%, 100% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-50%) scale(1.3); }
 }
 
-.progress-text {
+.horror-text {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #FFD700;
+  color: #ff0000;
   text-shadow: 
-    0 0 10px rgba(255, 215, 0, 0.8),
-    0 0 20px rgba(255, 215, 0, 0.5);
+    0 0 10px rgba(255, 0, 0, 0.8),
+    0 0 20px rgba(139, 0, 0, 0.5);
   font-family: 'Courier New', monospace;
+  margin-top: 15px;
 }
 
 /* Loading status text */
@@ -196,58 +372,116 @@
   justify-content: center;
 }
 
-.stage-text {
-  font-size: 1.2rem;
-  color: #FFD700;
+.horror-stage {
+  font-size: 1.3rem;
+  color: #aa0000;
   text-align: center;
   margin: 0;
-  animation: textFade 0.5s ease-in;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  letter-spacing: 3px;
+  font-style: italic;
 }
 
-@keyframes textFade {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.glitch-text {
+  animation: textGlitch 0.1s linear;
 }
 
-/* Bottom character showcase */
-.characters-showcase {
+@keyframes textGlitch {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-3px, 1px); }
+  50% { transform: translate(3px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+}
+
+
+/* Jumpscare overlay - smooth animation */
+.jumpscare-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
   display: flex;
-  gap: 60px;
-  align-items: flex-end;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-.character-item {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  animation: characterFloat 3s ease-in-out infinite;
-  opacity: 0;
-  animation: characterAppear 0.8s ease-out forwards;
+  justify-content: center;
+  z-index: 9999;
+  animation: jumpscareFlash 2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-@keyframes characterAppear {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
+.jumpscare-logo {
+  width: 90vw;
+  max-width: 800px;
+  animation: jumpscareZoom 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  filter: drop-shadow(0 0 80px #ff0000) drop-shadow(0 0 150px #8b0000);
+}
+
+@keyframes jumpscareFlash {
+  0% {
+    background: #fff;
     opacity: 1;
-    transform: translateY(0);
+  }
+  3% {
+    background: #ff0000;
+  }
+  6% {
+    background: #000;
+  }
+  9% {
+    background: #ff0000;
+  }
+  12% {
+    background: #000;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
-@keyframes characterFloat {
+@keyframes jumpscareZoom {
+  0% {
+    transform: scale(6) rotate(-3deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    transform: scale(1.4) rotate(2deg);
+  }
+  15% {
+    transform: scale(1.2) rotate(-1deg);
+  }
+  20% {
+    transform: scale(1.15) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.15) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.12) translateY(280px);
+    opacity: 0;
+  }
+}
+
+/* Horror logo */
+.horror-symbols {
+  margin-top: 20px;
+}
+
+.horror-logo {
+  width: 100px;
+  height: auto;
+  animation: logoFloat 3s ease-in-out infinite, logoPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px #ff0000) drop-shadow(0 0 30px #8b0000);
+}
+
+@keyframes logoFloat {
   0%, 100% {
     transform: translateY(0);
   }
@@ -256,253 +490,99 @@
   }
 }
 
-.character-item:nth-child(1) {
-  animation-delay: 0s, 0s;
+@keyframes logoPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px #ff0000) drop-shadow(0 0 30px #8b0000);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px #ff0000) drop-shadow(0 0 50px #8b0000);
+  }
 }
 
-.character-item:nth-child(2) {
-  animation-delay: 0.2s, 1s;
-}
-
-.character-item:nth-child(3) {
-  animation-delay: 0.4s, 2s;
-}
-
-.character-wrapper {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 215, 0, 0.1);
-  border: 2px solid #FFD700;
-  border-radius: 10px;
-  box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.3),
-    inset 0 0 10px rgba(255, 215, 0, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.character-wrapper:hover {
-  transform: scale(1.1);
-  box-shadow: 
-    0 0 30px rgba(255, 215, 0, 0.5),
-    inset 0 0 15px rgba(255, 215, 0, 0.2);
-}
-
-.character-label {
-  font-size: 1rem;
-  color: #FFD700;
-  font-weight: bold;
+/* Warning text */
+.warning-text {
+  font-size: 1.5rem;
+  color: #ff0000;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-  position: relative;
-  z-index: 1;
-  margin-top: 15px;
+  letter-spacing: 5px;
+  margin-top: 30px;
 }
 
-/* ===== Particle effects ===== */
-.particles-container {
+.warning-text.pulse {
+  animation: warningPulse 1s ease-in-out infinite;
+}
+
+@keyframes warningPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+/* Blood vignette */
+.blood-vignette {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Starry sky twinkling */
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #FFD700;
-  border-radius: 50%;
-  box-shadow: 0 0 3px #FFD700;
-  animation: starTwinkle 3s ease-in-out infinite;
-}
-
-@keyframes starTwinkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.5);
-  }
-}
-
-/* Golden particles rising */
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #FFD700;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #FFD700;
-  animation: particleFloat linear infinite;
-  opacity: 0;
-}
-
-@keyframes particleFloat {
-  0% {
-    transform: translateY(100vh) scale(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px) scale(1);
-    opacity: 0;
-  }
-}
-
-/* Energy orb trajectory */
-.energy-orb {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #FFD700, transparent);
-  border-radius: 50%;
-  box-shadow: 
-    0 0 10px #FFD700,
-    0 0 20px rgba(255, 215, 0, 0.5);
-  animation: orbFloat linear infinite;
-}
-
-@keyframes orbFloat {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--orbit-x), var(--orbit-y)) scale(0.5);
-    opacity: 0;
-  }
-}
-
-/* Meteor effect */
-.meteor {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #FFD700;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 2px #FFD700;
-  animation: meteorFall linear;
-  opacity: 0;
-}
-
-@keyframes meteorFall {
-  0% {
-    opacity: 1;
-    transform: translateX(0) translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(300px) translateY(300px);
-  }
-}
-
-.meteor::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 2px;
-  width: 50px;
-  height: 1px;
-  background: linear-gradient(90deg, #FFD700, transparent);
-}
-
-/* Light beam effect */
-.light-beam {
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, 
+  background: radial-gradient(ellipse at center, 
     transparent 0%, 
-    rgba(255, 215, 0, 0.2) 50%, 
-    transparent 100%
+    transparent 50%, 
+    rgba(139, 0, 0, 0.3) 80%, 
+    rgba(80, 0, 0, 0.6) 100%
   );
-  animation: beamPulse 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 5;
 }
 
-@keyframes beamPulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scaleY(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scaleY(1.2);
-  }
+/* Progress container */
+.progress-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .loading-title {
-    font-size: 2.5rem;
+  .horror-title {
+    font-size: 3rem;
   }
 
-  .title-text {
-    letter-spacing: 4px;
+  .horror-title .title-text {
+    letter-spacing: 8px;
   }
 
-  .characters-showcase {
-    gap: 30px;
-    margin-top: 30px;
+  .horror-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 5px;
   }
 
-  .character-wrapper {
-    width: 70px;
-    height: 70px;
-  }
-
-  .character-label {
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-  }
-
-  .progress-text {
+  .horror-text {
     font-size: 1.2rem;
   }
 
-  .stage-text {
+  .horror-stage {
     font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .loading-title {
-    font-size: 2rem;
+  .horror-title {
+    font-size: 2.2rem;
   }
 
-  .characters-showcase {
-    gap: 20px;
+  .horror-title .title-text {
+    letter-spacing: 5px;
   }
 
-  .character-wrapper {
-    width: 60px;
-    height: 60px;
-  }
-
-  .character-label {
-    font-size: 0.65rem;
+  .warning-text {
+    font-size: 1rem;
+    letter-spacing: 3px;
   }
 }

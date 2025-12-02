@@ -20,7 +20,7 @@ function MapUI({ character, playerPos, tileSize, onExit, playerCurrentHp, player
         
         {/* 生命值条 */}
         <div className="mapui-stat-row">
-          <span className="mapui-stat-icon">❤️</span>
+          <span className="mapui-stat-icon">🩸</span>
           <span className="mapui-stat-label">HP</span>
           <div className="mapui-stat-bar">
             <div className="mapui-stat-bar-fill mapui-hp-fill" style={{ width: `${hpPercentage}%` }}>
@@ -32,7 +32,7 @@ function MapUI({ character, playerPos, tileSize, onExit, playerCurrentHp, player
 
         {/* 攻击力 */}
         <div className="mapui-stat-row">
-          <span className="mapui-stat-icon">⚔️</span>
+          <span className="mapui-stat-icon">💀</span>
           <span className="mapui-stat-label">ATK</span>
           <div className="mapui-attack-info">
             <span className="mapui-attack-total">{totalAttack}</span>
@@ -48,7 +48,7 @@ function MapUI({ character, playerPos, tileSize, onExit, playerCurrentHp, player
         <button onClick={onOpenInventory} className="mapui-action-btn mapui-inventory-btn">
           <div className="mapui-btn-inner">
             <div className="mapui-btn-face mapui-btn-front">
-              <span className="mapui-btn-icon">🎒</span>
+              <span className="mapui-btn-icon">⚰️</span>
             </div>
             <div className="mapui-btn-face mapui-btn-back">
               <div className="mapui-btn-label">
@@ -61,7 +61,7 @@ function MapUI({ character, playerPos, tileSize, onExit, playerCurrentHp, player
         <button onClick={onOpenMarketplace} className="mapui-action-btn mapui-market-btn">
           <div className="mapui-btn-inner">
             <div className="mapui-btn-face mapui-btn-front">
-              <span className="mapui-btn-icon">🏪</span>
+              <span className="mapui-btn-icon">🪦</span>
             </div>
             <div className="mapui-btn-face mapui-btn-back">
               <div className="mapui-btn-label">
@@ -74,7 +74,7 @@ function MapUI({ character, playerPos, tileSize, onExit, playerCurrentHp, player
         <button onClick={onExit} className="mapui-action-btn mapui-exit-btn">
           <div className="mapui-btn-inner">
             <div className="mapui-btn-face mapui-btn-front">
-              <span className="mapui-btn-icon">🚪</span>
+              <span className="mapui-btn-icon">☠️</span>
             </div>
             <div className="mapui-btn-face mapui-btn-back">
               <div className="mapui-btn-label">

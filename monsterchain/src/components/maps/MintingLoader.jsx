@@ -7,18 +7,18 @@ function MintingLoader() {
       <div className="minting-bg-mosaic"></div>
       
       <div className="minting-loader-container">
-        {/* 宝箱图标 */}
+        {/* 宝箱图标 - 血色风格 */}
         <div className="minting-treasure-icon">
-          <img src="/maps/treasure.png" alt="treasure" />
+          <img src="/maps/treasure.png" alt="treasure" style={{ filter: 'hue-rotate(-10deg)' }} />
         </div>
         
         {/* 旋转光环 */}
         <div className="minting-ring"></div>
         <div className="minting-ring-2"></div>
         
-        {/* 加载文字 */}
+        {/* 加载文字 - 恐怖风格 */}
         <div className="minting-text">
-          <div className="minting-title">MINTING WEAPON</div>
+          <div className="minting-title">⚰️ FORGING WEAPON ⚰️</div>
           <div className="minting-dots">
             <span>.</span>
             <span>.</span>

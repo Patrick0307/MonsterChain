@@ -62,9 +62,9 @@ function WeaponReward({ weapon, onClose }) {
           background: `radial-gradient(circle, ${rarityInfo.glow} 0%, transparent 70%)` 
         }}></div>
         
-        {/* Title */}
+        {/* Title - 恐怖风格 */}
         <div className="reward-title">
-          <div className="reward-title-text">🎉 WEAPON ACQUIRED 🎉</div>
+          <div className="reward-title-text">☠️ WEAPON FORGED ☠️</div>
         </div>
         
         {/* Weapon display area */}
@@ -125,17 +125,17 @@ function WeaponReward({ weapon, onClose }) {
           </div>
         </div>
         
-        {/* Hint text */}
+        {/* Hint text - 恐怖风格 */}
         <div className="reward-hint">
-          Weapon added to inventory
+          🩸 Weapon sealed in your soul 🩸
         </div>
         
-        {/* Close button */}
+        {/* Close button - 恐怖风格 */}
         <button className="reward-close-btn" onClick={handleClose}>
-          CONFIRM
+          ACCEPT FATE
         </button>
         
-        {/* Particle effects */}
+        {/* Particle effects - 血色粒子 */}
         {[...Array(30)].map((_, i) => (
           <div 
             key={`star-${i}`}
@@ -146,7 +146,7 @@ function WeaponReward({ weapon, onClose }) {
               animationDuration: `${2 + Math.random() * 2}s`
             }}
           >
-            ✨
+            🩸
           </div>
         ))}
       </div>

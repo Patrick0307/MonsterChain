@@ -60,7 +60,7 @@ function LootBox({
           height: '100%',
           objectFit: 'contain',
           imageRendering: 'pixelated',
-          filter: isHovered && canOpen && isOwner ? 'brightness(1.2) drop-shadow(0 0 8px rgba(255, 215, 0, 0.8))' : 'none',
+          filter: isHovered && canOpen && isOwner ? 'brightness(1.2) drop-shadow(0 0 12px rgba(255, 0, 0, 0.9)) hue-rotate(-10deg)' : 'hue-rotate(-10deg)',
           transition: 'filter 0.2s ease'
         }}
       />
@@ -79,25 +79,26 @@ function LootBox({
           top: '-25px',
           left: '50%',
           transform: 'translateX(-50%)',
-          color: '#FFD700',
+          color: '#dc143c',
           fontSize: '12px',
           fontWeight: 'bold',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+          textShadow: '0 0 10px rgba(220, 20, 60, 0.8), 2px 2px 4px rgba(0,0,0,0.9)',
           whiteSpace: 'nowrap',
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          fontFamily: 'Creepster, cursive'
         }}>
           {ownerName}'s Loot Box
         </div>
       )}
       
-      {/* 光效 - 只在可以打开时显示 */}
+      {/* 光效 - 只在可以打开时显示 - 血色风格 */}
       {canOpen && !isOpening && isOwner && (
         <>
           <div className="glow-ring" style={{ 
-            borderColor: '#FFD700'
+            borderColor: '#dc143c'
           }}></div>
           <div className="glow-pulse" style={{ 
-            background: 'radial-gradient(circle, rgba(255,215,0,0.6) 0%, transparent 70%)'
+            background: 'radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, transparent 70%)'
           }}></div>
         </>
       )}

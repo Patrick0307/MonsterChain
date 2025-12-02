@@ -2553,7 +2553,7 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
         onOpenMarketplace={() => setIsMarketplaceOpen(true)}
       />
       
-      {/* 死亡灰屏和复活倒计时 - 黑金配色 */}
+      {/* 死亡灰屏和复活倒计时 - 红黑恐怖风格 */}
       {isDead && (
         <div style={{
           position: 'fixed',
@@ -2561,7 +2561,7 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
           left: 0,
           width: '100vw',
           height: '100vh',
-          background: 'rgba(0, 0, 0, 0.92)',
+          background: 'linear-gradient(135deg, rgba(20, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%)',
           backdropFilter: 'blur(10px)',
           display: 'flex',
           flexDirection: 'column',
@@ -2570,29 +2570,44 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
           zIndex: 9999,
           animation: 'fadeIn 0.5s ease-out'
         }}>
-          {/* 死亡标题 - 黑金配色 */}
+          {/* 血色背景光晕 */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'radial-gradient(ellipse at 50% 50%, rgba(139, 0, 0, 0.3) 0%, transparent 60%)',
+            animation: 'bgPulse 4s ease-in-out infinite',
+            pointerEvents: 'none'
+          }} />
+          
+          {/* 死亡标题 - 红黑恐怖风格 */}
           <div style={{
             fontSize: '4rem',
             fontWeight: 'bold',
-            background: 'linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%)',
+            fontFamily: 'Nosifer, Creepster, cursive',
+            background: 'linear-gradient(135deg, #8b0000 0%, #dc143c 50%, #ff0000 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.5))',
+            filter: 'drop-shadow(0 0 30px rgba(255, 0, 0, 1)) drop-shadow(0 0 60px rgba(220, 20, 60, 0.8))',
             marginBottom: '40px',
-            animation: 'pulse 2s ease-in-out infinite'
+            animation: 'deathPulse 2s ease-in-out infinite',
+            textShadow: '4px 4px 0 #000',
+            letterSpacing: '5px'
           }}>
-            💀 YOU DIED 💀
+            ☠️ YOU DIED ☠️
           </div>
           
-          {/* 倒计时圆环 - 黑金配色 */}
+          {/* 倒计时圆环 - 血色风格 */}
           <div style={{
             position: 'relative',
             width: '200px',
             height: '200px',
             marginBottom: '30px'
           }}>
-            {/* 外圈光晕 - 金色 */}
+            {/* 外圈血色光晕 */}
             <div style={{
               position: 'absolute',
               top: '50%',
@@ -2601,8 +2616,8 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
               width: '220px',
               height: '220px',
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%)',
-              animation: 'glow 2s ease-in-out infinite'
+              background: 'radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, transparent 70%)',
+              animation: 'bloodGlow 2s ease-in-out infinite'
             }} />
             
             {/* 倒计时圆环背景 */}
@@ -2619,7 +2634,7 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
                 cy="100"
                 r="90"
                 fill="none"
-                stroke="rgba(255, 215, 0, 0.15)"
+                stroke="rgba(139, 0, 0, 0.3)"
                 strokeWidth="8"
               />
               <circle
@@ -2627,28 +2642,28 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
                 cy="100"
                 r="90"
                 fill="none"
-                stroke="url(#goldGradient)"
+                stroke="url(#bloodGradient)"
                 strokeWidth="8"
                 strokeLinecap="round"
                 strokeDasharray={`${2 * Math.PI * 90}`}
                 strokeDashoffset={`${2 * Math.PI * 90 * (1 - respawnCountdown / 10)}`}
                 style={{
                   transition: 'stroke-dashoffset 1s linear',
-                  filter: 'drop-shadow(0 0 15px rgba(255, 215, 0, 0.9))'
+                  filter: 'drop-shadow(0 0 20px rgba(255, 0, 0, 1))'
                 }}
               />
               <defs>
-                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#b8860b" />
-                  <stop offset="30%" stopColor="#ffd700" />
-                  <stop offset="50%" stopColor="#ffed4e" />
-                  <stop offset="70%" stopColor="#ffd700" />
-                  <stop offset="100%" stopColor="#daa520" />
+                <linearGradient id="bloodGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#8b0000" />
+                  <stop offset="30%" stopColor="#dc143c" />
+                  <stop offset="50%" stopColor="#ff0000" />
+                  <stop offset="70%" stopColor="#dc143c" />
+                  <stop offset="100%" stopColor="#8b0000" />
                 </linearGradient>
               </defs>
             </svg>
             
-            {/* 倒计时数字 - 完美居中 */}
+            {/* 倒计时数字 - 血色 */}
             <div style={{
               position: 'absolute',
               top: 0,
@@ -2660,9 +2675,9 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
               justifyContent: 'center',
               fontSize: '5rem',
               fontWeight: '900',
-              fontFamily: 'Arial, sans-serif',
-              color: '#ffd700',
-              textShadow: '0 0 30px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 215, 0, 0.7)',
+              fontFamily: 'Creepster, cursive',
+              color: '#ff0000',
+              textShadow: '0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(220, 20, 60, 0.8)',
               userSelect: 'none',
               lineHeight: '1'
             }}>
@@ -2670,27 +2685,30 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
             </div>
           </div>
           
-          {/* 复活提示 - 黑金配色 */}
+          {/* 复活提示 - 血色风格 */}
           <div style={{
             fontSize: '1.5rem',
             color: '#c9c9c9',
             textAlign: 'center',
             maxWidth: '600px',
-            lineHeight: '1.8'
+            lineHeight: '1.8',
+            fontFamily: 'Creepster, cursive'
           }}>
             <div style={{ 
               marginBottom: '10px',
-              color: '#ffd700',
-              textShadow: '0 0 10px rgba(255, 215, 0, 0.5)'
+              color: '#dc143c',
+              textShadow: '0 0 15px rgba(220, 20, 60, 0.8)',
+              letterSpacing: '2px'
             }}>
-              ⏳ Respawning...
+              🩸 Respawning...
             </div>
             <div style={{ 
               fontSize: '1.2rem', 
-              color: '#ffed4e',
-              textShadow: '0 0 8px rgba(255, 237, 78, 0.4)'
+              color: '#ff6666',
+              textShadow: '0 0 10px rgba(255, 102, 102, 0.5)',
+              fontFamily: 'Metal Mania, cursive'
             }}>
-              You will respawn at the starting point in {respawnCountdown} seconds
+              Your soul will return in {respawnCountdown} seconds
             </div>
           </div>
         </div>

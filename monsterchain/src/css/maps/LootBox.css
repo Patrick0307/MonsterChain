@@ -1,3 +1,6 @@
+/* 🩸💀 NIGHTMARE REALM - 噩梦宝箱 💀🩸 */
+/* 红黑恐怖阴森风格 */
+
 .loot-box {
   pointer-events: auto;
   transition: transform 0.2s ease;
@@ -14,7 +17,7 @@
   align-items: center;
   justify-content: center;
   font-size: 2em;
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+  filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.9));
   animation: box-float 2s ease-in-out infinite;
 }
 
@@ -28,25 +31,25 @@
   top: -40px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(20, 0, 0, 0.95);
   padding: 5px 10px;
   border-radius: 8px;
-  border: 2px solid #FFD700;
+  border: 2px solid #dc143c;
   text-align: center;
   min-width: 80px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.7);
 }
 
 .countdown-number {
   font-size: 1.5em;
   font-weight: bold;
-  color: #FFD700;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  color: #ff0000;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 1);
 }
 
 .countdown-text {
   font-size: 0.7em;
-  color: #FFF;
+  color: #dc143c;
   margin-top: 2px;
 }
 
@@ -55,20 +58,22 @@
   top: -35px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 215, 0, 0.9);
-  color: #000;
+  background: linear-gradient(135deg, #8b0000 0%, #dc143c 100%);
+  color: #fff;
   padding: 5px 12px;
   border-radius: 6px;
   font-size: 0.8em;
   font-weight: bold;
   white-space: nowrap;
   animation: hint-pulse 1s ease-in-out infinite;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.9);
+  border: 1px solid #ff0000;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
 }
 
 @keyframes hint-pulse {
-  0%, 100% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.05); }
+  0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 20px rgba(220, 20, 60, 0.9); }
+  50% { transform: translateX(-50%) scale(1.05); box-shadow: 0 0 35px rgba(255, 0, 0, 1); }
 }
 
 .glow-ring {
@@ -78,9 +83,10 @@
   width: 120%;
   height: 120%;
   transform: translate(-50%, -50%);
-  border: 2px solid rgba(255, 215, 0, 0.6);
+  border: 2px solid rgba(220, 20, 60, 0.8) !important;
   border-radius: 50%;
   animation: ring-expand 2s ease-out infinite;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
 @keyframes ring-expand {
@@ -103,7 +109,7 @@
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, transparent 70%) !important;
   border-radius: 50%;
   animation: pulse-glow 1.5s ease-in-out infinite;
 }
@@ -113,7 +119,7 @@
   50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
 }
 
-/* Opening animation */
+/* Opening animation - 血色爆发 */
 .opening-animation {
   position: absolute;
   top: 0;
@@ -130,9 +136,9 @@
   height: 200%;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, 
-    rgba(255, 255, 255, 1) 0%, 
-    rgba(255, 215, 0, 0.8) 20%, 
-    rgba(255, 165, 0, 0.4) 40%, 
+    rgba(255, 0, 0, 1) 0%, 
+    rgba(220, 20, 60, 0.8) 20%, 
+    rgba(139, 0, 0, 0.5) 40%, 
     transparent 70%);
   animation: explosion 0.5s ease-out forwards;
 }
@@ -161,11 +167,11 @@
   left: 50%;
   width: 6px;
   height: 6px;
-  background: radial-gradient(circle, #FFD700, #FFA500);
+  background: radial-gradient(circle, #ff0000, #8b0000);
   border-radius: 50%;
   animation: particle-fly 1s ease-out forwards;
   animation-delay: var(--delay);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 1);
 }
 
 @keyframes particle-fly {
@@ -187,11 +193,11 @@
   height: 150%;
   transform: translate(-50%, -50%);
   border: 3px solid transparent;
-  border-top-color: rgba(255, 215, 0, 0.8);
-  border-right-color: rgba(255, 165, 0, 0.6);
+  border-top-color: rgba(255, 0, 0, 0.9);
+  border-right-color: rgba(220, 20, 60, 0.7);
   border-radius: 50%;
   animation: ring-rotate 1s linear infinite;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
 }
 
 @keyframes ring-rotate {

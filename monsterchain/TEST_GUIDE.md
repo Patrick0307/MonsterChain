@@ -1,4 +1,4 @@
-# TaiXu Test Guide
+# Monster Chain Test Guide
 
 ## Configuration (V7)
 
@@ -12,7 +12,7 @@
 ## Start Testing
 
 ```bash
-cd taixuchain
+cd monsterchain
 npm start
 ```
 

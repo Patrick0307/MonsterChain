@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="./taixuchain/public/logo.png" alt="TaiXu World Logo" width="200"/>
+<img src="./monsterchain/public/logo.png" alt="Monster Chain Logo" width="200"/>
 
-# TaiXuChain
+# MonsterChain
 
 [![Live Demo](https://img.shields.io/badge/🎮%20Play%20Now-Live%20Demo-FF6B6B?style=for-the-badge)](https://tai-xu-chain.vercel.app)
 [![YouTube](https://img.shields.io/badge/📺%20Demo-YouTube-red?style=for-the-badge)](https://www.youtube.com/watch?v=l86PfXooajU)
@@ -45,17 +45,17 @@
 
 ```bash
 # Clone
-git clone https://github.com/your-username/taixu-world.git
-cd taixu-world
+git clone https://github.com/your-username/monster-chain.git
+cd monster-chain
 
 # Backend
-cd taixu-backend
+cd monster-backend
 npm install
 cp .env.example .env  # Add SPONSOR_PRIVATE_KEY
 npm start
 
 # Frontend (new terminal)
-cd taixuchain
+cd monsterchain
 npm install
 npm start
 ```
@@ -83,11 +83,11 @@ npm start
 ## 📁 Project Structure
 
 ```
-TaiXuWorld/
-├── taixuchain/      # Frontend (React)
-├── taixu-backend/   # Backend (Node.js)
-├── taixu-move/      # Smart Contracts (Sui Move)
-└── maps-design/     # Tiled map files
+MonsterChain/
+├── monsterchain/      # Frontend (React)
+├── monster-backend/   # Backend (Node.js)
+├── monster-move/      # Smart Contracts (Sui Move)
+└── maps-design/       # Tiled map files
 ```
 
 ---
@@ -121,9 +121,9 @@ TaiXuWorld/
 
 | Doc | Description |
 |-----|-------------|
-| [Backend](./taixu-backend/README.md) | API endpoints & WebSocket events |
-| [Contracts](./taixu-move/README.md) | Smart contract modules & deployment |
-| [Test Guide](./taixuchain/TEST_GUIDE.md) | Testing instructions |
+| [Backend](./monster-backend/README.md) | API endpoints & WebSocket events |
+| [Contracts](./monster-move/README.md) | Smart contract modules & deployment |
+| [Test Guide](./monsterchain/TEST_GUIDE.md) | Testing instructions |
 
 ---
 
@@ -139,4 +139,4 @@ TaiXuWorld/
 
 ## 📄 License
 
-MIT © TaiXu World
+MIT © Monster Chain

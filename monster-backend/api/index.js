@@ -14,7 +14,7 @@ app.use(express.json());
 
 // 健康检查
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Taixu Backend is running' });
+  res.json({ status: 'ok', message: 'Monster Backend is running' });
 });
 
 // 查询玩家是否已有角色

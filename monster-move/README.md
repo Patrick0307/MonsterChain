@@ -1,6 +1,6 @@
-# TaiXu Move Contracts
+# Monster Move Contracts
 
-Smart contracts for TaiXu World, built with Sui Move on OneChain Testnet.
+Smart contracts for Monster Chain, built with Sui Move on OneChain Testnet.
 
 ## Modules
 
@@ -50,7 +50,7 @@ sui client publish --gas-budget 100000000
 ## Project Structure
 
 ```
-taixu-move/
+monster-move/
 ├── sources/          # Contract source code
 ├── build/            # Compiled output
 ├── scripts/          # Deployment scripts

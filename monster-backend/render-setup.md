@@ -29,8 +29,8 @@
 2. 点击 "New +" → "Web Service"
 3. 连接你的 Git 仓库
 4. 配置：
-   - **Name**: `taixu-backend`
-   - **Root Directory**: `taixu-backend`
+   - **Name**: `monster-backend`
+   - **Root Directory**: `monster-backend`
    - **Environment**: `Node`
    - **Build Command**: `npm install`
    - **Start Command**: `npm start`
@@ -58,20 +58,20 @@ WEAPON_DEPLOY_PRIVATE_KEY=你的部署钱包私钥
 
 部署成功后，你会得到一个 URL，例如：
 ```
-https://taixu-backend.onrender.com
+https://monster-backend.onrender.com
 ```
 
 测试健康检查：
 ```bash
-curl https://taixu-backend.onrender.com/health
+curl https://monster-backend.onrender.com/health
 ```
 
 ### 5. 更新前端配置
 
-在 `taixuchain` 项目中更新 API 地址：
+在 `monsterchain` 项目中更新 API 地址：
 - 找到前端代码中的 API 配置
 - 将 `http://localhost:3001` 替换为你的 Render URL
-- 例如：`https://taixu-backend.onrender.com`
+- 例如：`https://monster-backend.onrender.com`
 
 ## 重要提示
 

@@ -13,8 +13,8 @@ module lingstone::lingstone_coin {
             9,                            // decimals (Sui 标准使用 9)
             b"LING",                      // symbol
             b"LingStone",                 // name
-            b"LingStone Token - A spiritual energy token for the Taixu metaverse", // description
-            option::some<Url>(url::new_unsafe_from_bytes(b"https://taixu.example.com/lingstone.png")), // icon url (可选)
+            b"LingStone Token - A spiritual energy token for the Monster Chain metaverse", // description
+            option::some<Url>(url::new_unsafe_from_bytes(b"https://monsterchain.example.com/lingstone.png")), // icon url (可选)
             ctx
         );
 

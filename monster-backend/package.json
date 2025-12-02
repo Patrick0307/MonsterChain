@@ -1,8 +1,8 @@
 {
-  "name": "taixu-backend",
+  "name": "monster-backend",
   "version": "1.0.0",
   "type": "module",
-  "description": "Taixu Game Backend - Sponsored Transaction Server",
+  "description": "Monster Chain Game Backend - Sponsored Transaction Server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

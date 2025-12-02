@@ -64,7 +64,7 @@ function WalletTutorial({ onClose, isForced = false, onComplete }) {
       const nextStep = currentStep + 1
       setCurrentStep(nextStep)
       if (nextStep === steps.length - 1) {
-        localStorage.setItem('taixuchain_tutorial_completed', 'true')
+        localStorage.setItem('monsterchain_tutorial_completed', 'true')
       }
     } else {
       if (isForced && onComplete) {

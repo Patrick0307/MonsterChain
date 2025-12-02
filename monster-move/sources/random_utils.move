@@ -1,9 +1,9 @@
-module taixu::random_utils {
+module monster::random_utils {
     use sui::object::{Self, UID};
     use sui::transfer;
     use sui::tx_context::{Self, TxContext};
     use sui::random::{Self, Random};
-    use taixu::weapon::{Self, Weapon, WeaponMintCap};
+    use monster::weapon::{Self, Weapon, WeaponMintCap};
 
     /// 错误码 - Error Codes
     const EInsufficientFunds: u64 = 0;

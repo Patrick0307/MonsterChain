@@ -77,7 +77,7 @@ function formatTime(timestamp) {
 async function displayMonitorInfo() {
   console.clear();
   console.log('╔════════════════════════════════════════════════════════════╗');
-  console.log('║         Taixu Sponsor Wallet Monitor                      ║');
+  console.log('║         Monster Chain Sponsor Wallet Monitor              ║');
   console.log('╚════════════════════════════════════════════════════════════╝');
   console.log('');
   

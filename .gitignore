@@ -8,8 +8,8 @@
 # 部署记录和文档（包含敏感信息）
 **/deployment.json
 **/deployed-*.json
-taixu-move/deployments/
-taixu-move/docs/
+monster-move/deployments/
+monster-move/docs/
 
 # 日志
 *.log

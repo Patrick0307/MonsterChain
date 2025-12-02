@@ -1,6 +1,6 @@
-# TaiXu Backend
+# Monster Backend
 
-Sponsored transaction server & multiplayer WebSocket for TaiXu World.
+Sponsored transaction server & multiplayer WebSocket for Monster Chain.
 
 ## Features
 
@@ -91,8 +91,8 @@ Configure in `render.yaml` at project root.
 
 ### Docker
 ```bash
-docker build -t taixu-backend .
-docker run -d -p 3001:3001 --env-file .env taixu-backend
+docker build -t monster-backend .
+docker run -d -p 3001:3001 --env-file .env monster-backend
 ```
 
 ## Security Notes

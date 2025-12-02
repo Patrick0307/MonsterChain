@@ -9,5 +9,5 @@ Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-fram
 
 [addresses]
 lingstone = "0x0"
-taixu = "0x0"
+monster = "0x0"
 std = "0x1"

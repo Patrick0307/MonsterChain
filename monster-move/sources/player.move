@@ -1,4 +1,4 @@
-module taixu::player {
+module monster::player {
     use sui::object::{Self, UID};
     use sui::transfer;
     use sui::tx_context::{Self, TxContext};

@@ -1,15 +1,15 @@
 @echo off
 echo ========================================
-echo   太虚链游戏 - 多人模式启动脚本
+echo   Monster Chain 游戏 - 多人模式启动脚本
 echo ========================================
 echo.
 
 echo [1/2] 启动后端服务器...
-start "Taixu Backend" cmd /k "cd taixu-backend && npm start"
+start "Monster Backend" cmd /k "cd monster-backend && npm start"
 timeout /t 3 /nobreak >nul
 
 echo [2/2] 启动前端应用...
-start "Taixu Frontend" cmd /k "cd taixuchain && npm start"
+start "Monster Frontend" cmd /k "cd monsterchain && npm start"
 
 echo.
 echo ========================================

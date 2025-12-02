@@ -1,4 +1,4 @@
-module taixu::marketplace {
+module monster::marketplace {
     use sui::object::{Self, UID, ID};
     use sui::transfer;
     use sui::tx_context::{Self, TxContext};
@@ -6,7 +6,7 @@ module taixu::marketplace {
     use sui::table::{Self, Table};
     use sui::event;
     use std::string;
-    use taixu::weapon::{Self, Weapon};
+    use monster::weapon::{Self, Weapon};
     use lingstone::lingstone_coin::LINGSTONE_COIN;
 
     /// 错误码

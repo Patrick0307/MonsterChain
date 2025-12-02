@@ -17,7 +17,7 @@ app.use(express.json());
 
 // 健康检查
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Taixu Backend is running' });
+  res.json({ status: 'ok', message: 'Monster Backend is running' });
 });
 
 // 查询玩家是否已有角色
@@ -453,7 +453,7 @@ websocketService.initialize(server);
 
 // 启动服务器
 server.listen(PORT, () => {
-  console.log(`🚀 Taixu Backend running on http://localhost:${PORT}`);
+  console.log(`🚀 Monster Backend running on http://localhost:${PORT}`);
   console.log(`📝 Sponsor wallet will pay gas for all player transactions`);
   console.log(`🔌 WebSocket server ready for multiplayer connections`);
 });

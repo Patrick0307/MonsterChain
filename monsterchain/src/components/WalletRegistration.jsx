@@ -12,7 +12,7 @@ function WalletRegistration({ onRegistrationSuccess }) {
 
   // 检查是否第一次访问
   useEffect(() => {
-    const hasSeenTutorial = localStorage.getItem('taixuchain_tutorial_completed')
+    const hasSeenTutorial = localStorage.getItem('monsterchain_tutorial_completed')
     if (!hasSeenTutorial) {
       // 第一次访问，强制显示 tutorial
       setShowTutorial(true)
@@ -292,7 +292,7 @@ function WalletRegistration({ onRegistrationSuccess }) {
           isForced={isForcedTutorial}
           onComplete={() => {
             // 完成教程后记录到 localStorage
-            localStorage.setItem('taixuchain_tutorial_completed', 'true')
+            localStorage.setItem('monsterchain_tutorial_completed', 'true')
             setShowTutorial(false)
             setIsForcedTutorial(false)
             console.log('✅ Tutorial completed and saved to localStorage')

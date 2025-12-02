@@ -24,7 +24,7 @@ sui client objects
 使用以下命令升级合约（替换 `<YOUR_OCT_COIN_ID>` 为你的 OCT coin ID）：
 
 ```bash
-cd taixu-move
+cd monster-move
 sui client upgrade --upgrade-capability 0x0c0461ed9aba3146cc9859718cf97d155fc9dbb4f662c14d1fdee4d232b0c012 --gas <YOUR_OCT_COIN_ID> --gas-budget 500000000
 ```
 
@@ -36,7 +36,7 @@ sui client upgrade --upgrade-capability 0x0c0461ed9aba3146cc9859718cf97d155fc9db
 ## 步骤 3: 升级后更新文档
 
 升级成功后，记录新的 Package ID：
-- 在 `taixu-move/docs/README.md` 中添加 V4 的 Package ID
+- 在 `monster-move/docs/README.md` 中添加 V4 的 Package ID
 - 更新 `Move.toml` 中的 `published-at` 字段
 
 ## 注意事项

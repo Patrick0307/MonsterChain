@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import '../css/GameLoading.css'
 
 function GameLoading({ onLoadingComplete }) {
@@ -6,6 +6,7 @@ function GameLoading({ onLoadingComplete }) {
   const [currentStage, setCurrentStage] = useState(0)
   const [glitchText, setGlitchText] = useState(false)
   const [showJumpscare, setShowJumpscare] = useState(true)
+  const ghostAudioRef = useRef(null)
 
   const loadingStages = [
     { text: 'Awakening the sleeping demon...', duration: 2000, progress: 20 },
@@ -14,6 +15,25 @@ function GameLoading({ onLoadingComplete }) {
     { text: 'Darkness is consuming everything...', duration: 1500, progress: 80 },
     { text: 'Welcome to hell...', duration: 2000, progress: 100 }
   ]
+
+  // Play ghost sound immediately on mount for jumpscare
+  useEffect(() => {
+    const ghostAudio = new Audio('/sounds/ghost.mp3')
+    ghostAudio.volume = 1.0 // 音量开到最大
+    ghostAudioRef.current = ghostAudio
+    
+    // 立即播放吓人音效
+    ghostAudio.play().catch(err => {
+      console.log('Audio autoplay blocked:', err)
+    })
+
+    return () => {
+      if (ghostAudioRef.current) {
+        ghostAudioRef.current.pause()
+        ghostAudioRef.current = null
+      }
+    }
+  }, [])
 
   // Jumpscare effect on load
   useEffect(() => {

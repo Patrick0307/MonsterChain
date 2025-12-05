@@ -41,7 +41,8 @@ function Monster({
 
 
   // 攻击动画帧数（根据实际图片数量）
-  const ATTACK_FRAMES = 12 // Minotaur_02_Attacking_000 到 011
+  // Knight_03 有 9 帧 (000-008), Knight_02 有 10 帧 (000-009)
+  const ATTACK_FRAMES = type === 'CowMonster1' ? 9 : 10
   const DETECT_RANGE = 90 // 检测范围（像素）- 与玩家仇恨范围一致
   const ATTACK_RANGE = 60 // 攻击范围（像素）- 与玩家攻击范围一致
   const MAX_CHASE_DISTANCE = 150 // 最大追击距离（像素）- 缩小追击距离
@@ -498,7 +499,8 @@ function Monster({
   // 根据怪物类型选择图片路径
   const getMonsterImage = () => {
     const frameStr = String(attackFrame).padStart(3, '0')
-    return `/maps/Spawns/${type}/Minotaur_${type === 'CowMonster1' ? '02' : '03'}_Attacking_${frameStr}.png`
+    // CowMonster1 使用 Knight_03, CowMonster2 使用 Knight_02
+    return `/maps/Spawns/${type}/Knight_${type === 'CowMonster1' ? '03' : '02'}__ATTACK_${frameStr}.png`
   }
   
   return (

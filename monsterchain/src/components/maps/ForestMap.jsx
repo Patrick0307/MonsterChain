@@ -70,7 +70,7 @@ function ForestMap({ character, onExit, roomId = null, initialPlayers = [], isHo
   const PLAYER_SIZE = 10  // 非常小的角色
   const MOVE_SPEED = 1.5  // 固定速度（降低移动速度）
   const MAP_SCALE = 2.5  // 放大地图2.5倍
-  const MONSTER_SIZE = 32 // 怪物大小（像素）- 缩小到32
+  const MONSTER_SIZE = 64 // 怪物大小（像素）- Knight 需要更大的显示尺寸
   const PLAYER_ATTACK_RANGE = 60 // 玩家攻击范围（像素）
   const PLAYER_ATTACK_INTERVAL = 1000 // 玩家攻击间隔（毫秒）
 
